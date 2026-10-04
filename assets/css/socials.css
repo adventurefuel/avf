@@ -6,7 +6,7 @@
 .ss .nav-cta{display:none}
 
 .ss-hero{position:relative;overflow:hidden;padding:36px 0 32px}
-.ss-hero .hero-bars{right:4%}
+.ss-hero .hero-bars{right:-95px;opacity:.6}
 .ss-hero-in{position:relative;display:flex;flex-direction:column;gap:24px}
 .ss-hero-copy{display:flex;flex-direction:column;gap:14px;max-width:760px}
 .ss-hero h1{font-size:clamp(64px,18vw,140px)}
@@ -151,6 +151,7 @@
   .ss-crumb{display:inline}
   .brand{margin-right:14px}
   .ss-hero{padding:56px 0 44px}
+  .ss-hero .hero-bars{right:8%;opacity:.9}
   .ss-hero-in{flex-direction:row;justify-content:space-between;align-items:flex-end}
   .ring{width:120px;height:120px}
   .ring-card{padding:20px 26px}

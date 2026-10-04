@@ -81,7 +81,7 @@ body.has-mbar{padding-bottom:calc(72px + var(--safe-b))}
 
 /* hero */
 .hero{position:relative;overflow:hidden;padding:40px 0 0}
-.hero-bars{position:absolute;right:-90px;top:0;bottom:0;display:flex;gap:10px;transform:skewX(-14deg);opacity:.9;pointer-events:none}
+.hero-bars{position:absolute;right:-140px;top:0;bottom:0;display:flex;gap:10px;transform:skewX(-14deg);opacity:.6;pointer-events:none}
 .hero-bars span{display:block}
 .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:28px;padding-bottom:48px}
 .hero h1{font-size:clamp(56px,17vw,168px)}
@@ -238,7 +238,7 @@ body.has-mbar{padding-bottom:calc(72px + var(--safe-b))}
   .hero-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:56px;padding-bottom:72px}
   .hero-logo{order:0}
   .hero-logo img{width:100%}
-  .hero-bars{right:-60px;gap:18px}
+  .hero-bars{right:-60px;gap:18px;opacity:.9}
   .ticker-track{font-size:30px;padding:16px 0}
   .g2{grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}
   .g3{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
