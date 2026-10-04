@@ -77,9 +77,12 @@
     rv.forEach(function (el) { io.observe(el); });
   } else { rv.forEach(function (el) { el.classList.add('in'); }); }
 
-  /* ---------- preset the form from the kit card ---------- */
-  document.querySelectorAll('[data-preset="kit"]').forEach(function (a) {
-    a.addEventListener('click', function () { var s = document.getElementById('f-stuck'); if (s) s.value = 'Send me the free Social Media Fuel Kit'; });
+  /* ---------- preset the form's "what's slowing you down" from hero options / kit card ---------- */
+  document.querySelectorAll('[data-preset]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var s = document.getElementById('f-stuck'); if (s) s.value = a.getAttribute('data-preset');
+      setTimeout(function () { var n = document.getElementById('f-name'); if (n) n.focus({ preventScroll: true }); }, 450);
+    });
   });
 
   /* ---------- lead form → Supabase (lands in Command Center › Scout) ---------- */
