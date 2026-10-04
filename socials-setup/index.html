@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Socials Setup — Meta + Instagram Launch Checklist | Adventure Fuel</title>
+<meta name="description" content="The 14-step Meta + Instagram setup checklist Adventure Fuel runs before any client goes live. Track completion, quality gates and launch blockers.">
+<meta name="theme-color" content="#0B0B0C">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://www.adventurefuel.agency/socials-setup/">
+<meta property="og:title" content="Socials Setup — Adventure Fuel">
+<meta property="og:description" content="Is your Meta + Instagram built right? The launch checklist we run before any client goes live.">
+<meta property="og:image" content="https://www.adventurefuel.agency/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/socials.css?v=1">
+<script>document.documentElement.classList.remove('no-js')</script>
+</head>
+<body class="ss">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Adventure Fuel home">
+      <picture><source srcset="/assets/img/logo-160.webp" type="image/webp"><img src="/assets/img/logo-160.png" alt="Adventure Fuel" width="160" height="197"></picture>
+    </a>
+    <span class="mono ss-crumb">/ Social Operations</span>
+    <div class="nav-right">
+      <button class="team-btn" type="button" id="team-btn" aria-haspopup="dialog">Team sign in</button>
+      <a class="btn btn-o nav-cta" href="/#fuel-up" data-track="cta_click" data-label="ss_nav_help">Get help →</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="halftone ss-hero">
+  <div class="hero-bars" aria-hidden="true"><span style="width:46px;background:var(--orange)"></span><span style="width:14px;background:var(--yellow)"></span><span style="width:6px;background:var(--blue)"></span></div>
+  <div class="wrap ss-hero-in">
+    <div class="ss-hero-copy">
+      <p class="eyebrow" style="color:var(--blue)">Operations tool · v3.0</p>
+      <h1 class="disp">Socials<br><span class="o">setup.</span></h1>
+      <p class="lead">Configure Meta + Instagram right <strong>before</strong> a client enters the publishing workflow. Completion = the work happened. Quality = it passed AF standards. Required gates block launch.</p>
+    </div>
+    <div class="ring-card" aria-live="polite">
+      <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="50" fill="none" stroke="#26262a" stroke-width="12"/>
+        <circle id="ring-fg" cx="60" cy="60" r="50" fill="none" stroke="#FDB012" stroke-width="12" stroke-dasharray="0 314.2" transform="rotate(-90 60 60)"/>
+        <text id="ring-txt" x="60" y="70" text-anchor="middle" font-family="Anton, sans-serif" font-size="32" fill="#FEFDFB">0%</text>
+      </svg>
+      <div class="ring-meta">
+        <span class="mono" style="color:var(--mute)">Current readiness</span>
+        <span class="disp" id="status-label" style="font-size:30px">Not started</span>
+        <span class="mono" style="color:var(--mute)"><span id="blockers-top">0</span> required gates open</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap ss-cols">
+  <div class="ss-main">
+
+    <section class="panel ss-pad" aria-labelledby="profile-h">
+      <div class="panel-head"><h2 class="disp" id="profile-h">Client setup profile</h2><span class="mono" id="save-state" style="color:var(--mute)">Not saved</span></div>
+      <div class="ss-fields" id="profile">
+        <div class="fld"><label for="p-client">Client / brand</label><input id="p-client" data-k="client" type="text" autocomplete="off" placeholder="e.g. 4DRIP"></div>
+        <div class="fld"><label for="p-date">Setup date</label><input id="p-date" data-k="date" type="date"></div>
+        <div class="fld"><label for="p-owner">AF owner</label><input id="p-owner" data-k="owner" type="text" autocomplete="off"></div>
+        <div class="fld"><label for="p-approver">Client approver</label><input id="p-approver" data-k="approver" type="text" autocomplete="off"></div>
+        <div class="fld"><label for="p-ig">Instagram handle</label><input id="p-ig" data-k="ig" type="text" autocomplete="off" autocapitalize="off" placeholder="@handle"></div>
+        <div class="fld"><label for="p-fb">Facebook page</label><input id="p-fb" data-k="fb" type="text" autocomplete="off"></div>
+        <div class="fld"><label for="p-portfolio">Meta portfolio</label><input id="p-portfolio" data-k="portfolio" type="text" autocomplete="off"></div>
+        <div class="fld"><label for="p-access">Access status</label><select id="p-access" data-k="access"><option>Not started</option><option>Waiting on client</option><option>Partial access</option><option>Full access</option><option>Blocked</option></select></div>
+        <div class="fld"><label for="p-login">Login / recovery</label><select id="p-login" data-k="login"><option>Unknown</option><option>Verified</option><option>Needs update</option><option>Client managed</option><option>Blocked</option></select></div>
+        <div class="fld"><label for="p-tz">Time zone</label><select id="p-tz" data-k="tz"><option>America/Detroit (ET)</option><option>America/New_York (ET)</option><option>America/Chicago (CT)</option><option>America/Denver (MT)</option><option>America/Los_Angeles (PT)</option></select></div>
+        <div class="fld fld-wide"><label for="p-notes">Notes / blockers</label><textarea id="p-notes" data-k="notes" rows="3"></textarea></div>
+      </div>
+      <div class="ss-actions">
+        <button class="sbtn sbtn-o" type="button" id="save-btn">Save client</button>
+        <button class="sbtn" type="button" id="new-btn">New client</button>
+        <button class="sbtn" type="button" id="expand-btn">Expand all</button>
+        <button class="sbtn" type="button" id="collapse-btn">Collapse all</button>
+      </div>
+    </section>
+
+    <div id="phases"></div>
+
+    <section class="panel ss-pad explainer">
+      <h2 class="disp" style="font-size:34px;color:var(--yellow)">Quality ≠ completion</h2>
+      <p>A setup can be technically complete and still be weak. Required quality gates protect the launch. Optional gates improve maturity but don't block the account from going live.</p>
+      <dl class="defs">
+        <div><dt>Completion</dt><dd>completed setup steps</dd></div>
+        <div><dt>Quality</dt><dd>passed quality gates</dd></div>
+        <div><dt>Readiness</dt><dd>70% completion + 30% quality</dd></div>
+        <div><dt>Launch blocker</dt><dd>any required step or gate still open</dd></div>
+      </dl>
+    </section>
+
+    <section class="signoff" aria-labelledby="so-h">
+      <h2 class="disp" id="so-h">Final sign-off</h2>
+      <p>Only after every required step and quality gate is complete. Creates the internal launch-ready record for Adventure Fuel.</p>
+      <div class="ss-fields">
+        <div class="fld fld-l"><label for="s-af">AF approver</label><input id="s-af" data-k="signAf" type="text" autocomplete="off"></div>
+        <div class="fld fld-l"><label for="s-client">Client / owner approval</label><input id="s-client" data-k="signClient" type="text" autocomplete="off"></div>
+        <div class="fld fld-l"><label for="s-date">Approval date</label><input id="s-date" data-k="signDate" type="date"></div>
+      </div>
+      <button type="button" id="signoff-btn" class="sbtn sbtn-k" disabled>Not ready for sign-off</button>
+    </section>
+
+    <section class="panel ss-pad" aria-labelledby="dash-h">
+      <div class="panel-head"><h2 class="disp" id="dash-h">Client readiness dashboard</h2><span class="mono" id="dash-src" style="color:var(--mute)">This device</span></div>
+      <p class="dash-note" id="dash-note">Saved here on this device. Sign in with your Command Center account to sync across the team.</p>
+      <div class="dash" id="dash"></div>
+    </section>
+  </div>
+
+  <aside class="ss-side" aria-label="Scorecard">
+    <section class="panel ss-pad">
+      <p class="mono" style="color:var(--mute)">Live scorecard</p>
+      <div class="score3">
+        <div><span class="disp" id="sc-comp">0%</span><span class="mono">Completion</span></div>
+        <div><span class="disp b" id="sc-qual">0%</span><span class="mono">Quality</span></div>
+        <div><span class="disp o" id="sc-block">0</span><span class="mono">Blockers</span></div>
+      </div>
+      <div id="phase-bars" class="pbars"></div>
+    </section>
+    <section class="panel ss-pad">
+      <p class="mono" style="color:var(--mute)">Export</p>
+      <div class="ss-actions" style="margin-top:12px">
+        <button class="sbtn" type="button" id="copy-btn">Copy report</button>
+        <button class="sbtn" type="button" id="dl-btn">Download</button>
+        <button class="sbtn" type="button" id="print-btn">Print / PDF</button>
+        <button class="sbtn" type="button" id="reset-btn">Reset</button>
+      </div>
+    </section>
+    <section class="help-card">
+      <p class="disp" style="font-size:30px">Want us to set it up for you?</p>
+      <p>We run this exact checklist for every client before launch.</p>
+      <a class="btn btn-o btn-block" href="/#fuel-up" data-track="cta_click" data-label="ss_side_help">Fuel up →</a>
+    </section>
+  </aside>
+</div>
+</main>
+
+<!-- mobile readiness dock -->
+<div class="dock" aria-label="Readiness summary">
+  <div class="dock-score"><span class="disp" id="dock-pct">0%</span><span class="mono" id="dock-label">Not started</span></div>
+  <span class="mono dock-block"><span id="dock-block">0</span> open</span>
+  <button class="sbtn sbtn-o" type="button" id="dock-save">Save</button>
+</div>
+
+<!-- team sign-in dialog -->
+<dialog id="team-dlg" class="dlg" aria-labelledby="dlg-h">
+  <form id="team-form" method="dialog" class="dlg-in">
+    <div class="panel-head"><h2 class="disp" id="dlg-h" style="font-size:32px">Team sign in</h2><button class="x" type="button" id="dlg-close" aria-label="Close">×</button></div>
+    <p style="color:var(--soft);font-size:15px">Use your Command Center login. Saved setups sync for everyone on the team.</p>
+    <div class="fld"><label for="t-email">Email</label><input id="t-email" type="email" autocomplete="username" inputmode="email" autocapitalize="off" required></div>
+    <div class="fld"><label for="t-pass">Password</label><input id="t-pass" type="password" autocomplete="current-password" required></div>
+    <p class="form-msg err" id="t-msg" role="alert"></p>
+    <button class="btn btn-o btn-block" type="submit" id="t-submit">Sign in →</button>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="foot ss-foot">
+  <div class="wrap foot-base" style="margin-top:0">
+    <span class="mono">© <span id="yr">2026</span> Adventure Fuel</span>
+    <a class="mono" href="/" style="color:var(--mute);text-decoration:none;min-height:44px;display:inline-flex;align-items:center">← adventurefuel.agency</a>
+  </div>
+</footer>
+
+<script src="/assets/js/config.js?v=1"></script>
+<script src="/assets/js/site.js?v=1" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" defer></script>
+<script src="/assets/js/socials.js?v=1" defer></script>
+</body>
+</html>
