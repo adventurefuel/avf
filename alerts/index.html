@@ -117,6 +117,7 @@
 
   function showApp(on){ $('signin').hidden=on; $('app').hidden=!on; if(on){ renderAlerts(); load(); } }
 
+  document.querySelectorAll('.get-app').forEach(function(b){ b.hidden=AF.standalone; });
   sb.auth.getSession().then(function(r){ var s=r.data&&r.data.session; token=s?s.access_token:null; showApp(!!s); });
   sb.auth.onAuthStateChange(function(_e,s){ token=s?s.access_token:null; });
 
