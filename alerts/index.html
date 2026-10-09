@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AF Alerts</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="/alerts/manifest.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AF Alerts">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/app.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="/assets/af.js"></script>
+<style>:root{padding-top:env(safe-area-inset-top,0px)} .shell{padding-block-end:48px}</style>
+</head>
+<body>
+<div class="bg-tone" aria-hidden="true"></div>
+<div class="shell">
+  <header class="top">
+    <a href="/" aria-label="Adventure Fuel home"><img src="/assets/af-logo.png" alt="Adventure Fuel"></a>
+    <div class="call">Owner<b>AF Alerts</b></div>
+  </header>
+
+  <main class="stack">
+    <!-- SIGN IN -->
+    <section class="stack" id="signin" hidden>
+      <span class="eyebrow">Owner only</span>
+      <h1>Lead <span class="hot">alerts</span></h1>
+      <p class="lead">Sign in with your Command Center admin login to get a push on your phone for every roadmap call request and finished Fuel Check.</p>
+      <form class="meet" id="loginForm" novalidate>
+        <div class="f"><label for="lEmail">Email</label><input id="lEmail" type="email" autocomplete="username" required></div>
+        <div class="f"><label for="lPass">Password</label><input id="lPass" type="password" autocomplete="current-password" required></div>
+        <div class="err" id="lErr" role="alert"></div>
+        <div class="btn-row"><button class="btn btn-fuel" type="submit" id="lBtn">Sign In</button></div>
+      </form>
+    </section>
+
+    <!-- DASH -->
+    <section class="stack" id="app" hidden>
+      <div class="toggle-row">
+        <h2>Owner <span class="hot">alerts</span></h2>
+        <button class="linkish" type="button" id="signOut">Sign out</button>
+      </div>
+
+      <div class="panel">
+        <div class="toggle-row"><span class="eyebrow">This phone</span><span class="pill" id="aPill">Checking</span></div>
+        <h3 id="aHead">Alerts on this phone</h3>
+        <p style="margin:0;color:#D9D4CA" id="aCopy">Turn on alerts to get a push the moment someone books a roadmap call or saves their Fuel Check.</p>
+        <div class="btn-row">
+          <button class="btn btn-fuel" type="button" id="aBtn">Turn On Alerts</button>
+          <button class="btn btn-ghost" type="button" id="aTest" hidden>Send Test Alert</button>
+        </div>
+        <div class="err" id="aErr" role="alert"></div>
+      </div>
+
+      <div class="install" data-install hidden>
+        <span class="eyebrow">Step one on iPhone</span>
+        <h3>Add AF Alerts to your home screen</h3>
+        <p>Apple only delivers alerts to apps on the home screen. Android can install it too.</p>
+        <div class="btn-row" data-android><button class="btn btn-fuel" type="button" data-install-btn>Install AF Alerts</button></div>
+        <ol class="ios-steps" data-ios hidden>
+          <li>Tap <b>Share</b> <svg class="share-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg> at the bottom of Safari.</li>
+          <li>Choose <b>Add to Home Screen</b>, then tap <b>Add</b>.</li>
+          <li>Open <b>AF Alerts</b> from your home screen, sign in, and tap <b>Turn On Alerts</b>.</li>
+        </ol>
+        <p class="muted" data-other hidden style="font-size:15px">On your phone, open adventurefuel.agency/alerts in Chrome (Android) or Safari (iPhone).</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="kpi"><span class="k">Owner phones</span><span class="v" id="cOwners">–</span></div>
+        <div class="kpi"><span class="k">Clients opted in</span><span class="v" id="cClients">–</span></div>
+      </div>
+
+      <div class="stack">
+        <div class="toggle-row"><span class="eyebrow">Latest leads</span><button class="linkish" type="button" id="refresh">Refresh</button></div>
+        <div class="stack" id="leads" style="gap:10px"><p class="muted">Loading…</p></div>
+      </div>
+
+      <div class="panel">
+        <span class="eyebrow">Push to clients</span>
+        <h3>Send a notification</h3>
+        <p style="margin:0;color:#D9D4CA">Goes to every client who turned on notifications in the Fuel Check app. Use it for monthly Fuel Reports and real news, not spam.</p>
+        <form class="meet" id="castForm" novalidate>
+          <div class="f"><label for="cTitle">Title</label><input id="cTitle" maxlength="80" value="Your October Fuel Report is ready"></div>
+          <div class="f"><label for="cBody">Message</label><textarea id="cBody" maxlength="240">Three numbers, what they mean, and what we're doing next. Tap to read it.</textarea></div>
+          <div class="f"><label for="cUrl">Opens</label>
+            <select id="cUrl"><option value="/fuel-check/#dash">Fuel Report</option><option value="/fuel-check/#check">Fuel Check</option><option value="/fuel-check/#meet">Book a call</option><option value="/">Website home</option></select></div>
+          <div class="err" id="cErr" role="alert"></div>
+          <div class="btn-row"><button class="btn btn-fuel" type="submit" id="cBtn">Review &amp; Send</button></div>
+        </form>
+        <div class="stack" id="cConfirm" hidden style="gap:12px">
+          <p style="margin:0" id="cConfirmText"></p>
+          <div class="btn-row"><button class="btn btn-fuel" type="button" id="cSend">Send Now</button><button class="btn btn-ghost" type="button" id="cCancel">Cancel</button></div>
+        </div>
+        <div id="casts" class="muted" style="font-size:15px"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var sb=supabase.createClient('https://cjixvpcoivfipmgmvomi.supabase.co','sb_publishable_r9lGmmPly-_NzXnM0pOUSA_X_7V1pJh');
+  var token=null, clientCount=0;
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function when(t){var d=new Date(t),m=Math.round((Date.now()-d)/60000);if(m<1)return 'just now';if(m<60)return m+' min ago';if(m<1440)return Math.round(m/60)+' hr ago';return d.toLocaleDateString(undefined,{month:'short',day:'numeric'})}
+
+  function showApp(on){ $('signin').hidden=on; $('app').hidden=!on; if(on){ renderAlerts(); load(); } }
+
+  sb.auth.getSession().then(function(r){ var s=r.data&&r.data.session; token=s?s.access_token:null; showApp(!!s); });
+  sb.auth.onAuthStateChange(function(_e,s){ token=s?s.access_token:null; });
+
+  $('loginForm').addEventListener('submit',function(e){
+    e.preventDefault(); var btn=$('lBtn'); btn.disabled=true; $('lErr').textContent='';
+    sb.auth.signInWithPassword({email:$('lEmail').value.trim(),password:$('lPass').value})
+      .then(function(r){ if(r.error) throw r.error; token=r.data.session.access_token; showApp(true); })
+      .catch(function(err){ $('lErr').textContent='Sign-in failed: '+(err.message||'check your email and password.'); })
+      .then(function(){ btn.disabled=false; });
+  });
+  $('signOut').addEventListener('click',function(){ sb.auth.signOut().then(function(){ token=null; showApp(false); }); });
+
+  function load(){
+    AF.call({action:'recent'},token).then(function(d){
+      $('cOwners').textContent=d.owners||0; clientCount=d.clients||0; $('cClients').textContent=clientCount;
+      var L=d.leads||[];
+      $('leads').innerHTML = L.length ? L.map(function(l){
+        var tag=l.lead_type==='fuel_check'?'<span class="tag check">Fuel Check</span>':(l.lead_type==='download'?'<span class="tag">Download</span>':'<span class="tag call">Roadmap call</span>');
+        var contact=l.phone?'<span style="user-select:all;color:var(--cream);font-weight:600">'+esc(l.phone)+'</span>':esc(l.email||'');
+        var fuel=l.fuel_score!=null?' · Fuel '+l.fuel_score+'% ('+esc(l.fuel_tier||'')+')':'';
+        return '<article class="lead-item" id="lead-'+esc(l.id)+'"><div class="lead-top"><b>'+esc(l.name)+'</b>'+tag+'</div>'+
+          '<div class="lead-meta">'+esc(l.business)+' · '+contact+fuel+'</div>'+
+          (l.best_time?'<div class="lead-meta">Best time: '+esc(l.best_time)+'</div>':'')+
+          (l.lowest_lines?'<div class="lead-meta">Low lines: '+esc(l.lowest_lines)+'</div>':'')+
+          (l.goal?'<div style="color:#E4DFD4">'+esc(l.goal)+'</div>':'')+
+          '<div class="lead-meta" style="font-size:13px">'+when(l.created_at)+'</div></article>';
+      }).join('') : '<p class="muted">No leads yet. They show up here and on your phone as they come in.</p>';
+      var hit=location.hash&&document.querySelector(location.hash.replace(/[^#\w-]/g,''));
+      if(hit){ hit.classList.add('flash'); hit.scrollIntoView({block:'center'}); }
+      var C=d.broadcasts||[];
+      $('casts').innerHTML = C.length ? 'Last sent: '+C.map(function(c){return esc(c.title)+' ('+c.sent+' delivered, '+when(c.created_at)+')'}).slice(0,3).join('<br>') : '';
+    }).catch(function(err){
+      $('leads').innerHTML='<p class="err">'+esc(err.message)+'</p>';
+      if(/sign-in/i.test(err.message)){ sb.auth.signOut(); showApp(false); $('lErr').textContent='That login isn’t an admin account. Use your Command Center admin login.'; }
+    });
+  }
+  $('refresh').addEventListener('click',load);
+  window.addEventListener('hashchange',load);
+
+  // owner alerts on this device
+  function renderAlerts(){
+    document.querySelectorAll('[data-install]').forEach(function(card){
+      var needs = AF.isIOS && !AF.standalone;
+      card.hidden = AF.standalone || !(needs || AF.canPromptInstall() || !AF.pushSupported);
+      card.querySelector('[data-android]').hidden=!AF.canPromptInstall();
+      card.querySelector('[data-ios]').hidden=!AF.isIOS;
+      card.querySelector('[data-other]').hidden=AF.isIOS||AF.canPromptInstall();
+    });
+    AF.pushState().then(function(st){
+      var pill=$('aPill'), btn=$('aBtn');
+      pill.className='pill'+(st==='on'?' on':(st==='blocked'?' warn':''));
+      pill.textContent={on:'On',off:'Off',blocked:'Blocked','needs-install':'Install first',unsupported:'Not supported'}[st]||'Off';
+      btn.hidden = st==='needs-install'||st==='unsupported';
+      btn.textContent = st==='on' ? 'Turn Off Alerts' : 'Turn On Alerts';
+      btn.dataset.state=st; $('aTest').hidden = st!=='on';
+      $('aCopy').textContent = st==='on' ? 'This phone gets a push for every roadmap call request and saved Fuel Check.'
+        : st==='needs-install' ? 'Add AF Alerts to your home screen first (steps below), then open it from the icon and turn alerts on.'
+        : st==='blocked' ? 'Notifications are blocked for this site. Allow them in your phone settings, then come back.'
+        : st==='unsupported' ? 'This browser can’t receive push alerts. Use Chrome on Android or the home-screen app on iPhone.'
+        : 'Turn on alerts to get a push the moment someone books a roadmap call or saves their Fuel Check.';
+    });
+  }
+  document.querySelectorAll('[data-install-btn]').forEach(function(b){ b.addEventListener('click',function(){ AF.promptInstall().then(renderAlerts); }); });
+  AF.onInstallChange(renderAlerts);
+
+  $('aBtn').addEventListener('click',function(){
+    var btn=$('aBtn'); btn.disabled=true; $('aErr').textContent='';
+    var p = btn.dataset.state==='on' ? AF.disablePush() : AF.enablePush('owner',token,'Owner phone').then(function(){ return AF.call({action:'test'},token); });
+    p.catch(function(err){ $('aErr').textContent=err.message; }).then(function(){ btn.disabled=false; renderAlerts(); load(); });
+  });
+  $('aTest').addEventListener('click',function(){
+    $('aErr').textContent='';
+    AF.call({action:'test'},token).then(function(r){ $('aErr').textContent = r.sent ? '' : 'No owner phones received it. Turn alerts off and on again.'; })
+      .catch(function(err){ $('aErr').textContent=err.message; });
+  });
+
+  // broadcast with in-page confirm
+  $('castForm').addEventListener('submit',function(e){
+    e.preventDefault(); $('cErr').textContent='';
+    if(!$('cTitle').value.trim()||!$('cBody').value.trim()){ $('cErr').textContent='Add a title and a message.'; return; }
+    if(!clientCount){ $('cErr').textContent='No clients have turned on notifications yet.'; return; }
+    $('cConfirmText').textContent='Send "'+$('cTitle').value.trim()+'" to '+clientCount+' client phone'+(clientCount===1?'':'s')+'?';
+    $('castForm').hidden=true; $('cConfirm').hidden=false;
+  });
+  $('cCancel').addEventListener('click',function(){ $('castForm').hidden=false; $('cConfirm').hidden=true; });
+  $('cSend').addEventListener('click',function(){
+    var btn=$('cSend'); btn.disabled=true;
+    AF.call({action:'broadcast',title:$('cTitle').value.trim(),body:$('cBody').value.trim(),url:$('cUrl').value},token)
+      .then(function(r){ $('cErr').textContent=''; $('casts').textContent='Sent to '+r.sent+' phone'+(r.sent===1?'':'s')+(r.failed?' ('+r.failed+' failed)':'')+'.'; })
+      .catch(function(err){ $('cErr').textContent=err.message; })
+      .then(function(){ btn.disabled=false; $('castForm').hidden=false; $('cConfirm').hidden=true; load(); });
+  });
+})();
+</script>
+</body>
+</html>

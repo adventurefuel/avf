@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AF Fuel Check</title>
+<meta name="description" content="How much fuel is in your business? Take Adventure Fuel's 2-minute Fuel Check, get your growth roadmap, and book a call.">
+<link rel="manifest" href="/fuel-check/manifest.webmanifest">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fuel Check">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta property="og:title" content="AF Fuel Check">
+<meta property="og:description" content="How much fuel is in your tank? 8 questions, 2 minutes, a real growth roadmap.">
+<meta property="og:image" content="https://www.adventurefuel.agency/assets/img/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/app.css">
+<script src="/assets/af.js"></script>
+<style>:root{padding-top:env(safe-area-inset-top,0px)}</style>
+</head>
+<body>
+<div class="bg-tone" aria-hidden="true"></div>
+<div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<div class="shell">
+  <header class="top">
+    <a href="/" aria-label="Adventure Fuel home"><img src="/assets/af-logo.png" alt="Adventure Fuel"></a>
+    <div class="call">Fuel up<b>(248) 509-5860</b></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Fuel Check sections">
+    <button class="tab" role="tab" id="t-check" aria-controls="v-check" aria-selected="true" data-v="check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Fuel Check</button>
+    <button class="tab" role="tab" id="t-gauge" aria-controls="v-gauge" aria-selected="false" data-v="gauge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/></svg>Gauge</button>
+    <button class="tab" role="tab" id="t-road" aria-controls="v-road" aria-selected="false" data-v="road">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M4 12h16M4 18h7"/><circle cx="18" cy="6" r="2"/><circle cx="15" cy="18" r="2"/></svg>Roadmap</button>
+    <button class="tab" role="tab" id="t-dash" aria-controls="v-dash" aria-selected="false" data-v="dash">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Report</button>
+    <button class="tab" role="tab" id="t-meet" aria-controls="v-meet" aria-selected="false" data-v="meet">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Meet</button>
+  </nav>
+
+  <main>
+    <!-- FUEL CHECK -->
+    <section class="view stack" id="v-check" role="tabpanel" aria-labelledby="t-check">
+      <div class="stack" id="intro">
+        <span class="eyebrow">Free · 2 minutes · 8 questions</span>
+        <h1>How much fuel is in <span class="hot">your tank?</span></h1>
+        <p class="lead">Answer eight quick questions about how customers find you. You'll get a fuel gauge, the lines running low, and a growth roadmap in plain English.</p>
+      </div>
+      <div class="progress" id="progress" aria-hidden="true"></div>
+      <div class="qmeta"><span id="qcount">Question 1 of 8</span><span class="qline" id="qline"></span></div>
+      <h2 id="qtext" style="font-size:clamp(32px,6.5vw,46px)"></h2>
+      <div class="opts" id="opts" role="group" aria-labelledby="qtext"></div>
+      <div class="qnav">
+        <button class="btn btn-ghost" id="back" type="button">Back</button>
+        <button class="btn btn-fuel" id="next" type="button" disabled>Next</button>
+      </div>
+      <button class="linkish" id="seeSample" type="button">Skip it and see a sample result</button>
+    </section>
+
+    <!-- GAUGE -->
+    <section class="view stack" id="v-gauge" role="tabpanel" aria-labelledby="t-gauge" hidden>
+      <div class="gauge-card">
+        <span class="sample-flag" id="gSample">Sample: Metro Detroit HVAC shop</span>
+        <svg class="gauge" viewBox="0 -24 400 264" role="img" aria-labelledby="gTitle">
+          <title id="gTitle">Fuel gauge</title>
+          <path d="M40 200 A160 160 0 0 1 360 200" fill="none" stroke="#2E2A26" stroke-width="30"/>
+          <path class="fill" id="gFill" d="M40 200 A160 160 0 0 1 360 200" fill="none" stroke="#FF6B1A" stroke-width="30" stroke-dasharray="502.65" stroke-dashoffset="502.65"/>
+          <g id="ticks" stroke="#F3EFE6" stroke-width="4"></g>
+          <text class="lbl" x="34" y="236" text-anchor="middle">E</text>
+          <text class="lbl" x="200" y="6" text-anchor="middle">½</text>
+          <text class="lbl" x="366" y="236" text-anchor="middle">F</text>
+          <g class="needle" id="needle" style="transform:rotate(-90deg)">
+            <polygon points="200,58 192,200 208,200" fill="#FFC633"/>
+          </g>
+          <circle cx="200" cy="200" r="20" fill="#F3EFE6"/>
+          <circle cx="200" cy="200" r="8" fill="#0A0A0A"/>
+        </svg>
+        <div class="score" id="score">0<small>%</small></div>
+        <div class="tier" id="tier"></div>
+        <p class="lead" id="tierText" style="text-align:center"></p>
+      </div>
+      <div class="panel">
+        <span class="eyebrow">Your fuel lines</span>
+        <div class="lines" id="lines"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-fuel" type="button" data-go="road">See My Roadmap</button>
+        <button class="btn btn-ghost" type="button" id="retake">Retake</button>
+      </div>
+      <div class="panel save-card" id="saveCard" hidden>
+        <span class="eyebrow">Send me my roadmap</span>
+        <h3>Save your results</h3>
+        <p style="margin:0;color:#D9D4CA">We'll walk you through your gauge and roadmap. No pressure, no jargon.</p>
+        <form id="saveForm" novalidate>
+          <div class="hp" aria-hidden="true"><label for="sSite">Leave blank</label><input id="sSite" tabindex="-1" autocomplete="off"></div>
+          <div class="two">
+            <div class="f"><label for="sName">Your name</label><input id="sName" autocomplete="name"></div>
+            <div class="f"><label for="sBiz">Business</label><input id="sBiz" autocomplete="organization"></div>
+          </div>
+          <div class="f"><label for="sPhone">Phone</label><input id="sPhone" type="tel" autocomplete="tel"></div>
+          <div class="err" id="sErr" role="alert"></div>
+          <div class="btn-row"><button class="btn btn-fuel" type="submit" id="sBtn">Save My Results</button></div>
+        </form>
+        <p class="ok" id="sDone" hidden>Saved. We'll reach out about your roadmap.</p>
+      </div>
+      <div class="install" data-install hidden>
+        <span class="eyebrow">Free app</span>
+        <h3>Put Fuel Check on your phone</h3>
+        <p data-install-copy>Keep your gauge and roadmap one tap away, and get your monthly Fuel Report as a notification.</p>
+        <div class="btn-row" data-android><button class="btn btn-fuel" type="button" data-install-btn>Install the App</button></div>
+        <ol class="ios-steps" data-ios hidden>
+          <li>Tap <b>Share</b> <svg class="share-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg> at the bottom of Safari.</li>
+          <li>Choose <b>Add to Home Screen</b>, then tap <b>Add</b>.</li>
+          <li>Open <b>Fuel Check</b> from your home screen.</li>
+        </ol>
+        <p class="muted" data-other hidden style="font-size:15px">Open this page in Chrome on Android or Safari on iPhone to install it.</p>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section class="view stack" id="v-road" role="tabpanel" aria-labelledby="t-road" hidden>
+      <span class="eyebrow">The Adventure Fuel Formula</span>
+      <h2>Your Growth <span class="hot">Roadmap</span></h2>
+      <p class="lead" id="roadLead"></p>
+      <div class="road" id="road"></div>
+      <div class="btn-row"><button class="btn btn-fuel" type="button" data-go="meet">Get My Growth Roadmap Call</button></div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="view stack" id="v-dash" role="tabpanel" aria-labelledby="t-dash" hidden>
+      <span class="sample-flag" style="align-self:flex-start">Example report · numbers are illustrative</span>
+      <h2>Your Fuel <span class="hot">Report</span></h2>
+      <p class="lead">No 47-tab dashboard. Every month you get three numbers, what they mean, and what we're doing next.</p>
+      <div class="btn-row" role="group" aria-label="Report month">
+        <button class="btn btn-ghost" type="button" id="mPrev" aria-label="Previous month" style="padding:12px 16px;min-height:48px">‹</button>
+        <div id="mLabel" style="font-family:var(--display);font-size:26px;text-transform:uppercase;align-self:center;min-width:8ch;text-align:center"></div>
+        <button class="btn btn-ghost" type="button" id="mNext" aria-label="Next month" style="padding:12px 16px;min-height:48px">›</button>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><span class="eyebrow">Leads per week</span><span class="muted" style="font-size:14px" id="sparkNote"></span></div>
+        <svg class="spark" id="spark" viewBox="0 0 600 120" preserveAspectRatio="none" role="img" aria-label="Leads per week trend"></svg>
+      </div>
+      <div class="plain">
+        <div class="panel"><span class="say">What it means</span><p style="margin:0" id="means"></p></div>
+        <div class="panel"><span class="say">What we're doing next</span><p style="margin:0" id="next2"></p></div>
+      </div>
+      <div class="panel" id="pushCard">
+        <div class="toggle-row"><span class="eyebrow">Fuel Report on your phone</span><span class="pill" id="pushPill">Off</span></div>
+        <h3>Get your report as a notification</h3>
+        <p style="margin:0;color:#D9D4CA" id="pushCopy">Clients get a push when their monthly Fuel Report is ready, plus the occasional heads-up worth knowing.</p>
+        <div class="btn-row"><button class="btn btn-fuel" type="button" id="pushBtn">Turn On Notifications</button></div>
+        <div class="err" id="pushErr" role="alert"></div>
+      </div>
+      <div class="install" data-install hidden>
+        <span class="eyebrow">Free app</span>
+        <h3>Put Fuel Check on your phone</h3>
+        <p data-install-copy>Keep your gauge and roadmap one tap away, and get your monthly Fuel Report as a notification.</p>
+        <div class="btn-row" data-android><button class="btn btn-fuel" type="button" data-install-btn>Install the App</button></div>
+        <ol class="ios-steps" data-ios hidden>
+          <li>Tap <b>Share</b> <svg class="share-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v8h14v-8"/></svg> at the bottom of Safari.</li>
+          <li>Choose <b>Add to Home Screen</b>, then tap <b>Add</b>.</li>
+          <li>Open <b>Fuel Check</b> from your home screen.</li>
+        </ol>
+        <p class="muted" data-other hidden style="font-size:15px">Open this page in Chrome on Android or Safari on iPhone to install it.</p>
+      </div>
+    </section>
+
+    <!-- MEET -->
+    <section class="view stack" id="v-meet" role="tabpanel" aria-labelledby="t-meet" hidden>
+      <span class="eyebrow">20 minutes · no jargon</span>
+      <h2>Let's <span class="hot">meet.</span></h2>
+      <p class="lead">We diagnose where you're losing fuel and hand you the roadmap. Your Fuel Check results come with you.</p>
+      <form class="meet" id="meetForm" novalidate>
+        <div class="hp" aria-hidden="true"><label for="mSite">Leave blank</label><input id="mSite" tabindex="-1" autocomplete="off"></div>
+        <div class="two">
+          <div class="f"><label for="mName">Your name</label><input id="mName" autocomplete="name" required></div>
+          <div class="f"><label for="mBiz">Business</label><input id="mBiz" autocomplete="organization" required></div>
+        </div>
+        <div class="two">
+          <div class="f"><label for="mPhone">Phone</label><input id="mPhone" type="tel" autocomplete="tel" required></div>
+          <div class="f"><label for="mTime">Best time to talk</label>
+            <select id="mTime"><option>Weekday mornings</option><option>Weekday afternoons</option><option>Evenings</option><option>Saturday</option></select></div>
+        </div>
+        <div class="f"><label for="mGoal">What would more fuel get you?</label><textarea id="mGoal" placeholder="More booked jobs, a full calendar, a second location…"></textarea></div>
+        <div class="err" id="mErr" role="alert"></div>
+        <div class="btn-row"><button class="btn btn-fuel" type="submit" id="mBtn">Book My Roadmap Call</button></div>
+      </form>
+      <div class="stack" id="meetDone" hidden>
+        <h3 class="hot" id="doneTitle">You're booked in</h3>
+        <p style="margin:0" id="doneCopy"></p>
+        <div class="summary" id="summary"></div>
+        <div class="btn-row">
+          <button class="btn btn-fuel" type="button" id="copy">Copy Request</button>
+          <button class="btn btn-ghost" type="button" id="editReq">Edit Details</button>
+        </div>
+      </div>
+      <p class="foot">Serious about growth. Not afraid to have a personality. · Adventure Fuel · Metro Detroit · adventurefuel.agency</p>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  var LINES = {
+    ads:   {name:'Meta Advertising', fix:'Launch an always-on Facebook + Instagram campaign aimed at calls and bookings, not likes.'},
+    social:{name:'Social Media', fix:'A steady posting rhythm with hooks built for Metro Detroit customers, scheduled for you.'},
+    web:   {name:'Web + Digital Presence', fix:'A fast site and Google profile that make the "call us" or "book now" move obvious.'},
+    brand: {name:'Brand + Design', fix:'One locked-in look across your truck, posts, flyers and site so people remember you.'},
+    ai:    {name:'AI + Automation', fix:'Instant text-back and booking for after-hours leads so nobody goes cold.'},
+    data:  {name:'Dashboard', fix:'A monthly plain-language fuel report: calls, leads, cost per lead, next moves.'}
+  };
+  var QS = [
+    {q:'How do most new customers find you right now?', line:'web', o:['Word of mouth only','Google, sometimes','Social, sometimes','A real mix of online and referrals']},
+    {q:'How often does your business post on social?', line:'social', o:['Basically never','A few times a month','About once a week','Three or more times a week']},
+    {q:'Are you running Facebook or Instagram ads?', line:'ads', o:['Never tried','Boosted a post or two','On and off','Always-on campaigns']},
+    {q:'What does your website do for you?', line:'web', o:["Don't have one",'It exists. It’s old.','Looks fine, no clear next step','Modern, with call or booking front and center']},
+    {q:'How many Google reviews do you have?', line:'brand', o:['Under 10','10 to 49','50 to 99','100 or more']},
+    {q:'Does your brand look the same everywhere?', line:'brand', o:['Depends who made it','Same logo, everything else varies','Mostly consistent','Locked in everywhere']},
+    {q:'A lead reaches out at 9pm. What happens?', line:'ai', o:['They wait until we see it','Voicemail','Auto-reply text','Automatic follow-up and booking']},
+    {q:'Do you know what a new customer costs you?', line:'data', o:['No idea','Rough guess','We track some of it','Yes, every month']}
+  ];
+  var SAMPLE = [1,0,1,2,3,1,1,0];
+
+  var store = {
+    get:function(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  };
+  var saved = store.get('afFuel') || {};
+  var answers = Array.isArray(saved.answers) && saved.answers.length===8 ? saved.answers : new Array(8).fill(null);
+  var done = !!saved.done;
+  var qi = typeof saved.qi==='number' ? Math.min(saved.qi,7) : 0;
+  var $ = function(id){return document.getElementById(id)};
+  function persist(){store.set('afFuel',{answers:answers,done:done,qi:qi})}
+
+  // ---- tabs
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function show(v){
+    tabs.forEach(function(t){
+      var on = t.dataset.v===v; t.setAttribute('aria-selected',on?'true':'false');
+      $('v-'+t.dataset.v).hidden = !on;
+    });
+    if(v==='gauge'){ renderGauge(true); renderSave(); }
+    if(v==='road') renderRoad();
+    if(v==='dash') renderDash();
+    window.scrollTo(0,0);
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.v)})});
+  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go)})});
+
+  // ---- quiz
+  function renderQ(){
+    var q = QS[qi];
+    $('qcount').textContent = 'Question '+(qi+1)+' of 8';
+    $('qline').textContent = LINES[q.line].name;
+    $('qtext').textContent = q.q;
+    $('progress').innerHTML = QS.map(function(_,i){return '<span class="'+(i===qi?'now':(answers[i]!==null?'on':''))+'"></span>'}).join('');
+    $('opts').innerHTML = q.o.map(function(t,i){
+      return '<button type="button" class="opt" aria-pressed="'+(answers[qi]===i)+'" data-i="'+i+'"><span class="key">'+'ABCD'[i]+'</span><span>'+t+'</span></button>';
+    }).join('');
+    $('back').disabled = qi===0; $('back').style.visibility = qi===0?'hidden':'visible';
+    $('next').disabled = answers[qi]===null;
+    $('next').textContent = qi===7 ? 'Read My Gauge' : 'Next';
+  }
+  $('opts').addEventListener('click',function(e){
+    var b = e.target.closest('.opt'); if(!b) return;
+    answers[qi] = +b.dataset.i; persist(); renderQ();
+    setTimeout(function(){ if(qi<7){qi++;persist();renderQ();} else { $('next').focus(); } },220);
+  });
+  $('next').addEventListener('click',function(){
+    if(answers[qi]===null) return;
+    if(qi<7){qi++;persist();renderQ();}
+    else { done=true; persist(); if(window.afTrack) afTrack('fuel_check_complete', String(scoreOf(answers).pct)); show('gauge'); }
+  });
+  $('back').addEventListener('click',function(){ if(qi>0){qi--;persist();renderQ();} });
+  $('seeSample').addEventListener('click',function(){ show('gauge') });
+  $('retake').addEventListener('click',function(){ answers=new Array(8).fill(null); done=false; qi=0; persist(); renderQ(); show('check'); });
+
+  // ---- scoring
+  function current(){ return done ? answers : SAMPLE }
+  function scoreOf(a){
+    var total=a.reduce(function(s,v){return s+(v||0)},0);
+    var by={}; Object.keys(LINES).forEach(function(k){by[k]={s:0,m:0}});
+    QS.forEach(function(q,i){ by[q.line].s += a[i]||0; by[q.line].m += 3; });
+    var lines = Object.keys(by).map(function(k){return {k:k,pct:Math.round(by[k].s/by[k].m*100)}});
+    lines.sort(function(x,y){return x.pct-y.pct});
+    return {pct:Math.round(total/24*100), lines:lines};
+  }
+  function tierOf(p){
+    if(p<30) return ['Running on fumes','The engine is good. It just isn’t getting fuel. Small moves will show up fast.'];
+    if(p<55) return ['Quarter tank','Some fuel is getting in, but a few lines are dry. Fix those and the whole engine picks up.'];
+    if(p<75) return ['Half tank','You’re moving. Now it’s about tightening the system so it runs without you.'];
+    return ['Full tank','You’ve built real momentum. Time to scale what works and add horsepower.'];
+  }
+  function cls(p){return p<40?'low':(p<70?'mid':'ok')}
+  function stTxt(p){return p<40?'Running low':(p<70?'Needs fuel':'Fueled')}
+
+  // ---- gauge
+  var ticks=''; for(var i=0;i<=8;i++){var a=Math.PI-(Math.PI*i/8);var r1=i%4===0?118:128,r2=140;ticks+='<line x1="'+(200+r1*Math.cos(a)).toFixed(1)+'" y1="'+(200-r1*Math.sin(a)).toFixed(1)+'" x2="'+(200+r2*Math.cos(a)).toFixed(1)+'" y2="'+(200-r2*Math.sin(a)).toFixed(1)+'"/>'}
+  $('ticks').innerHTML = ticks;
+  function renderGauge(animate){
+    var r = scoreOf(current()), t = tierOf(r.pct);
+    $('gSample').hidden = done;
+    var fill=$('gFill'), needle=$('needle');
+    if(animate){ fill.style.strokeDashoffset='502.65'; needle.style.transform='rotate(-90deg)'; void fill.getBoundingClientRect(); }
+    requestAnimationFrame(function(){
+      fill.style.strokeDashoffset = (502.65*(1-r.pct/100)).toFixed(1);
+      needle.style.transform = 'rotate('+(-90+180*r.pct/100)+'deg)';
+    });
+    $('score').innerHTML = r.pct+'<small>%</small>';
+    $('tier').textContent = t[0]; $('tierText').textContent = t[1];
+    $('lines').innerHTML = r.lines.map(function(l){
+      var c=cls(l.pct);
+      return '<div class="lrow"><span class="nm">'+LINES[l.k].name+'</span><span class="st '+c+'">'+stTxt(l.pct)+'</span><div class="bar" role="img" aria-label="'+LINES[l.k].name+' '+l.pct+' percent"><i class="'+c+'" style="width:'+Math.max(l.pct,3)+'%"></i></div></div>';
+    }).join('');
+  }
+
+  // ---- roadmap
+  function renderRoad(){
+    var r = scoreOf(current()), low = r.lines.slice(0,3);
+    $('roadLead').textContent = (done?'Built from your Fuel Check.':'Built from the sample result. Take the Fuel Check to make it yours.')+' Your lowest lines: '+low.map(function(l){return LINES[l.k].name}).join(', ')+'.';
+    var fuel = low.map(function(l,i){return '<div class="fuel-item"><b>'+(i===0?'First: ':'Then: ')+LINES[l.k].name+'</b><span class="muted">'+LINES[l.k].fix+'</span></div>'}).join('');
+    var steps = [
+      ['Diagnose','We confirm where the engine is losing fuel. Your Fuel Check already started this.','<div class="chips">'+low.map(function(l){return '<span class="chip go">'+LINES[l.k].name+'</span>'}).join('')+'</div>'],
+      ['Build the Roadmap','One simple plan, tied to one goal: more customers. No 40-page deck.',''],
+      ['Add Fuel','Creative, ads, content and tech, aimed at your driest lines first.',fuel],
+      ['Launch','Campaigns go live and the systems start running without you babysitting them.',''],
+      ['Read the Dashboard','Every month: three numbers, what they mean, what we’re doing next.',''],
+      ['Optimize','Double down on what brings customers. Cut what doesn’t.','']
+    ];
+    $('road').innerHTML = steps.map(function(s,i){
+      return '<div class="step'+(i===0||i===2?' focus':'')+'"><span class="n">0'+(i+1)+'</span><div><h3>'+s[0]+'</h3><p>'+s[1]+'</p>'+s[2]+'</div></div>';
+    }).join('');
+  }
+
+  // ---- dashboard (illustrative example data)
+  var MONTHS = [
+    {m:'July', calls:31, leads:44, cpl:28, wk:[6,8,7,11,12], means:'Ads went live mid-month. Calls picked up in the last two weeks once the campaign found its audience.', next:'Add a second ad built around your best review. Turn on after-hours text-back.'},
+    {m:'August', calls:46, leads:63, cpl:22, wk:[12,13,15,11,12], means:'More calls for less money per lead. Weekend posts are pulling the most messages.', next:'Shift more budget to the weekend ad set. Post two customer-story videos.'},
+    {m:'September', calls:58, leads:79, cpl:19, wk:[15,17,14,16,17], means:'Best month yet. Cost per lead keeps dropping, and after-hours texts booked jobs you would have missed.', next:'Test a seasonal offer before the first cold snap. Ask happy customers for reviews.'}
+  ];
+  var mi = MONTHS.length-1;
+  function delta(cur,prev,inverse){
+    if(prev==null) return '';
+    var d=cur-prev, good = inverse ? d<0 : d>0;
+    return '<span class="d '+(good?'up':'down')+'">'+(d>0?'▲ ':'▼ ')+Math.abs(d)+(inverse?'':'')+' vs last month</span>';
+  }
+  function renderDash(){
+    var c=MONTHS[mi], p=MONTHS[mi-1];
+    $('mLabel').textContent=c.m;
+    $('mPrev').disabled = mi===0; $('mNext').disabled = mi===MONTHS.length-1;
+    $('kpis').innerHTML =
+      '<div class="kpi"><span class="k">Calls</span><span class="v">'+c.calls+'</span>'+delta(c.calls,p&&p.calls)+'</div>'+
+      '<div class="kpi"><span class="k">Leads</span><span class="v">'+c.leads+'</span>'+delta(c.leads,p&&p.leads)+'</div>'+
+      '<div class="kpi"><span class="k">Cost per lead</span><span class="v">$'+c.cpl+'</span>'+(p?'<span class="d '+(c.cpl<p.cpl?'up':'down')+'">'+(c.cpl<p.cpl?'▼ $':'▲ $')+Math.abs(c.cpl-p.cpl)+' vs last month</span>':'')+'</div>';
+    $('means').textContent=c.means; $('next2').textContent=c.next;
+    var all=[]; MONTHS.slice(0,mi+1).forEach(function(m){all=all.concat(m.wk)});
+    var max=20, W=600, H=120, pad=10, n=all.length;
+    var pts=all.map(function(v,i){return [pad+(W-2*pad)*(n===1?0:i/(n-1)), H-pad-(H-2*pad)*v/max]});
+    var line=pts.map(function(pt,i){return (i?'L':'M')+pt[0].toFixed(1)+' '+pt[1].toFixed(1)}).join(' ');
+    var area=line+' L'+pts[n-1][0].toFixed(1)+' '+(H-pad)+' L'+pts[0][0].toFixed(1)+' '+(H-pad)+' Z';
+    var grid=''; [5,10,15].forEach(function(g){var y=(H-pad-(H-2*pad)*g/max).toFixed(1);grid+='<line x1="0" x2="600" y1="'+y+'" y2="'+y+'" stroke="#2E2A26" stroke-width="1" vector-effect="non-scaling-stroke"/>'});
+    var last=pts[n-1];
+    $('spark').innerHTML = grid+'<path d="'+area+'" fill="rgba(255,107,26,.18)"/><path d="'+line+'" fill="none" stroke="#FF6B1A" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/><circle cx="'+last[0].toFixed(1)+'" cy="'+last[1].toFixed(1)+'" r="6" fill="#FFC633"/>';
+    $('sparkNote').textContent = 'Latest week: '+all[n-1]+' leads';
+  }
+  $('mPrev').addEventListener('click',function(){if(mi>0){mi--;renderDash()}});
+  $('mNext').addEventListener('click',function(){if(mi<MONTHS.length-1){mi++;renderDash()}});
+
+  // ---- meet (real booking -> owner push)
+  var form=$('meetForm');
+  function fuelData(){
+    if(!done) return {};
+    var r=scoreOf(answers), t=tierOf(r.pct);
+    return {fuel_score:r.pct, fuel_tier:t[0], lowest_lines:r.lines.slice(0,3).map(function(l){return LINES[l.k].name+' '+l.pct+'%'}).join(', ')};
+  }
+  function summaryText(name,biz,ph){
+    var f=fuelData();
+    return 'Adventure Fuel roadmap call request\n\nName: '+name+'\nBusiness: '+biz+'\nPhone: '+ph+'\nBest time: '+$('mTime').value+
+      '\nGoal: '+($('mGoal').value.trim()||'Not given')+
+      '\n\nFuel Check: '+(done?f.fuel_score+'% ('+f.fuel_tier+')\nLowest lines: '+f.lowest_lines:'Not taken yet');
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('mName').value.trim(), biz=$('mBiz').value.trim(), ph=$('mPhone').value.trim();
+    var miss=[]; if(!name)miss.push('your name'); if(!biz)miss.push('your business'); if(ph.replace(/\D/g,'').length<10)miss.push('a 10-digit phone number');
+    if(miss.length){ $('mErr').textContent='Add '+miss.join(', ')+' so we can reach you.'; return; }
+    $('mErr').textContent=''; var btn=$('mBtn'); btn.disabled=true; btn.textContent='Booking…';
+    $('summary').textContent=summaryText(name,biz,ph);
+    if(window.afTrack) afTrack('form_submit','roadmap_call'); AF.sendLead(Object.assign({lead_type:'roadmap_call',name:name,business:biz,phone:ph,best_time:$('mTime').value,goal:$('mGoal').value.trim(),company_site:$('mSite').value},fuelData()))
+      .then(function(){
+        $('doneTitle').textContent="You're booked in";
+        $('doneCopy').textContent='We got your request and will call '+ph+' ('+$('mTime').value.toLowerCase()+'). Need us sooner? Call (248) 509-5860.';
+        $('summary').hidden=true; $('copy').hidden=true;
+        form.hidden=true; $('meetDone').hidden=false;
+      })
+      .catch(function(err){
+        $('doneTitle').textContent='We couldn’t send that';
+        $('doneCopy').textContent=(err&&err.message?err.message+' ':'')+'Copy your request below and text it to (248) 509-5860.';
+        $('summary').hidden=false; $('copy').hidden=false;
+        form.hidden=true; $('meetDone').hidden=false;
+      })
+      .then(function(){btn.disabled=false;btn.textContent='Book My Roadmap Call';});
+  });
+  $('editReq').addEventListener('click',function(){form.hidden=false;$('meetDone').hidden=true});
+  $('copy').addEventListener('click',function(){
+    var txt=$('summary').textContent;
+    function fallback(){var s=window.getSelection(),rg=document.createRange();rg.selectNodeContents($('summary'));s.removeAllRanges();s.addRange(rg);toast('Selected. Press copy on your keyboard.')}
+    try{ navigator.clipboard.writeText(txt).then(function(){toast('Copied')},fallback) }catch(e){fallback()}
+  });
+  function toast(m){var t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2200)}
+
+  // ---- save results (Fuel Check done -> owner push)
+  var saved2=store.get('afSaved');
+  function renderSave(){ $('saveCard').hidden=!done; $('saveForm').hidden=!!saved2; $('sDone').hidden=!saved2; }
+  $('saveForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('sName').value.trim(), biz=$('sBiz').value.trim(), ph=$('sPhone').value.trim();
+    var miss=[]; if(!name)miss.push('your name'); if(!biz)miss.push('your business'); if(ph.replace(/\D/g,'').length<10)miss.push('a 10-digit phone number');
+    if(miss.length){ $('sErr').textContent='Add '+miss.join(', ')+'.'; return; }
+    $('sErr').textContent=''; var btn=$('sBtn'); btn.disabled=true; btn.textContent='Saving…';
+    AF.sendLead(Object.assign({lead_type:'fuel_check',name:name,business:biz,phone:ph,company_site:$('sSite').value},fuelData()))
+      .then(function(){ saved2=true; store.set('afSaved',true); ['mName','mBiz','mPhone'].forEach(function(id,i){ if(!$(id).value) $(id).value=[name,biz,ph][i]; }); renderSave(); })
+      .catch(function(err){ $('sErr').textContent=(err&&err.message)||'That didn’t go through. Try again.'; })
+      .then(function(){ btn.disabled=false; btn.textContent='Save My Results'; });
+  });
+
+  // ---- install cards (Android prompt, iPhone steps)
+  function renderInstall(){
+    document.querySelectorAll('[data-install]').forEach(function(card){
+      if(AF.standalone){ card.hidden=true; return; }
+      card.hidden=false;
+      var android=card.querySelector('[data-android]'), ios=card.querySelector('[data-ios]'), other=card.querySelector('[data-other]');
+      android.hidden=!AF.canPromptInstall(); ios.hidden=!AF.isIOS; other.hidden=AF.canPromptInstall()||AF.isIOS;
+    });
+  }
+  document.querySelectorAll('[data-install-btn]').forEach(function(b){ b.addEventListener('click',function(){ AF.promptInstall().then(renderInstall); }); });
+  AF.onInstallChange(renderInstall);
+
+  // ---- client push opt-in
+  function renderPush(){
+    AF.pushState().then(function(st){
+      var pill=$('pushPill'), btn=$('pushBtn');
+      pill.className='pill'+(st==='on'?' on':(st==='blocked'?' warn':''));
+      pill.textContent={on:'On',off:'Off',blocked:'Blocked','needs-install':'Install first',unsupported:'Not supported'}[st]||'Off';
+      btn.hidden = st==='needs-install'||st==='unsupported';
+      btn.textContent = st==='on' ? 'Turn Off Notifications' : 'Turn On Notifications';
+      btn.dataset.state=st;
+      $('pushCopy').textContent = st==='needs-install' ? 'On iPhone, notifications work once Fuel Check is on your home screen. Follow the steps below, then turn them on from the app.'
+        : st==='blocked' ? 'Notifications are blocked for this site. Allow them in your phone’s settings, then come back here.'
+        : 'Clients get a push when their monthly Fuel Report is ready, plus the occasional heads-up worth knowing.';
+    });
+  }
+  $('pushBtn').addEventListener('click',function(){
+    var btn=$('pushBtn'); $('pushErr').textContent=''; btn.disabled=true;
+    var p = btn.dataset.state==='on' ? AF.disablePush() : AF.enablePush('client',null,($('mBiz').value||$('sBiz').value||'').trim()||null).then(function(){toast('Notifications on')});
+    p.catch(function(err){ $('pushErr').textContent=err.message; }).then(function(){ btn.disabled=false; renderPush(); });
+  });
+
+  // ---- boot
+  renderQ(); renderSave(); renderInstall(); renderPush();
+  var hv=(location.hash||'').replace('#','');
+  if(['check','gauge','road','dash','meet'].indexOf(hv)>-1){ show(hv); }
+  else if(done){ show('gauge'); }
+  window.addEventListener('hashchange',function(){ var v=location.hash.replace('#',''); if(['check','gauge','road','dash','meet'].indexOf(v)>-1) show(v); });
+})();
+</script>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>
