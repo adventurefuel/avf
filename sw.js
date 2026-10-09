@@ -1,5 +1,5 @@
 /* Adventure Fuel service worker: push notifications + offline app shell */
-var CACHE = 'af-v3';
+var CACHE = 'af-v4';
 var SHELL = [
   '/fuel-check/', '/alerts/', '/assets/af.js', '/assets/app.css', '/assets/af-logo.png',
   '/assets/icons/icon-192.png', '/assets/icons/badge-96.png'
@@ -33,7 +33,7 @@ self.addEventListener('push', function (e) {
   try { d = e.data ? e.data.json() : {}; } catch (err) { d = { title: 'Adventure Fuel', body: e.data ? e.data.text() : '' }; }
   e.waitUntil(self.registration.showNotification(d.title || 'Adventure Fuel', {
     body: d.body || '',
-    icon: '/assets/icons/icon-192.png',
+    icon: d.icon || '/assets/icons/icon-192.png',
     badge: '/assets/icons/badge-96.png',
     tag: d.tag || undefined,
     renotify: !!d.tag,
