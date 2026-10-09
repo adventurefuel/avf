@@ -166,3 +166,11 @@ body{margin:0}
 .tag.check{background:var(--gold);color:var(--ink)}
 .stat-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 #qcount{white-space:nowrap}
+.get-app{appearance:none;border:2px solid var(--orange);background:transparent;color:var(--orange);font-family:var(--display);font-size:17px;letter-spacing:.04em;text-transform:uppercase;padding:10px 14px;min-height:44px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.get-app:hover{background:var(--orange);color:var(--ink)}
+.top-right{display:flex;align-items:center;gap:14px}
+@media (max-width:420px){.top .call{display:none}}
+dialog.sheet{border:0;padding:0;background:transparent;color:var(--cream);max-width:560px;width:calc(100% - 24px);margin:auto auto calc(16px + env(safe-area-inset-bottom,0px))}
+dialog.sheet::backdrop{background:rgba(0,0,0,.7)}
+.sheet-body{background:var(--panel);border-top:8px solid var(--orange);padding:22px 20px 24px;display:flex;flex-direction:column;gap:14px;font-family:var(--body)}
+.sheet-body h3{font-size:28px}
