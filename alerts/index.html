@@ -56,7 +56,10 @@
         <p style="margin:0;color:#D9D4CA" id="aCopy">Turn on alerts to get a push the moment someone books a roadmap call or saves their Fuel Check.</p>
         <div class="btn-row">
           <button class="btn btn-fuel" type="button" id="aBtn">Turn On Alerts</button>
-          <button class="btn btn-ghost" type="button" id="aTest" hidden>Send Test Alert</button>
+          <button class="btn btn-fuel" type="button" id="aTest" hidden>Send Test Alert</button>
+        </div>
+        <p class="ok" id="aOk" hidden></p>
+        <div><button class="linkish" type="button" id="aOff" hidden>Turn off alerts on this phone</button>
         </div>
         <div class="err" id="aErr" role="alert"></div>
       </div>
@@ -171,9 +174,11 @@
       var pill=$('aPill'), btn=$('aBtn');
       pill.className='pill'+(st==='on'?' on':(st==='blocked'?' warn':''));
       pill.textContent={on:'On',off:'Off',blocked:'Blocked','needs-install':'Install first',unsupported:'Not supported'}[st]||'Off';
-      btn.hidden = st==='needs-install'||st==='unsupported';
-      btn.textContent = st==='on' ? 'Turn Off Alerts' : 'Turn On Alerts';
-      btn.dataset.state=st; $('aTest').hidden = st!=='on';
+      btn.hidden = st==='on'||st==='needs-install'||st==='unsupported';
+      btn.textContent = 'Turn On Alerts';
+      $('aTest').hidden = st!=='on'; $('aOff').hidden = st!=='on';
+      // keep the server in sync with this phone every time the app opens
+      if(st==='on' && token && !resynced){ resynced=true; AF.enablePush('owner',token,'Owner phone').catch(function(err){ $('aErr').textContent=err.message; }); }
       $('aCopy').textContent = st==='on' ? 'This phone gets a push for every roadmap call request and saved Fuel Check.'
         : st==='needs-install' ? 'Add AF Alerts to your home screen first (steps below), then open it from the icon and turn alerts on.'
         : st==='blocked' ? 'Notifications are blocked for this site. Allow them in your phone settings, then come back.'
@@ -184,15 +189,25 @@
   document.querySelectorAll('[data-install-btn]').forEach(function(b){ b.addEventListener('click',function(){ AF.installOrHelp('AF Alerts').then(renderAlerts); }); });
   AF.onInstallChange(renderAlerts);
 
+  var resynced=false;
+  function testResult(r){
+    $('aOk').hidden=true; $('aErr').textContent='';
+    if(r && r.sent){ $('aOk').textContent='Test sent to '+r.sent+' phone'+(r.sent===1?'':'s')+'. It should pop up in a few seconds.'; $('aOk').hidden=false; }
+    else { $('aErr').textContent='The test didn\u2019t reach any phone'+(r&&r.errors&&r.errors.length?' ('+r.errors[0]+')':'')+'. Tap Turn On Alerts again.'; }
+  }
   $('aBtn').addEventListener('click',function(){
-    var btn=$('aBtn'); btn.disabled=true; $('aErr').textContent='';
-    var p = btn.dataset.state==='on' ? AF.disablePush() : AF.enablePush('owner',token,'Owner phone').then(function(){ return AF.call({action:'test'},token); });
-    p.catch(function(err){ $('aErr').textContent=err.message; }).then(function(){ btn.disabled=false; renderAlerts(); load(); });
+    var btn=$('aBtn'); btn.disabled=true; $('aErr').textContent=''; $('aOk').hidden=true;
+    AF.enablePush('owner',token,'Owner phone').then(function(){ resynced=true; return AF.call({action:'test'},token); }).then(testResult)
+      .catch(function(err){ $('aErr').textContent=err.message; }).then(function(){ btn.disabled=false; renderAlerts(); load(); });
   });
   $('aTest').addEventListener('click',function(){
-    $('aErr').textContent='';
-    AF.call({action:'test'},token).then(function(r){ $('aErr').textContent = r.sent ? '' : 'No owner phones received it. Turn alerts off and on again.'; })
-      .catch(function(err){ $('aErr').textContent=err.message; });
+    var b=$('aTest'); b.disabled=true;
+    AF.enablePush('owner',token,'Owner phone').then(function(){ return AF.call({action:'test'},token); }).then(testResult)
+      .catch(function(err){ $('aErr').textContent=err.message; }).then(function(){ b.disabled=false; load(); });
+  });
+  $('aOff').addEventListener('click',function(){
+    $('aOff').hidden=true; $('aOk').hidden=true;
+    AF.disablePush().catch(function(err){ $('aErr').textContent=err.message; }).then(function(){ resynced=false; renderAlerts(); load(); });
   });
 
   // broadcast with in-page confirm
