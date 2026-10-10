@@ -199,6 +199,7 @@ html{scroll-behavior:smooth}
 <p style="margin: 0; font-size: 20px; color: #E4DFD4; max-width: 56ch">A Discord for entrepreneurs who are building something. Swap what’s working, ask the questions you can’t ask anyone else, and plug into people who make you go faster. You bring the engine. Nitro is the boost.</p>
 <ul style="margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; font-weight: 600"><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Give before you ask.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>No spam pitching. Help first.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Real numbers, real talk.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Celebrate each other’s wins.</span></li></ul>
 <div id="crewCta" style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px">
+<p id="crewNote" hidden style="margin: 0; font-weight: 600">Doors are open. Free to join.</p>
 <a id="crewJoin" href="#" target="_blank" rel="noopener" hidden data-track="cta_click" data-label="nitro_join" style="align-self: flex-start; text-decoration: none; background: #FF6B1A; color: #0A0A0A; padding: 20px 30px; font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase">Hit Nitro</a>
 <form id="crewForm" novalidate style="display: grid; gap: 10px; max-width: 560px">
 <p style="margin: 0; font-weight: 600">Doors open soon. Get your invite before anyone else.</p>
@@ -381,7 +382,7 @@ document.getElementById('dlForm').addEventListener('submit',function(e){
 (function(){
   var invite=(window.AF_CONFIG&&AF_CONFIG.nitroInvite)||'';
   var join=document.getElementById('crewJoin'), form=document.getElementById('crewForm');
-  if(/^https:\/\/(discord\.gg|discord\.com\/invite)\//.test(invite)){ join.href=invite; join.hidden=false; form.hidden=true; return; }
+  if(/^https:\/\/(discord\.gg|discord\.com\/invite)\//.test(invite)){ join.href=invite; join.hidden=false; document.getElementById('crewNote').hidden=false; form.hidden=true; return; }
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var n=document.getElementById('crName').value.trim(), b=document.getElementById('crBiz').value.trim(), em=document.getElementById('crEmail').value.trim();
