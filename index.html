@@ -24,6 +24,7 @@ body{margin:0;background:#0A0A0A}
 a{color:#F3EFE6}a:hover{color:#FF6B1A}
 :focus-visible{outline:3px solid #FFC633;outline-offset:3px}
 .sr{position:absolute;left:-9999px}
+[hidden]{display:none!important}
 .crew-in{flex:1 1 220px;min-height:56px;padding:0 18px;border:2px solid #3A3631;background:#141414;font-family:'Outfit',sans-serif;font-size:17px;color:#F3EFE6;border-radius:0}
 .crew-in:focus{border-color:#FF6B1A;outline:none}
 .dl-in{flex:1 1 220px;min-height:56px;padding:0 18px;border:3px solid #0A0A0A;background:#F3EFE6;font-family:'Outfit',sans-serif;font-size:17px;color:#0A0A0A;border-radius:0}
@@ -199,10 +200,8 @@ html{scroll-behavior:smooth}
 <p style="margin: 0; font-size: 20px; color: #E4DFD4; max-width: 56ch">A Discord for entrepreneurs who are building something. Swap what’s working, ask the questions you can’t ask anyone else, and plug into people who make you go faster. You bring the engine. Nitro is the boost.</p>
 <ul style="margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; font-weight: 600"><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Give before you ask.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>No spam pitching. Help first.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Real numbers, real talk.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Celebrate each other’s wins.</span></li></ul>
 <div id="crewCta" style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px">
-<p id="crewNote" hidden style="margin: 0; font-weight: 600">Doors are open. Free to join.</p>
-<a id="crewJoin" href="#" target="_blank" rel="noopener" hidden data-track="cta_click" data-label="nitro_join" style="align-self: flex-start; text-decoration: none; background: #FF6B1A; color: #0A0A0A; padding: 20px 30px; font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase">Hit Nitro</a>
 <form id="crewForm" novalidate style="display: grid; gap: 10px; max-width: 560px">
-<p style="margin: 0; font-weight: 600">Doors open soon. Get your invite before anyone else.</p>
+<p style="margin: 0; font-weight: 600">Doors are open. Drop your info and grab your invite.</p>
 <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="crSite">Leave blank</label><input id="crSite" tabindex="-1" autocomplete="off"></div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <label for="crName" class="sr">Your name</label><input id="crName" placeholder="Your name" autocomplete="name" class="crew-in">
@@ -210,10 +209,16 @@ html{scroll-behavior:smooth}
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <label for="crEmail" class="sr">Email</label><input id="crEmail" type="email" placeholder="you@yourbusiness.com" autocomplete="email" class="crew-in">
-<button type="submit" id="crBtn" style="min-height: 56px; padding: 0 26px; border: 0; background: #FF6B1A; color: #0A0A0A; font-family: 'Anton', sans-serif; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Save My Spot</button>
+<button type="submit" id="crBtn" style="min-height: 56px; padding: 0 26px; border: 0; background: #FF6B1A; color: #0A0A0A; font-family: 'Anton', sans-serif; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Get My Invite</button>
 </div>
 <p id="crMsg" role="status" style="margin: 0; font-weight: 700; min-height: 1.3em; color: #FFC633"></p>
 </form>
+<div id="crewDone" hidden style="display: flex; flex-direction: column; gap: 14px; max-width: 560px; background: #141414; border-top: 6px solid #FF6B1A; padding: 22px 22px 24px">
+<span style="font-family: 'Anton', sans-serif; font-size: 30px; line-height: 1; text-transform: uppercase">You’re in the <span style="color: #FF6B1A">Nitro</span> crew.</span>
+<p id="crewDoneMsg" style="margin: 0; color: #E4DFD4">Your Discord invite is ready. Accept it, then log in to Discord and you’re in the room.</p>
+<ol style="margin: 0; padding-left: 22px; display: grid; gap: 6px; color: #E4DFD4"><li>Tap <b style="color: #F3EFE6">Accept My Invite</b>.</li><li>Log in to Discord. No account? Sign up free in under a minute.</li><li>Say what you’re building in <b style="color: #FF6B1A">#wins</b>.</li></ol>
+<a id="crewJoin" href="#" target="_blank" rel="noopener" data-track="cta_click" data-label="nitro_join" style="align-self: flex-start; text-decoration: none; background: #FF6B1A; color: #0A0A0A; padding: 20px 30px; font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase">Accept My Invite</a>
+</div>
 </div>
 </div>
 <div style="flex: 1 1 400px; min-width: 0; background: #141414; border-top: 8px solid #FF6B1A; padding: 28px 26px 18px; display: flex; flex-direction: column; gap: 6px">
@@ -381,19 +386,21 @@ document.getElementById('dlForm').addEventListener('submit',function(e){
 <script>
 (function(){
   var invite=(window.AF_CONFIG&&AF_CONFIG.nitroInvite)||'';
-  var join=document.getElementById('crewJoin'), form=document.getElementById('crewForm');
-  if(/^https:\/\/(discord\.gg|discord\.com\/invite)\//.test(invite)){ join.href=invite; join.hidden=false; document.getElementById('crewNote').hidden=false; form.hidden=true; return; }
+  var okInvite=/^https:\/\/(discord\.gg|discord\.com\/invite)\//.test(invite);
+  var join=document.getElementById('crewJoin'), form=document.getElementById('crewForm'), done=document.getElementById('crewDone');
+  if(okInvite) join.href=invite;
+  function showInvite(){ if(!okInvite) return; form.hidden=true; done.hidden=false; done.scrollIntoView({block:'nearest',behavior:'smooth'}); join.focus({preventScroll:true}); }
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var n=document.getElementById('crName').value.trim(), b=document.getElementById('crBiz').value.trim(), em=document.getElementById('crEmail').value.trim();
     var msg=document.getElementById('crMsg'), btn=document.getElementById('crBtn');
     if(!n||!b||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='Add your name, business and a valid email.'; return; }
     if(!window.AF){ msg.textContent='Still loading. Try again in a second.'; return; }
-    btn.disabled=true; msg.textContent='Saving your spot\u2026';
+    btn.disabled=true; msg.textContent='Getting your invite…';
     window.afTrack&&afTrack('form_submit','nitro');
-    AF.sendLead({lead_type:'community',name:n,business:b,email:em,goal:'Wants an invite to Nitro (Discord community)',company_site:document.getElementById('crSite').value})
-      .then(function(){ msg.textContent='You\u2019re in the Nitro Crew. Your invite goes to '+em+'.'; form.reset(); })
-      .catch(function(err){ msg.textContent=err.message; })
+    AF.sendLead({lead_type:'community',name:n,business:b,email:em,goal:'Joined Nitro (Discord community)',company_site:document.getElementById('crSite').value})
+      .then(function(){ msg.textContent=''; form.reset(); if(okInvite){ showInvite(); } else { msg.textContent='You’re on the list. We’ll send your Nitro invite to '+em+'.'; } })
+      .catch(function(){ msg.textContent=''; showInvite(); })
       .then(function(){ btn.disabled=false; });
   });
 })();
