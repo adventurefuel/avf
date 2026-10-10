@@ -30,6 +30,8 @@ a{color:#F3EFE6}a:hover{color:#FF6B1A}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media (max-width:860px){.hero-stripes{display:none!important}}
+.nitro-copy{padding-left:96px}
+@media (max-width:1100px){.nitro-stripes{display:none!important}.nitro-copy{padding-left:0}}
 @media (max-width:720px){.nl{display:none}}
 </style>
 </head>
@@ -188,9 +190,9 @@ html{scroll-behavior:smooth}
 
 <!-- NITRO (community) -->
 <section id="nitro" style="position: relative; overflow: hidden; border-top: 1px solid #262626">
-<div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 6%; display: flex; gap: 10px; opacity: 0.9"><div style="width: 8px; background: #F3EFE6"></div><div style="width: 16px; background: #FFC633"></div><div style="width: 28px; background: #FF6B1A"></div></div>
+<div class="nitro-stripes" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 24px; display: flex; gap: 10px; opacity: 0.9"><div style="width: 8px; background: #F3EFE6"></div><div style="width: 16px; background: #FFC633"></div><div style="width: 28px; background: #FF6B1A"></div></div>
 <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 120px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
-<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px; padding-left: clamp(0px, 6vw, 72px)">
+<div class="nitro-copy" style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
 <span style="font-size: 14px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #FFC633">Free entrepreneur community · on Discord</span>
 <h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(88px, 15vw, 220px); line-height: 0.82; letter-spacing: 0.01em">Nitr<span style="color: #FF6B1A">o</span></h2>
 <p style="margin: 0; font-family: 'Anton', sans-serif; font-size: clamp(26px, 3vw, 38px); line-height: 1.05; text-transform: uppercase">The boost every business needs. <span style="color: #FFC633">Hit the button.</span></p>
