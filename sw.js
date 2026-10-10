@@ -1,5 +1,5 @@
 /* Adventure Fuel service worker: push notifications + offline app shell */
-var CACHE = 'af-v11';
+var CACHE = 'af-v12';
 var SHELL = [
   '/fuel-check/', '/alerts/', '/assets/af.js', '/assets/app.css', '/assets/af-logo.png',
   '/assets/icons/icon-192.png', '/assets/icons/badge-96.png'
