@@ -24,6 +24,8 @@ body{margin:0;background:#0A0A0A}
 a{color:#F3EFE6}a:hover{color:#FF6B1A}
 :focus-visible{outline:3px solid #FFC633;outline-offset:3px}
 .sr{position:absolute;left:-9999px}
+.crew-in{flex:1 1 220px;min-height:56px;padding:0 18px;border:2px solid #3A3631;background:#141414;font-family:'Outfit',sans-serif;font-size:17px;color:#F3EFE6;border-radius:0}
+.crew-in:focus{border-color:#FF6B1A;outline:none}
 .dl-in{flex:1 1 220px;min-height:56px;padding:0 18px;border:3px solid #0A0A0A;background:#F3EFE6;font-family:'Outfit',sans-serif;font-size:17px;color:#0A0A0A;border-radius:0}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -42,6 +44,7 @@ html{scroll-behavior:smooth}
 <a class="nl" href="#services" style="text-decoration: none">Services</a>
 <a class="nl" href="#formula" style="text-decoration: none">The Formula</a>
 <a class="nl" href="#work" style="text-decoration: none">Success Stories</a>
+<a class="nl" href="#nitro" style="text-decoration: none">Nitro</a>
 <a class="nl" href="/fuel-check/" style="text-decoration: none">Fuel Check App</a>
 <a href="/fuel-check/#meet" data-track="cta_click" data-label="nav_fuel_up" style="text-decoration: none; background: #FF6B1A; color: #0A0A0A; padding: 13px 22px; font-family: 'Anton', sans-serif; font-size: 18px; letter-spacing: 0.04em">Fuel Up!</a>
 </div>
@@ -183,6 +186,40 @@ html{scroll-behavior:smooth}
 </div>
 </section>
 
+<!-- NITRO (community) -->
+<section id="nitro" style="position: relative; overflow: hidden; border-top: 1px solid #262626">
+<div aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: 6%; display: flex; gap: 10px; opacity: 0.9"><div style="width: 8px; background: #F3EFE6"></div><div style="width: 16px; background: #FFC633"></div><div style="width: 28px; background: #FF6B1A"></div></div>
+<div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 120px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
+<div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px; padding-left: clamp(0px, 6vw, 72px)">
+<span style="font-size: 14px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #FFC633">Free entrepreneur community · on Discord</span>
+<h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(88px, 15vw, 220px); line-height: 0.82; letter-spacing: 0.01em">Nitr<span style="color: #FF6B1A">o</span></h2>
+<p style="margin: 0; font-family: 'Anton', sans-serif; font-size: clamp(26px, 3vw, 38px); line-height: 1.05; text-transform: uppercase">The boost every business needs. <span style="color: #FFC633">Hit the button.</span></p>
+<p style="margin: 0; font-size: 20px; color: #E4DFD4; max-width: 56ch">A Discord for entrepreneurs who are building something. Swap what’s working, ask the questions you can’t ask anyone else, and plug into people who make you go faster. You bring the engine. Nitro is the boost.</p>
+<ul style="margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; font-weight: 600"><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Give before you ask.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>No spam pitching. Help first.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Real numbers, real talk.</span></li><li style="display: flex; gap: 10px; align-items: baseline"><span aria-hidden="true" style="width: 10px; height: 10px; flex: none; background: #FFC633; transform: translateY(-1px)"></span><span>Celebrate each other’s wins.</span></li></ul>
+<div id="crewCta" style="display: flex; flex-direction: column; gap: 12px; margin-top: 8px">
+<a id="crewJoin" href="#" target="_blank" rel="noopener" hidden data-track="cta_click" data-label="nitro_join" style="align-self: flex-start; text-decoration: none; background: #FF6B1A; color: #0A0A0A; padding: 20px 30px; font-family: 'Anton', sans-serif; font-size: 22px; letter-spacing: 0.04em; text-transform: uppercase">Hit Nitro</a>
+<form id="crewForm" novalidate style="display: grid; gap: 10px; max-width: 560px">
+<p style="margin: 0; font-weight: 600">Doors open soon. Get your invite before anyone else.</p>
+<div style="position:absolute;left:-9999px" aria-hidden="true"><label for="crSite">Leave blank</label><input id="crSite" tabindex="-1" autocomplete="off"></div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<label for="crName" class="sr">Your name</label><input id="crName" placeholder="Your name" autocomplete="name" class="crew-in">
+<label for="crBiz" class="sr">Business</label><input id="crBiz" placeholder="Business name" autocomplete="organization" class="crew-in">
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px">
+<label for="crEmail" class="sr">Email</label><input id="crEmail" type="email" placeholder="you@yourbusiness.com" autocomplete="email" class="crew-in">
+<button type="submit" id="crBtn" style="min-height: 56px; padding: 0 26px; border: 0; background: #FF6B1A; color: #0A0A0A; font-family: 'Anton', sans-serif; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Save My Spot</button>
+</div>
+<p id="crMsg" role="status" style="margin: 0; font-weight: 700; min-height: 1.3em; color: #FFC633"></p>
+</form>
+</div>
+</div>
+<div style="flex: 1 1 400px; min-width: 0; background: #141414; border-top: 8px solid #FF6B1A; padding: 28px 26px 18px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap"><span style="font-family: 'Anton', sans-serif; font-size: 28px; text-transform: uppercase">Inside Nitro</span><span style="font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #B9B4AA">Channels</span></div>
+<ul style="margin: 0; padding: 0; list-style: none; font-size: 16px"><li style="display: grid; grid-template-columns: minmax(0, 15ch) minmax(0, 1fr); gap: 4px 16px; padding-block: 14px; border-top: 1px solid #2A2724"><span style="font-weight: 700; color: #FF6B1A; overflow-wrap: anywhere">#wins</span><span style="color: #D9D4CA">Post what worked this week. Big or small.</span></li><li style="display: grid; grid-template-columns: minmax(0, 15ch) minmax(0, 1fr); gap: 4px 16px; padding-block: 14px; border-top: 1px solid #2A2724"><span style="font-weight: 700; color: #FF6B1A; overflow-wrap: anywhere">#ask-the-crew</span><span style="color: #D9D4CA">Stuck on ads, pricing, hiring or tech? Ask people who’ve been there.</span></li><li style="display: grid; grid-template-columns: minmax(0, 15ch) minmax(0, 1fr); gap: 4px 16px; padding-block: 14px; border-top: 1px solid #2A2724"><span style="font-weight: 700; color: #FF6B1A; overflow-wrap: anywhere">#whats-working</span><span style="color: #D9D4CA">Real tactics, real numbers. No guru talk.</span></li><li style="display: grid; grid-template-columns: minmax(0, 15ch) minmax(0, 1fr); gap: 4px 16px; padding-block: 14px; border-top: 1px solid #2A2724"><span style="font-weight: 700; color: #FF6B1A; overflow-wrap: anywhere">#collabs</span><span style="color: #D9D4CA">Find partners, referrals and the next joint deal.</span></li><li style="display: grid; grid-template-columns: minmax(0, 15ch) minmax(0, 1fr); gap: 4px 16px; padding-block: 14px; border-top: 1px solid #2A2724"><span style="font-weight: 700; color: #FF6B1A; overflow-wrap: anywhere">#nitro-live</span><span style="color: #D9D4CA">Live hot seats and Q&amp;As with the Adventure Fuel team.</span></li></ul>
+</div>
+</div>
+</section>
+
 <!-- TOO MANY BUTTONS -->
 <section style="background: #F3EFE6; color: #0A0A0A; border-top: 10px solid #FF6B1A">
 <div style="max-width: 1280px; margin: 0 auto; padding: 112px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
@@ -313,7 +350,7 @@ html{scroll-behavior:smooth}
 <span>Not afraid to have a personality. Metro Detroit, Michigan.</span>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 48px">
-<div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #F3EFE6; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px">Explore</span><a href="#services" style="text-decoration: none">Services</a><a href="#formula" style="text-decoration: none">The Formula</a><a href="#work" style="text-decoration: none">Success Stories</a></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #F3EFE6; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px">Explore</span><a href="#services" style="text-decoration: none">Services</a><a href="#formula" style="text-decoration: none">The Formula</a><a href="#work" style="text-decoration: none">Success Stories</a><a href="#nitro" style="text-decoration: none">Nitro Community</a></div>
 <div style="display: flex; flex-direction: column; gap: 8px"><span style="color: #F3EFE6; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 13px">Fuel Up</span><a href="/fuel-check/" style="text-decoration: none">Fuel Check App</a><a href="/fuel-check/#meet" style="text-decoration: none">Book a Roadmap Call</a><a href="tel:+12485095860" style="text-decoration: none">(248) 509-5860</a></div>
 </div>
 </div>
@@ -338,6 +375,27 @@ document.getElementById('dlForm').addEventListener('submit',function(e){
 });
 </script>
 <script src="/assets/js/config.js"></script>
+<script>
+(function(){
+  var invite=(window.AF_CONFIG&&AF_CONFIG.nitroInvite)||'';
+  var join=document.getElementById('crewJoin'), form=document.getElementById('crewForm');
+  if(/^https:\/\/(discord\.gg|discord\.com\/invite)\//.test(invite)){ join.href=invite; join.hidden=false; form.hidden=true; return; }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('crName').value.trim(), b=document.getElementById('crBiz').value.trim(), em=document.getElementById('crEmail').value.trim();
+    var msg=document.getElementById('crMsg'), btn=document.getElementById('crBtn');
+    if(!n||!b||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='Add your name, business and a valid email.'; return; }
+    if(!window.AF){ msg.textContent='Still loading. Try again in a second.'; return; }
+    btn.disabled=true; msg.textContent='Saving your spot\u2026';
+    window.afTrack&&afTrack('form_submit','nitro');
+    AF.sendLead({lead_type:'community',name:n,business:b,email:em,goal:'Wants an invite to Nitro (Discord community)',company_site:document.getElementById('crSite').value})
+      .then(function(){ msg.textContent='You\u2019re in the Nitro Crew. Your invite goes to '+em+'.'; form.reset(); })
+      .catch(function(err){ msg.textContent=err.message; })
+      .then(function(){ btn.disabled=false; });
+  });
+})();
+</script>
+
 <script src="/assets/js/site.js" defer></script>
 </body>
 </html>

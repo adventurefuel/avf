@@ -138,7 +138,7 @@
       $('cOwners').textContent=d.owners||0; clientCount=d.clients||0; $('cClients').textContent=clientCount;
       var L=d.leads||[];
       $('leads').innerHTML = L.length ? L.map(function(l){
-        var tag=l.lead_type==='fuel_check'?'<span class="tag check">Fuel Check</span>':(l.lead_type==='download'?'<span class="tag">Download</span>':'<span class="tag call">Roadmap call</span>');
+        var tag=l.lead_type==='fuel_check'?'<span class="tag check">Fuel Check</span>':(l.lead_type==='download'?'<span class="tag">Download</span>':(l.lead_type==='community'?'<span class="tag">Nitro</span>':'<span class="tag call">Roadmap call</span>'));
         var contact=l.phone?'<span style="user-select:all;color:var(--cream);font-weight:600">'+esc(l.phone)+'</span>':esc(l.email||'');
         var fuel=l.fuel_score!=null?' · Fuel '+l.fuel_score+'% ('+esc(l.fuel_tier||'')+')':'';
         return '<article class="lead-item" id="lead-'+esc(l.id)+'"><div class="lead-top"><b>'+esc(l.name)+'</b>'+tag+'</div>'+
@@ -179,7 +179,7 @@
       $('aTest').hidden = st!=='on'; $('aOff').hidden = st!=='on';
       // keep the server in sync with this phone every time the app opens
       if(st==='on' && token && !resynced){ resynced=true; AF.enablePush('owner',token,'Owner phone').catch(function(err){ $('aErr').textContent=err.message; }); }
-      $('aCopy').textContent = st==='on' ? 'This phone gets a push for every roadmap call request and saved Fuel Check.'
+      $('aCopy').textContent = st==='on' ? 'This phone gets a push for every roadmap call request, saved Fuel Check and Nitro signup.'
         : st==='needs-install' ? 'Add AF Alerts to your home screen first (steps below), then open it from the icon and turn alerts on.'
         : st==='blocked' ? 'Notifications are blocked for this site. Allow them in your phone settings, then come back.'
         : st==='unsupported' ? 'This browser can’t receive push alerts. Use Chrome on Android or the home-screen app on iPhone.'
