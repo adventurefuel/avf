@@ -314,7 +314,7 @@ html{scroll-behavior:smooth}
 <div style="flex: 1 1 520px; background: #FF6B1A; color: #0A0A0A; padding: 48px 40px; display: flex; flex-direction: column; gap: 20px">
 <span style="font-size: 14px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase">On us!</span>
 <h2 style="margin: 0; font-family: 'Anton', sans-serif; font-weight: 400; text-transform: uppercase; font-size: clamp(44px, 5vw, 76px); line-height: 0.9">Free Social Media Fuel</h2>
-<p style="margin: 0; font-size: 19px; max-width: 460px">Our 30-day Metro Detroit social calendar: hooks, captions and hashtags, ready to post. We'll email it to you.</p>
+<p style="margin: 0; font-size: 19px; max-width: 460px">We don't send you a generic calendar. We give you step-by-step AI prompts that build your 30-day calendar around your business, plus the exact steps to post it.</p>
 <form id="dlForm" novalidate style="display: grid; gap: 10px; margin-top: 8px">
 <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="dlSite">Leave blank</label><input id="dlSite" tabindex="-1" autocomplete="off"></div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
@@ -323,7 +323,7 @@ html{scroll-behavior:smooth}
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <label for="em" class="sr">Email address</label><input id="em" type="email" placeholder="you@yourbusiness.com" autocomplete="email" class="dl-in">
-<button type="submit" id="dlBtn" style="min-height: 56px; padding: 0 28px; border: 0; background: #0A0A0A; color: #F3EFE6; font-family: 'Anton', sans-serif; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Send It To Me</button>
+<button type="submit" id="dlBtn" style="min-height: 56px; padding: 0 28px; border: 0; background: #0A0A0A; color: #F3EFE6; font-family: 'Anton', sans-serif; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer">Get My Prompt Kit</button>
 </div>
 <p id="dlMsg" role="status" style="margin: 0; font-weight: 700; min-height: 1.3em"></p>
 </form>
@@ -366,9 +366,9 @@ document.getElementById('dlForm').addEventListener('submit',function(e){
   if(!n||!b||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ msg.textContent='Add your name, business and a valid email.'; return; }
   if(!window.AF){ msg.textContent='Still loading. Try again in a second.'; return; }
   btn.disabled=true; msg.textContent='Sending…';
-  window.afTrack&&afTrack('form_submit','download');AF.sendLead({lead_type:'download',name:n,business:b,email:em,goal:'Free Social Media Fuel (30-day calendar)',company_site:document.getElementById('dlSite').value})
-    .then(function(){ msg.textContent='Done. Your 30-day calendar is headed to '+em+'.'; e.target.reset(); })
-    .catch(function(err){ msg.textContent=err.message+' Or call (248) 509-5860.'; })
+  window.afTrack&&afTrack('form_submit','download');AF.sendLead({lead_type:'download',name:n,business:b,email:em,goal:'Free Social Media Fuel (AI prompt kit)',company_site:document.getElementById('dlSite').value})
+    .then(function(){ msg.innerHTML='You\u2019re set. <a href="/social-fuel/" style="color:#0A0A0A">Open your prompt kit</a>.'; e.target.reset(); location.href='/social-fuel/'; })
+    .catch(function(err){ msg.innerHTML='<a href="/social-fuel/" style="color:#0A0A0A">Open your prompt kit</a>.'; location.href='/social-fuel/'; })
     .then(function(){ btn.disabled=false; });
 });
 </script>

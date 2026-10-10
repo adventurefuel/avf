@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pricing | Adventure Fuel</title>
+<meta name="description" content="Adventure Fuel memberships work like a gym: book single coaching sessions, buy a session pack, or join a monthly membership. Services are scoped after we meet.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#0A0A0A;--panel:#141414;--panel2:#1E1C19;--line:#2A2724;--cream:#F3EFE6;--muted:#B9B4AA;--soft:#D9D4CA;--orange:#FF6B1A;--gold:#FFC633;
+--display:'Anton','Impact','Arial Narrow',sans-serif;--body:'Outfit','Avenir Next','Segoe UI',system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--body);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+a{color:var(--cream)}a:hover{color:var(--orange)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;margin:0;letter-spacing:.005em;text-wrap:balance}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px;border-bottom:1px solid #262626}
+.top img{width:64px;height:64px;object-fit:contain}
+.top nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.top nav a{text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-family:var(--display);letter-spacing:.04em;text-transform:uppercase;font-size:20px;padding:16px 24px;min-height:52px}
+.btn-o{background:var(--orange);color:var(--ink)}.btn-o:hover{background:#E85A0C;color:var(--ink)}
+.btn-l{box-shadow:inset 0 0 0 2px var(--cream);color:var(--cream)}.btn-l:hover{box-shadow:inset 0 0 0 2px var(--orange);color:var(--orange)}
+.btn-d{background:var(--ink);color:var(--cream)}
+.hero{position:relative;padding-block:72px 56px;display:flex;flex-direction:column;gap:20px;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.6px);background-size:9px 9px;overflow:hidden}
+.hero h1{font-size:clamp(56px,10vw,140px);line-height:.85}
+.hero h1 span{color:var(--orange)}
+.lead{font-size:clamp(18px,2vw,22px);color:#E4DFD4;max-width:60ch;margin:0}
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:10px}
+.ways a{display:flex;flex-direction:column;gap:4px;text-decoration:none;background:var(--panel);padding:18px 20px;border-top:4px solid var(--orange)}
+.ways a:nth-child(2){border-color:var(--gold)}.ways a:nth-child(3){border-color:var(--cream)}
+.ways b{font-family:var(--display);font-weight:400;font-size:26px;text-transform:uppercase;line-height:1}
+.ways span{font-size:15px;color:var(--soft)}
+section{padding-block:72px;border-top:1px solid #262626}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:32px}
+.head h2{font-size:clamp(44px,6vw,88px);line-height:.88}
+.head h2 span{color:var(--orange)}
+.head p{margin:0;max-width:440px;color:var(--soft)}
+.free{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;background:var(--panel);padding:24px 26px;border-left:0;border-top:4px solid var(--gold);margin-bottom:24px}
+.free h3{font-size:30px}
+.free p{margin:4px 0 0;color:var(--soft);max-width:60ch}
+/* tiers */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;align-items:stretch}
+.tier{background:var(--panel);display:flex;flex-direction:column;position:relative}
+.tier.pop{outline:3px solid var(--orange);outline-offset:-3px}
+.flag{position:absolute;top:0;right:0;background:var(--orange);color:var(--ink);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:6px 10px}
+.pump{display:flex;align-items:center;gap:16px;padding:24px 24px 18px;border-bottom:1px solid var(--line)}
+.oct{width:72px;height:72px;flex:none;display:grid;place-items:center;font-family:var(--display);font-size:38px;line-height:1;border:3px solid currentColor}
+.t87 .oct{color:var(--cream)}.t89 .oct{color:var(--gold)}.t93 .oct{color:var(--orange)}
+.pump h3{font-size:34px;line-height:.95}
+.pump small{display:block;font-size:14px;color:var(--muted);font-family:var(--body);text-transform:none;letter-spacing:0;margin-top:4px}
+.price{padding:18px 24px 6px;display:flex;align-items:baseline;gap:6px}
+.price b{font-family:var(--display);font-weight:400;font-size:64px;line-height:1;font-variant-numeric:tabular-nums}
+.price span{color:var(--muted)}
+.annual{padding:0 24px;font-size:14px;color:var(--gold);font-weight:600;min-height:1.4em}
+.for{padding:10px 24px 0;color:var(--soft);font-size:16px}
+.tier ul{list-style:none;margin:0;padding:16px 24px 8px;display:grid;gap:10px;font-size:16px}
+.tier li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:10px;align-items:baseline}
+.tier li::before{content:"";width:10px;height:10px;background:var(--orange);transform:translateY(-1px)}
+.t87 li::before{background:var(--cream)}.t89 li::before{background:var(--gold)}
+.tier .go{margin:auto 24px 24px;padding-top:16px}
+.tier .go .btn{width:100%}
+.toggle{display:inline-flex;border:2px solid var(--line);margin-bottom:20px}
+.toggle button{appearance:none;border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:12px 18px;min-height:44px;cursor:pointer}
+.toggle button[aria-pressed="true"]{background:var(--cream);color:var(--ink)}
+/* sessions */
+.packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2px;background:var(--ink);border:2px solid var(--cream)}
+.pack{background:var(--cream);color:var(--ink);padding:26px 24px;display:flex;flex-direction:column;gap:8px}
+.pack h3{font-size:30px;line-height:1}
+.pack .p{font-family:var(--display);font-size:52px;line-height:1;font-variant-numeric:tabular-nums}
+.pack .per{font-weight:700;color:#8A4A12;font-size:15px}
+.pack p{margin:0;color:#3A3732;font-size:16px}
+.light{background:var(--cream);color:var(--ink)}
+.light .head p{color:#3A3732}
+.light .eyebrow{color:#8A4A12}
+/* services */
+.svc{overflow-x:auto;border-top:6px solid var(--orange)}
+table{width:100%;min-width:620px;border-collapse:collapse;font-size:17px}
+th,td{text-align:left;padding:18px 16px;vertical-align:top}
+thead th{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+tbody tr{border-top:1px solid var(--line)}
+tbody th{font-family:var(--display);font-weight:400;font-size:24px;line-height:1.05;text-transform:uppercase}
+td.num{white-space:nowrap;font-weight:700;font-variant-numeric:tabular-nums}
+td.d{color:var(--soft)}
+.note{margin:18px 0 0;color:var(--muted);font-size:15px;max-width:72ch}
+/* rules */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.rule{background:var(--panel);padding:20px 22px;border-top:4px solid var(--line)}
+.rule h3{font-size:24px;line-height:1;margin-bottom:8px}
+.rule p{margin:0;color:var(--soft);font-size:16px}
+.cta{background:var(--orange);color:var(--ink);padding:48px 28px;display:flex;flex-direction:column;gap:16px;margin-block:64px}
+.cta h2{font-size:clamp(40px,6vw,76px);line-height:.9}
+.cta p{margin:0;font-size:19px;max-width:58ch}
+.cta .row{display:flex;flex-wrap:wrap;gap:12px}
+footer{border-top:1px solid #262626;padding-block:24px 40px;font-size:14px;color:#8F8A80}
+@media (max-width:720px){.top nav .nl{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a href="/" aria-label="Adventure Fuel home"><img src="/assets/af-logo.png" alt="Adventure Fuel"></a>
+    <nav aria-label="Pricing sections">
+      <a class="nl" href="#memberships">Memberships</a>
+      <a class="nl" href="#sessions">Sessions</a>
+      <a class="nl" href="#services">Services</a>
+      <a class="btn btn-o" href="/fuel-check/#meet" style="font-size:17px;padding:12px 18px;min-height:44px">Fuel Up!</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <span class="eyebrow">Pricing · Train like an owner</span>
+    <h1>Pick your grade.<br><span>Fill up monthly.</span></h1>
+    <p class="lead">Adventure Fuel works like a gym for your business. Drop in for a session, grab a pack, or join as a member and get coached every month. When you need something built, we scope it after we meet. No long contracts.</p>
+    <div class="ways">
+      <a href="#memberships"><b>Memberships</b><span>Monthly coaching, month to month. Like a gym.</span></a>
+      <a href="#sessions"><b>Sessions</b><span>Book one, or buy a pack. Like a trainer.</span></a>
+      <a href="#services"><b>Services</b><span>We build what you need, quoted after we meet.</span></a>
+    </div>
+  </div>
+</div>
+
+<section id="memberships">
+  <div class="wrap">
+    <div class="head">
+      <h2>Memberships.<br><span>Choose your grade.</span></h2>
+      <p>Month to month. Pause or cancel anytime with 30 days' notice. Every membership includes Nitro and the AI prompt library.</p>
+    </div>
+    <div class="free">
+      <div><h3>Your first session is free</h3><p>30-minute discovery session. We learn your vision, figure out what your business actually needs, and recommend a grade. No pressure.</p></div>
+      <a class="btn btn-o" href="/fuel-check/#meet">Book My Roadmap Call</a>
+    </div>
+    <div class="toggle" role="group" aria-label="Billing">
+      <button type="button" id="bm" aria-pressed="true">Monthly</button>
+      <button type="button" id="ba" aria-pressed="false">Annual · 2 months free</button>
+    </div>
+    <div class="tiers">
+      <article class="tier t87">
+        <div class="pump"><div class="oct" aria-hidden="true">87</div><div><h3>Regular</h3><small>For the Dreamer</small></div></div>
+        <div class="price"><b data-m="197" data-a="164">$197</b><span>/ month</span></div>
+        <div class="annual" data-annual="$1,970 billed yearly"></div>
+        <p class="for">Turn the idea into a real business concept, with a coach keeping you honest.</p>
+        <ul>
+          <li>1 one-on-one coaching session a month (60 min)</li>
+          <li>Monthly group coaching call</li>
+          <li>Your Idea-to-Impact roadmap, updated every quarter</li>
+          <li>Message support, replies within 2 business days</li>
+          <li>AI prompt library + Nitro community</li>
+          <li>5% off services</li>
+        </ul>
+        <div class="go"><a class="btn btn-l" href="/fuel-check/#meet">Get My Growth Roadmap</a></div>
+      </article>
+      <article class="tier t89 pop">
+        <span class="flag">Most popular</span>
+        <div class="pump"><div class="oct" aria-hidden="true">89</div><div><h3>Plus</h3><small>For the Starter</small></div></div>
+        <div class="price"><b data-m="397" data-a="331">$397</b><span>/ month</span></div>
+        <div class="annual" data-annual="$3,970 billed yearly"></div>
+        <p class="for">Build the foundation and land your first 50 customers.</p>
+        <ul>
+          <li>2 one-on-one coaching sessions a month (60 min)</li>
+          <li>Weekly group coaching call</li>
+          <li>Launch plan and first-50-customers strategy</li>
+          <li>Monthly accountability check-in on your numbers</li>
+          <li>Message support, replies within 1 business day</li>
+          <li>AI prompt library + Nitro community</li>
+          <li>10% off services</li>
+        </ul>
+        <div class="go"><a class="btn btn-o" href="/fuel-check/#meet">Get My Growth Roadmap</a></div>
+      </article>
+      <article class="tier t93">
+        <div class="pump"><div class="oct" aria-hidden="true">93</div><div><h3>Premium</h3><small>For the Builder</small></div></div>
+        <div class="price"><b data-m="797" data-a="664">$797</b><span>/ month</span></div>
+        <div class="annual" data-annual="$7,970 billed yearly"></div>
+        <p class="for">Systems, team roles and growth to 200 customers and beyond.</p>
+        <ul>
+          <li>Weekly one-on-one coaching (4 sessions a month)</li>
+          <li>Weekly group coaching call</li>
+          <li>Quarterly on-site or deep-dive strategy day (3 hours)</li>
+          <li>Growth dashboard set up and reviewed with you monthly</li>
+          <li>Priority message support, same business day</li>
+          <li>AI prompt library + Nitro community</li>
+          <li>15% off services</li>
+        </ul>
+        <div class="go"><a class="btn btn-l" href="/fuel-check/#meet">Get My Growth Roadmap</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="sessions" class="light">
+  <div class="wrap">
+    <div class="head">
+      <h2>Sessions.<br><span>Like a trainer.</span></h2>
+      <p>Not ready for a membership? Book coaching the way you'd book a personal trainer. One session or a pack, used when you need it.</p>
+    </div>
+    <div class="packs">
+      <div class="pack"><h3>Single session</h3><span class="p">$150</span><span class="per">60 minutes</span><p>One focused session on whatever is in front of you: an idea, a decision, pricing, a launch.</p></div>
+      <div class="pack"><h3>4-session pack</h3><span class="p">$520</span><span class="per">$130 a session · use within 3 months</span><p>A month of weekly coaching, or spread it out across a quarter.</p></div>
+      <div class="pack"><h3>10-session pack</h3><span class="p">$1,200</span><span class="per">$120 a session · use within 6 months</span><p>Best value for founders who want steady coaching without a monthly plan.</p></div>
+      <div class="pack"><h3>Strategy intensive</h3><span class="p">$450</span><span class="per">3 hours, in person or virtual</span><p>Go deep on one big thing: your business model, a launch plan or your Idea-to-Impact roadmap.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head">
+      <h2>Services.<br><span>Built when it makes sense.</span></h2>
+      <p>We don't sell services off a menu. We meet first, diagnose what your business actually needs, then quote only what will move it forward. Members save 5 to 15%.</p>
+    </div>
+    <div class="svc">
+      <table>
+        <thead><tr><th scope="col">Service</th><th scope="col">What you get</th><th scope="col">Starting at</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Business Launch</th><td class="d">Business model, offer, pricing, brand basics and a launch plan, built with you.</td><td class="num">$2,500 project</td></tr>
+          <tr><th scope="row">Brand Development</th><td class="d">Name, logo, identity, messaging and a brand guide.</td><td class="num">$1,500 project</td></tr>
+          <tr><th scope="row">Website + Online Presence</th><td class="d">A site and profiles that make it obvious why customers should choose you.</td><td class="num">$2,500 project</td></tr>
+          <tr><th scope="row">Social Media Management</th><td class="d">Strategy, content, captions, scheduling and engagement, handled.</td><td class="num">$750 / month</td></tr>
+          <tr><th scope="row">Meta Ads Management</th><td class="d">Campaigns built and managed to bring in customers. Ad spend is separate.</td><td class="num">$500 / month</td></tr>
+          <tr><th scope="row">AI + Systems</th><td class="d">Automation, dashboards and customer workflows. Optional ongoing support.</td><td class="num">$1,000 setup</td></tr>
+          <tr><th scope="row">Business Operations</th><td class="d">Processes, roles and the systems to run without you in every seat.</td><td class="num">Quoted after we meet</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Every project starts with a discovery session so the scope fits your stage. If you aren't ready for a service yet, we'll tell you, and point you to coaching instead.</p>
+  </div>
+</section>
+
+<section aria-labelledby="rules">
+  <div class="wrap">
+    <div class="head"><h2 id="rules">House <span>rules.</span></h2><p>Simple, like a good gym.</p></div>
+    <div class="rules">
+      <div class="rule"><h3>No long contracts</h3><p>Memberships are month to month. Cancel with 30 days' notice.</p></div>
+      <div class="rule"><h3>Pause anytime</h3><p>Freeze your membership up to 2 months a year. Life happens.</p></div>
+      <div class="rule"><h3>Sessions roll over</h3><p>Unused member sessions roll over one month, then reset.</p></div>
+      <div class="rule"><h3>Switch grades</h3><p>Move up or down a grade at your next billing date.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="cta">
+    <span class="eyebrow" style="color:var(--ink)">Not sure which grade?</span>
+    <h2>You bring the vision. We bring the fuel.</h2>
+    <p>Start with a free discovery session. We'll tell you exactly where your business is and what it needs next.</p>
+    <div class="row"><a class="btn btn-d" href="/fuel-check/#meet">Book My Roadmap Call</a><a class="btn btn-l" href="/fuel-check/" style="box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink)">Take the Fuel Check</a></div>
+  </div>
+  <footer>© 2026 Adventure Fuel · adventurefuel.agency · (248) 509-5860</footer>
+</div>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/site.js" defer></script>
+<script>
+(function(){
+  var bm=document.getElementById('bm'), ba=document.getElementById('ba');
+  function set(annual){
+    bm.setAttribute('aria-pressed',String(!annual)); ba.setAttribute('aria-pressed',String(annual));
+    document.querySelectorAll('.price b').forEach(function(b){ b.textContent='$'+(annual?b.dataset.a:b.dataset.m); });
+    document.querySelectorAll('.annual').forEach(function(a){ a.textContent=annual?a.dataset.annual:''; });
+  }
+  bm.addEventListener('click',function(){set(false)}); ba.addEventListener('click',function(){set(true)});
+})();
+</script>
+</body>
+</html>

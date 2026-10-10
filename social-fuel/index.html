@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Social Media Fuel | Adventure Fuel</title>
+<meta name="description" content="Free from Adventure Fuel: step-by-step AI prompts that build your 30-day social media calendar with you, plus the exact steps to post it.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap">
+<style>
+:root{--ink:#0A0A0A;--panel:#141414;--panel2:#1E1C19;--line:#2A2724;--cream:#F3EFE6;--muted:#B9B4AA;--orange:#FF6B1A;--gold:#FFC633;
+--display:'Anton','Impact','Arial Narrow',sans-serif;--body:'Outfit','Avenir Next','Segoe UI',system-ui,sans-serif;--mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--ink)}
+body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--body);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+a{color:var(--cream)}a:hover{color:var(--orange)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{max-width:900px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;margin:0;letter-spacing:.005em;text-wrap:balance}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:16px;border-bottom:1px solid #262626}
+.top img{width:64px;height:64px;object-fit:contain}
+.top a.cta{text-decoration:none;background:var(--orange);color:var(--ink);padding:12px 18px;font-family:var(--display);font-size:17px;letter-spacing:.04em;text-transform:uppercase}
+.hero{padding-block:64px 40px;display:flex;flex-direction:column;gap:20px;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1.6px);background-size:9px 9px}
+.hero h1{font-size:clamp(54px,10vw,112px);line-height:.86}
+.hero h1 span{color:var(--orange)}
+.lead{font-size:clamp(18px,2vw,21px);color:#E4DFD4;max-width:60ch;margin:0}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:8px}
+.how div{background:var(--panel);padding:16px 18px;border-top:4px solid var(--orange);font-size:16px;color:#D9D4CA}
+.how b{display:block;font-family:var(--display);font-weight:400;font-size:22px;text-transform:uppercase;color:var(--cream);letter-spacing:.02em}
+section{padding-block:40px}
+.card{background:var(--panel);padding:26px 24px;display:flex;flex-direction:column;gap:16px}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f label{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.f input,.f select{background:var(--ink);border:2px solid var(--line);color:var(--cream);font:inherit;font-size:17px;padding:12px 14px;min-height:50px;border-radius:0;width:100%}
+.f input:focus,.f select:focus{border-color:var(--orange);outline:none}
+.saved{font-size:14px;color:var(--gold);font-weight:600;min-height:1.2em;margin:0}
+.step{display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;padding-block:30px;border-top:1px solid var(--line)}
+.num{font-family:var(--display);font-size:54px;line-height:.9;color:var(--orange)}
+.step h2{font-size:clamp(28px,4vw,40px);line-height:1}
+.step .where{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:6px 0 0}
+.step p{margin:10px 0 0;color:#D9D4CA;max-width:62ch}
+.prompt{margin-top:16px;background:var(--panel2);border-left:4px solid var(--orange);position:relative}
+.prompt pre{margin:0;padding:18px 18px 16px;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--mono);font-size:15px;line-height:1.55;color:var(--cream)}
+.prompt pre mark{background:rgba(255,198,51,.18);color:var(--gold);padding:0 2px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px 10px 18px;border-bottom:1px solid var(--line);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.copy{appearance:none;border:0;background:var(--orange);color:var(--ink);font-family:var(--display);font-size:16px;letter-spacing:.04em;text-transform:uppercase;padding:10px 16px;min-height:44px;cursor:pointer}
+.copy.done{background:var(--gold)}
+ol.do{margin:14px 0 0;padding-left:22px;display:grid;gap:8px;color:#E4DFD4;max-width:62ch}
+ol.do b{color:var(--cream)}
+.tip{margin-top:14px;padding:12px 16px;background:#1A1712;border:1px solid #3A3226;font-size:16px;color:#E4DFD4;max-width:62ch}
+.tip b{color:var(--gold)}
+.end{margin-block:20px 64px;background:var(--orange);color:var(--ink);padding:36px 28px;display:flex;flex-direction:column;gap:16px}
+.end h2{font-size:clamp(36px,6vw,64px);line-height:.9}
+.end p{margin:0;font-size:19px;max-width:56ch}
+.end .row{display:flex;flex-wrap:wrap;gap:12px}
+.end a{text-decoration:none;font-family:var(--display);font-size:20px;letter-spacing:.04em;text-transform:uppercase;padding:16px 24px}
+.end a.dark{background:var(--ink);color:var(--cream)}
+.end a.line{box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink)}
+footer{border-top:1px solid #262626;padding-block:24px 40px;font-size:14px;color:#8F8A80}
+@media (max-width:560px){.step{grid-template-columns:1fr;gap:6px}.num{font-size:44px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a href="/" aria-label="Adventure Fuel home"><img src="/assets/af-logo.png" alt="Adventure Fuel"></a>
+    <a class="cta" href="/fuel-check/#meet">Fuel Up!</a>
+  </header>
+
+  <div class="hero">
+    <span class="eyebrow">Free Social Media Fuel · AI prompt kit</span>
+    <h1>Build your 30-day calendar <span>with AI.</span></h1>
+    <p class="lead">We don't hand you a generic calendar. We hand you the exact prompts to build one that fits your business, plus the steps to actually post it. Fill in your details once, and every prompt below updates itself.</p>
+    <div class="how">
+      <div><b>1. Fill in once</b>Your business details drop into every prompt.</div>
+      <div><b>2. Copy + paste</b>Use ChatGPT, Claude or Gemini. Free versions work.</div>
+      <div><b>3. Execute</b>Follow the steps to design, schedule and review.</div>
+    </div>
+  </div>
+
+  <section aria-labelledby="you">
+    <div class="card">
+      <h2 id="you" style="font-size:32px">Your business, once</h2>
+      <div class="fields">
+        <div class="f"><label for="biz">Business name</label><input id="biz" autocomplete="organization" placeholder="Kona Air Heating &amp; Cooling"></div>
+        <div class="f"><label for="what">What you sell</label><input id="what" placeholder="Furnace and AC repair and installs"></div>
+        <div class="f"><label for="where">Where you serve</label><input id="where" placeholder="Westland and Metro Detroit"></div>
+        <div class="f"><label for="who">Your best customer</label><input id="who" placeholder="Homeowners 35-60 with older systems"></div>
+        <div class="f"><label for="goal">Main goal this month</label>
+          <select id="goal"><option>More calls and booked jobs</option><option>More walk-ins and store visits</option><option>More online sales</option><option>More appointments booked</option><option>More followers who trust us</option><option>Launch a new product or service</option></select></div>
+        <div class="f"><label for="plat">Where you post</label>
+          <select id="plat"><option>Facebook and Instagram</option><option>Instagram</option><option>Facebook</option><option>TikTok and Instagram</option><option>LinkedIn</option></select></div>
+        <div class="f"><label for="voice">How you sound</label>
+          <select id="voice"><option>Friendly, local and real</option><option>Bold and confident</option><option>Professional and trusted</option><option>Funny and laid-back</option><option>Faith-forward and uplifting</option></select></div>
+        <div class="f"><label for="freq">Posts per week</label>
+          <select id="freq"><option>3</option><option selected>4</option><option>5</option><option>7</option></select></div>
+      </div>
+      <p class="saved" id="saved" role="status"></p>
+    </div>
+  </section>
+
+  <section aria-label="Steps" id="steps"></section>
+
+  <div class="end">
+    <span class="eyebrow" style="color:var(--ink)">Want a coach in your corner?</span>
+    <h2>You bring the vision. We bring the fuel.</h2>
+    <p>Prompts get you posting. Strategy gets you customers. If you want help turning this into a real growth plan, let's talk.</p>
+    <div class="row">
+      <a class="dark" href="/fuel-check/#meet">Book My Roadmap Call</a>
+      <a class="line" href="/#nitro">Join Nitro Free</a>
+    </div>
+  </div>
+
+  <footer>© 2026 Adventure Fuel · adventurefuel.agency · (248) 509-5860</footer>
+</div>
+
+<template id="tpl">
+  <article class="step">
+    <div class="num"></div>
+    <div>
+      <h2></h2>
+      <p class="where"></p>
+      <p class="why"></p>
+      <div class="prompt" hidden>
+        <div class="bar"><span>Prompt</span><button class="copy" type="button">Copy Prompt</button></div>
+        <pre></pre>
+      </div>
+      <ol class="do" hidden></ol>
+      <div class="tip" hidden></div>
+    </div>
+  </article>
+</template>
+
+<script src="/assets/js/config.js"></script>
+<script src="/assets/js/site.js" defer></script>
+<script>
+(function(){
+  var F=['biz','what','where','who','goal','plat','voice','freq'];
+  var D={biz:'[YOUR BUSINESS]',what:'[WHAT YOU SELL]',where:'[YOUR CITY OR AREA]',who:'[YOUR BEST CUSTOMER]'};
+  var $=function(id){return document.getElementById(id)};
+  try{var st=JSON.parse(localStorage.getItem('afSocialFuel')||'{}');F.forEach(function(k){if(st[k])$(k).value=st[k]})}catch(e){}
+
+  var STEPS=[
+    {t:'Get your business snapshot',w:'In your AI chat · 5 minutes',why:'AI only writes good content when it knows your business. This prompt makes it interview you first, so the next prompts are about you, not some generic company.',
+     p:'You are a social media strategist for local small businesses. Before we plan any content, interview me about my business.\n\nHere is what I know so far:\n- Business: {biz}\n- What we sell: {what}\n- Where we serve: {where}\n- Best customer: {who}\n- Goal this month: {goal}\n- Platforms: {plat}\n- Brand voice: {voice}\n\nAsk me 8 short questions, one at a time, about what makes us different, what customers ask us most, what they love about us, common objections, our offers or promos this month, and any dates or events coming up. After my last answer, write a one-paragraph "Business Snapshot" I can reuse.',
+     tip:'<b>Keep this chat open.</b> Do every step in the same conversation so the AI remembers your answers.'},
+    {t:'Pick your content pillars',w:'Same chat · 3 minutes',why:'Pillars are the 4 or 5 topics you rotate through. They keep you from staring at a blank screen and make sure every post serves the goal.',
+     p:'Using my Business Snapshot, give me 5 content pillars for {biz} on {plat}. My goal is: {goal}.\n\nFor each pillar give me:\n1. A short name\n2. Why it matters to {who}\n3. Three example post ideas\n\nMake sure at least one pillar builds trust (reviews, behind the scenes, the people), one educates, and one drives action toward my goal. Keep the voice {voice}.'},
+    {t:'Build the 30-day calendar',w:'Same chat · 5 minutes',why:'Now the AI lays out a full month using your pillars, at a pace you can actually keep.',
+     p:'Create a 30-day social media calendar for {biz} starting next Monday. Post {freq} times per week on {plat}.\n\nReturn it as a table with these columns:\nDay | Date | Pillar | Format (photo, carousel, short video, story or text) | Hook (first line) | Post idea in one sentence | Call to action\n\nRules:\n- Rotate the 5 pillars evenly\n- Put the strongest posts on the days my customers are most active\n- Every call to action points toward: {goal}\n- Include any dates or promos I mentioned\n- Keep it realistic for a busy owner with a phone'},
+    {t:'Write the captions',w:'Same chat · 10 minutes',why:'Do one week at a time. You will get better captions and it is easier to review.',
+     p:'Write the full captions for Week 1 of the calendar.\n\nFor each post give me:\n- The hook (first line, under 10 words)\n- The caption (60 to 120 words, {voice})\n- A clear call to action for: {goal}\n- 5 to 8 hashtags: mix local ones for {where} with industry ones\n\nWrite like a real local business owner talks, not like an ad. No emojis at the start of lines. Then ask me if I want Week 2.',
+     tip:'<b>Make it sound like you.</b> Read each caption out loud. If you would not say it to a customer at the counter, tell the AI: "Rewrite this the way I would actually say it."'},
+    {t:'Plan the photos and videos',w:'Same chat, then your phone · 15 minutes',why:'The biggest reason calendars fail is no visuals. This turns the plan into a simple shot list you can knock out in one session.',
+     p:'Turn Week 1 into a shot list I can film in one 30-minute session with my phone at {biz}.\n\nFor each post tell me:\n- Exactly what to photograph or film\n- Where to stand and what should be in the frame\n- For videos: 3 quick shots and what to say in under 20 seconds\n- If a graphic works better than a photo, give me the text for a simple Canva design\n\nGroup the shots by location so I am not running back and forth.'},
+    {t:'Schedule it',w:'Meta Business Suite · 20 minutes',why:'Batching beats daily posting. Schedule the whole week in one sitting so it runs while you work.',
+     steps:['Open <b>Meta Business Suite</b> (free) on a computer or the app. For TikTok or LinkedIn, use their built-in schedulers.','Click <b>Planner</b>, then <b>Create post</b>.','Paste the caption, add the photo or video from your shot list, and pick the date and time from your calendar.','Select both Facebook and Instagram if you post to both, then click <b>Schedule</b>.','Repeat for the week. Put a 15-minute reminder on your calendar every Friday to schedule the next week.']},
+    {t:'Review and improve',w:'Same chat · every Friday, 10 minutes',why:'This is where it starts working. A quick weekly check tells you what to do more of.',
+     p:'Here are this week\'s results for {biz}:\n[PASTE EACH POST WITH ITS REACH, LIKES, COMMENTS, SHARES, SAVES, AND ANY CALLS, DMS OR SALES IT BROUGHT IN]\n\nTell me in plain English:\n1. Which 2 posts did best and why\n2. Which pillar is pulling its weight for my goal: {goal}\n3. What to change in next week\'s plan\n\nThen update Week 2 of the calendar with those changes and write the captions.',
+     tip:'<b>Where to find the numbers:</b> Meta Business Suite → Insights → Content. Screenshot it and paste the numbers in, or type the top 3.'}
+  ];
+
+  var host=$('steps'), tpl=$('tpl');
+  STEPS.forEach(function(s,i){
+    var n=tpl.content.cloneNode(true);
+    n.querySelector('.num').textContent=String(i+1).padStart(2,'0');
+    n.querySelector('h2').textContent=s.t;
+    n.querySelector('.where').textContent=s.w;
+    n.querySelector('.why').textContent=s.why;
+    if(s.p){ var pr=n.querySelector('.prompt'); pr.hidden=false; pr.dataset.tpl=s.p; }
+    if(s.steps){ var ol=n.querySelector('.do'); ol.hidden=false; ol.innerHTML=s.steps.map(function(x){return '<li>'+x+'</li>'}).join(''); }
+    if(s.tip){ var tp=n.querySelector('.tip'); tp.hidden=false; tp.innerHTML=s.tip; }
+    host.appendChild(n);
+  });
+
+  function esc(t){return t.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  function vals(){var v={};F.forEach(function(k){var x=$(k).value.trim();v[k]=x||D[k]||x});return v}
+  function fill(t,v,html){return t.replace(/\{(\w+)\}/g,function(_,k){var x=v[k]||'';return html?esc(x):x})}
+  function render(){
+    var v=vals();
+    document.querySelectorAll('.prompt').forEach(function(pr){ if(!pr.dataset.tpl) return;
+      pr.querySelector('pre').innerHTML=fill(esc(pr.dataset.tpl),v,true).replace(/\[([A-Z][A-Z ,'\.]+)\]/g,'<mark>[$1]</mark>');
+    });
+  }
+  var t; F.forEach(function(k){ $(k).addEventListener('input',function(){ render(); clearTimeout(t); t=setTimeout(function(){ try{var o={};F.forEach(function(x){o[x]=$(x).value});localStorage.setItem('afSocialFuel',JSON.stringify(o));$('saved').textContent='Saved on this device.';}catch(e){} },400); }); });
+  host.addEventListener('click',function(e){
+    var b=e.target.closest('.copy'); if(!b) return;
+    var pr=b.closest('.prompt'), text=fill(pr.dataset.tpl,vals(),false);
+    function ok(){ b.textContent='Copied'; b.classList.add('done'); window.afTrack&&afTrack('prompt_copy',pr.closest('.step').querySelector('h2').textContent); setTimeout(function(){b.textContent='Copy Prompt';b.classList.remove('done')},1800); }
+    function fallback(){ var r=document.createRange(); r.selectNodeContents(pr.querySelector('pre')); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected. Press copy.'; }
+    try{ navigator.clipboard.writeText(text).then(ok,fallback); }catch(err){ fallback(); }
+  });
+  render();
+})();
+</script>
+</body>
+</html>
