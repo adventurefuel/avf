@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /alerts/
 Disallow: /pricing/
+Disallow: /smp/
 Sitemap: https://www.adventurefuel.agency/sitemap.xml
