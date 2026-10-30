@@ -14,9 +14,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Luckiest+Guy&family=Outfit:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="/assets/app.css">
-<link rel="stylesheet" href="/smp/smp.css?v=1">
+<link rel="stylesheet" href="/smp/smp.css?v=2">
+<link rel="stylesheet" href="/smp/hunt.css?v=2">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="/assets/js/config.js"></script>
 </head>
@@ -61,6 +62,7 @@
     <div id="vApp" hidden>
       <nav class="tabs" role="tablist" aria-label="Sections">
         <button class="tab" role="tab" data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Overview</button>
+        <button class="tab" role="tab" data-tab="hunt" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></svg>Hunt</button>
         <button class="tab" role="tab" data-tab="leads" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M17 11h6M20 8v6"/></svg>Leads</button>
         <button class="tab" role="tab" data-tab="channels" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Spend</button>
         <button class="tab" role="tab" data-tab="plan" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>90 Days</button>
@@ -103,6 +105,9 @@
           </div>
         </div>
       </section>
+
+      <!-- THE HUNT -->
+      <section class="view" id="t-hunt" hidden><div id="huntRoot"></div></section>
 
       <!-- LEADS -->
       <section class="view stack" id="t-leads" hidden>
@@ -222,6 +227,7 @@
 </dialog>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-<script src="/smp/smp.js?v=1"></script>
+<script src="/smp/hunt.js?v=2"></script>
+<script src="/smp/smp.js?v=2"></script>
 </body>
 </html>

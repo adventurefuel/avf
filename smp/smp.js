@@ -37,7 +37,7 @@
   function setTab(name) {
     S.tab = name;
     document.querySelectorAll('.tab').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.tab === name ? 'true' : 'false'); });
-    ['overview', 'leads', 'channels', 'plan', 'data'].forEach(function (t) { $('t-' + t).hidden = t !== name; });
+    ['overview', 'hunt', 'leads', 'channels', 'plan', 'data'].forEach(function (t) { $('t-' + t).hidden = t !== name; });
     try { sessionStorage.setItem('smpTab', name); } catch (e) {}
     if (name === 'data') loadTeam();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -72,6 +72,7 @@
       S.admin = !!(r[1].data && r[1].data.role === 'admin');
       if (r[0].error || !r[0].data) { $('naEmail').textContent = user.email; show('vNoAccess'); return; }
       $('who').textContent = user.email;
+      if (window.Hunt) window.Hunt.init(sb, user, toast);
       return loadAll().then(function () {
         show('vApp'); $('offerPill').hidden = false;
         var t = 'overview'; try { t = sessionStorage.getItem('smpTab') || t; } catch (e) {}
