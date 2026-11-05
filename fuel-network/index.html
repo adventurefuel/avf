@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Fuel Intelligence Network — Adventure Fuel</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/icons/owner/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Luckiest+Guy&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="/assets/app.css">
+<link rel="stylesheet" href="/fuel-network/fn.css?v=1">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="/assets/js/config.js"></script>
+</head>
+<body class="fn">
+<div class="bg-tone" aria-hidden="true"></div>
+<div class="fn-grid" aria-hidden="true"></div>
+<div class="fn-wrap">
+  <header class="top">
+    <a href="/" aria-label="Adventure Fuel home"><img src="/assets/af-logo.png" alt="Adventure Fuel"></a>
+    <div class="top-right">
+      <div class="call">Paid Media<b>Bot Workforce</b></div>
+      <button class="linkish" type="button" id="signOut" hidden>Sign out</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="view stack" id="vLoading"><p class="muted">Booting the network…</p></section>
+
+    <section class="view stack gate" id="vSignin" hidden>
+      <span class="eyebrow">AF team only</span>
+      <h1>The Fuel <span class="hot">Intelligence</span> Network</h1>
+      <p class="lead">The paid media bot workforce — who does what, who hands off to whom, and what still needs a human. Sign in with your Command Center login.</p>
+      <form class="meet" id="loginForm" novalidate>
+        <div class="f"><label for="lEmail">Email</label><input id="lEmail" type="email" autocomplete="username" inputmode="email" autocapitalize="off" required></div>
+        <div class="f"><label for="lPass">Password</label><input id="lPass" type="password" autocomplete="current-password" required></div>
+        <div class="err" id="lErr" role="alert"></div>
+        <div class="btn-row"><button class="btn btn-fuel" type="submit" id="lBtn">Boot up</button></div>
+      </form>
+    </section>
+
+    <section class="view stack" id="vNoAccess" hidden>
+      <span class="eyebrow">Access needed</span>
+      <h2>Signed in, <span class="hot">but not on the AF team.</span></h2>
+      <p class="lead">This page is for Command Center team accounts. Ask an AF admin to set you up.</p>
+    </section>
+
+    <div id="vApp" hidden>
+      <section class="fn-hero">
+        <div class="fn-hero-copy">
+          <span class="fn-kicker" id="hKicker"></span>
+          <h1 class="fn-title"><span>The Fuel</span> <span class="hot">Intelligence</span> <span>Network</span></h1>
+          <p class="lead" id="hTag"></p>
+          <div class="fn-chips">
+            <span class="engine"><i class="led on"></i><span id="hEngine"></span></span>
+            <span class="chip-s" id="hCount"></span>
+            <span class="chip-s" id="hLive"></span>
+          </div>
+        </div>
+        <div class="fn-hero-bots" id="heroBots" aria-hidden="true"></div>
+      </section>
+
+      <section class="fn-sec" aria-labelledby="orgH">
+        <div class="sec-head"><span class="eyebrow">Chain of command</span><h2 id="orgH">The <span class="hot">org chart</span></h2><p class="muted">Tap a bot to open its file. Orange lines = reporting.</p></div>
+        <div class="org" id="org"></div>
+      </section>
+
+      <section class="fn-sec" aria-labelledby="loopH">
+        <div class="sec-head row"><div><span class="eyebrow">Collaboration</span><h2 id="loopH">The <span class="hot">handoff loop</span></h2></div>
+          <button class="btn btn-fuel sm" type="button" id="runLoop"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg><span>Run the loop</span></button></div>
+        <ol class="loop" id="loop"></ol>
+      </section>
+
+      <section class="fn-sec" aria-labelledby="rulesH">
+        <div class="sec-head"><span class="eyebrow">Operating rules</span><h2 id="rulesH">The <span class="hot">guardrails</span></h2></div>
+        <div class="rules" id="rules"></div>
+      </section>
+
+      <p class="fn-foot"><span id="fFoot"></span><br><span class="muted">Signed in as <span id="who"></span></span></p>
+    </div>
+  </main>
+</div>
+
+<dialog class="sheet fn-sheet" id="botDlg" aria-labelledby="dName">
+  <div class="sheet-body" id="botBody"></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="/fuel-network/fn.js?v=1"></script>
+</body>
+</html>
