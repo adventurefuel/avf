@@ -1,233 +1,3270 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AF × SK Studios — SMP Sales Command Center</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0A0A0A">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
-<link rel="apple-touch-icon" href="/assets/icons/owner/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="SK Sales">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Luckiest+Guy&family=Outfit:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="/assets/app.css">
-<link rel="stylesheet" href="/smp/smp.css?v=2">
-<link rel="stylesheet" href="/smp/hunt.css?v=2">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-<script src="/assets/js/config.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Comeback | SMP Consultation | Swurl Kurl Studios</title>
+  <meta
+    name="description"
+    content="Request an SMP consultation with Swurl Kurl Studios. The Comeback 21-day offer: two scalp micropigmentation sessions for $2,000 (limited time, regularly $2,500)."
+  />
+
+  <script src="assets/site.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Swurl Kurl Studios","description":"Scalp micropigmentation (SMP) studio in Detroit, Michigan. Free consultations.","telephone":"+1-313-399-2532","address":{"@type":"PostalAddress","streetAddress":"277 Jos Campau","addressLocality":"Detroit","addressRegion":"MI","postalCode":"48207","addressCountry":"US"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --black: #0b0b0b;
+      --near-black: #161616;
+      --white: #ffffff;
+      --warm-white: #f7f5f1;
+      --gray: #6c6c6c;
+      --light-gray: #e8e5df;
+
+      /*
+        Sampled from the official Swurl Kurl Studios logo file.
+        --gold is the true brand gold (used for fills, borders,
+        buttons, and gold text on dark backgrounds).
+        --gold-deep is the same hue, deepened, used only for gold
+        text sitting on light backgrounds, where the bright true
+        gold doesn't read clearly enough against white/warm-white.
+      */
+      --gold: #e8b351;
+      --gold-deep: #a6730f;
+
+      --max-width: 1180px;
+      --radius: 4px;
+      --shadow: 0 14px 38px rgba(0,0,0,.10);
+
+      /*
+        Matches .container's own left/right inset at any viewport
+        width, so full-bleed elements (like the hero photo) can sit
+        outside .container while still lining up with it.
+      */
+      --edge-inset: max(20px, calc((100vw - 1180px) / 2));
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Keep the HTML "hidden" attribute working on elements that have
+       their own display rule (e.g. .form-group is display:flex). */
+    [hidden] {
+      display: none !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-weight: 400;
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.55;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-weight: 800;
+      line-height: .98;
+      letter-spacing: -.03em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+    }
+
+    h2 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+    }
+
+    h3 {
+      font-size: clamp(1.35rem, 2.2vw, 2rem);
+    }
+
+    p {
+      margin: 0 0 18px;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    /* Gold headline text needs a deeper tone to stay legible on
+       light section backgrounds; true brand gold is reserved for
+       fills, borders, and gold text on dark backgrounds. */
+    .hero .gold,
+    .objection .gold {
+      color: var(--gold-deep);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 14px 24px;
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: var(--black);
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* ---------------------------
+       HEADER
+    --------------------------- */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,11,11,.97);
+      color: var(--white);
+      border-bottom: 1px solid rgba(184,149,79,.45);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand img {
+      height: 64px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: .8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+
+    /* ---------------------------
+       BLOG BANNER: The Heart of the Matter
+    --------------------------- */
+    .blog-banner {
+      background:
+        radial-gradient(900px 380px at 0% 0%, rgba(232,179,81,.22), transparent 70%),
+        linear-gradient(135deg, #f3e8d4, #ead9bb);
+      border-top: 1px solid rgba(166,115,15,.35);
+      border-bottom: 1px solid rgba(166,115,15,.35);
+      padding: 0;
+      overflow: hidden;
+    }
+    .blog-banner-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      align-items: stretch;
+    }
+    .blog-banner-img {
+      position: relative; min-height: 380px;
+      background: #d9c6a4 url("assets/blog-banner.webp") 50% 28% / cover no-repeat;
+    }
+    .blog-banner-img::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0) 70%, rgba(234,217,187,.9));
+    }
+    .blog-banner-copy { padding: 54px 0 54px 56px; padding-right: max(24px, calc((100vw - var(--max-width)) / 2)); display: flex; flex-direction: column; justify-content: center; }
+    .blog-banner .eyebrow { color: var(--gold-deep); }
+    .blog-banner h2 { margin: 10px 0 12px; font-size: clamp(2rem, 4.4vw, 3.3rem); line-height: 1.02; text-transform: uppercase; }
+    .blog-banner h2 span { color: var(--gold-deep); }
+    .blog-banner .teaser { margin: 0 0 22px; max-width: 520px; font-size: 1.08rem; color: #3b2f20; }
+    .blog-banner .by { margin: 0 0 22px; font-size: .84rem; font-weight: 600; color: #6a5436; letter-spacing: .03em; }
+    .blog-banner .sub-line { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(106,84,54,.3); max-width: 520px; }
+    .blog-banner .sub-line label { display: block; margin-bottom: 8px; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #6a5436; }
+    .bb-form { display: flex; gap: 8px; }
+    .bb-form input[type=email] { flex: 1; min-width: 0; min-height: 50px; padding: 10px 13px; font: inherit; font-size: 1rem; background: #fff; border: 1px solid #b9a67f; border-radius: 0; color: var(--black); }
+    .bb-form input[type=email]:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold-deep); }
+    .bb-form .btn { min-height: 50px; padding: 10px 20px; }
+    .bb-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .bb-msg { min-height: 1.3em; margin: 8px 0 0; font-size: .92rem; font-weight: 600; }
+    .bb-msg.err { color: #b3392a; }
+    .bb-msg.ok { color: #2c6b3a; }
+    @media (max-width: 860px) {
+      .blog-banner-grid { grid-template-columns: 1fr; }
+      .blog-banner-img { min-height: 0; height: 280px; background-position: 50% 24%; }
+      .blog-banner-img::after { background: linear-gradient(180deg, rgba(0,0,0,0) 70%, rgba(234,217,187,.95)); }
+      .blog-banner-copy { padding: 8px var(--edge-inset, 20px) 44px; }
+    }
+    @media (max-width: 480px) { .bb-form { flex-direction: column; } .bb-form .btn { width: 100%; } }
+
+    /* ---------------------------
+       MOBILE MENU (hamburger) + sticky call bar
+    --------------------------- */
+    html { scroll-padding-top: 76px; }
+    html.menu-open { overflow: hidden; }
+    .nav-links a[aria-current="true"]:not(.btn) { color: var(--gold); }
+
+    .nav-toggle {
+      display: none;
+      width: 46px; height: 46px;
+      margin-right: -6px;
+      padding: 0;
+      border: 0; background: transparent;
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-toggle:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 6px; }
+    .nav-toggle .bars { position: relative; width: 24px; height: 18px; display: block; }
+    .nav-toggle .bars i {
+      position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px;
+      background: var(--gold);
+      transition: transform .25s ease, opacity .2s ease, top .25s ease;
+    }
+    .nav-toggle .bars i:nth-child(1) { top: 0; }
+    .nav-toggle .bars i:nth-child(2) { top: 8px; }
+    .nav-toggle .bars i:nth-child(3) { top: 16px; }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(1) { top: 8px; transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .bars i:nth-child(3) { top: 8px; transform: rotate(-45deg); }
+
+    .mmenu {
+      position: fixed; inset: 0; z-index: 99;
+      display: flex; flex-direction: column;
+      padding: 92px 24px calc(24px + env(safe-area-inset-bottom));
+      background: radial-gradient(700px 360px at 50% -60px, rgba(232,179,81,.18), transparent 70%), #080808;
+      overflow-y: auto; overscroll-behavior: contain;
+      opacity: 0; visibility: hidden; transform: translateY(-10px);
+      transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s;
+    }
+    .mmenu.open { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+    .mmenu-label {
+      margin: 0 0 6px; color: var(--gold); font-size: .72rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+    }
+    .mmenu a.ml {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 17px 2px; min-height: 58px;
+      color: var(--white); text-decoration: none;
+      font-size: 1.28rem; font-weight: 600; letter-spacing: .01em;
+      border-bottom: 1px solid rgba(232,179,81,.22);
+    }
+    .mmenu a.ml::after { content: "\203A"; color: rgba(232,179,81,.7); font-size: 1.5rem; line-height: 1; }
+    .mmenu a.ml[aria-current="true"] { color: var(--gold); }
+    .mmenu a.ml[aria-current="true"]::after { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
+    .mmenu a.ml small { display: block; margin-top: 2px; font-size: .8rem; font-weight: 500; color: #9d988b; letter-spacing: 0; }
+    .mmenu a.ml:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
+    .mmenu-cta { margin-top: auto; padding-top: 26px; }
+    .mmenu-cta .btn { width: 100%; min-height: 58px; font-size: .92rem; }
+    .mmenu-cta p { margin: 12px 0 0; text-align: center; color: #8e8a7e; font-size: .8rem; }
+
+    .mbar { display: none; }
+
+    @media (max-width: 900px) {
+      .nav-toggle { display: inline-flex; }
+      .nav-links { gap: 10px; }
+      footer { padding-bottom: calc(42px + 78px + env(safe-area-inset-bottom)); }
+      .mbar {
+        display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90;
+        padding: 18px 14px calc(10px + env(safe-area-inset-bottom));
+        background: linear-gradient(180deg, rgba(11,11,11,0), rgba(11,11,11,.94) 42%);
+        transform: translateY(115%); transition: transform .28s ease; pointer-events: none;
+      }
+      .mbar.show { transform: none; pointer-events: auto; }
+      .mbar .btn { width: 100%; min-height: 54px; box-shadow: 0 8px 22px rgba(0,0,0,.45); }
+    }
+    @media (min-width: 901px) { .mmenu, .mbar { display: none !important; } }
+    @media (prefers-reduced-motion: reduce) {
+      .mmenu, .mbar, .nav-toggle .bars i { transition: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ---------------------------
+       HERO
+    --------------------------- */
+
+    .hero {
+      background: var(--warm-white);
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+      min-height: 710px;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      /* hero-grid is no longer inside .container (so the photo can
+         bleed to the true edge of the viewport) — this replicates
+         .container's own left inset so the copy still lines up
+         with the rest of the page. */
+      padding: 90px 60px 70px var(--edge-inset);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-copy h1 {
+      max-width: 780px;
+      font-size: clamp(3rem, 5vw, 4.6rem);
+    }
+
+    .hero-copy .intro {
+      margin-top: 28px;
+      max-width: 650px;
+      font-size: 1.08rem;
+    }
+
+    /* The customer, cut out, standing flush on the page (no panel). */
+    .hero-image {
+      min-height: 650px;
+      background: url("assets/hero-customer.webp") 50% 100% / contain no-repeat;
+    }
+
+    .offer-card {
+      margin-top: 36px;
+      max-width: 590px;
+      padding: 30px;
+      background: var(--black);
+      color: var(--white);
+      border: 1px solid var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .offer-card .offer-label {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: .08em;
+      font-size: .82rem;
+    }
+
+    .offer-price {
+      margin: 6px 0 2px;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1;
+    }
+
+    .offer-regular {
+      margin-bottom: 20px;
+      color: #d0d0d0;
+      text-transform: uppercase;
+      font-size: .78rem;
+      letter-spacing: .08em;
+    }
+
+    .offer-card .btn {
+      width: 100%;
+    }
+
+    .offer-note {
+      margin: 14px 0 0;
+      text-align: center;
+      color: #c8c8c8;
+      font-size: .78rem;
+    }
+
+    /* ---------------------------
+       GENERAL SECTIONS
+    --------------------------- */
+
+    section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-heading p {
+      max-width: 680px;
+      margin: 18px auto 0;
+      color: var(--gray);
+    }
+
+    /* ---------------------------
+       RESULTS
+    --------------------------- */
+
+    .results {
+      background: var(--white);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .result-card {
+      border: 1px solid var(--light-gray);
+      background: var(--white);
+    }
+
+    .result-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .result-image {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .result-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-label {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 7px;
+      background: rgba(0,0,0,.87);
+      color: var(--white);
+      text-align: center;
+      font-size: .68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .results-cta {
+      text-align: center;
+      margin-top: 34px;
+    }
+
+    /* ---------------------------
+       OBJECTION SECTION
+    --------------------------- */
+
+    .objection {
+      background: var(--warm-white);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    /* "A hairline that fits you" graphic (tap/click to enlarge) */
+    .smp-diagram {
+      margin: 0;
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      justify-self: center;
+      aspect-ratio: 1122 / 1402;
+      background: var(--warm-white);
+      box-shadow: var(--shadow);
+    }
+    .smp-diagram button {
+      display: block; width: 100%; height: 100%;
+      padding: 0; border: 0; background: none; cursor: zoom-in;
+    }
+    .smp-diagram img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .smp-diagram .zoom-hint {
+      position: absolute; left: 0; right: 0; top: 100%;
+      padding-top: 10px; text-align: center;
+      color: var(--gold-deep); font-size: .72rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; pointer-events: none;
+    }
+    @media (min-width: 901px) { .smp-diagram .zoom-hint { display: none; } }
+    @media (max-width: 900px) { .smp-diagram { margin-bottom: 30px; } }
+    .diagram-dialog {
+      width: auto; max-width: 96vw; max-height: 96vh;
+      padding: 0; border: 1px solid var(--gold); background: #111; color: #fff;
+    }
+    .diagram-dialog::backdrop { background: rgba(0,0,0,.85); }
+    .diagram-dialog img { display: block; width: auto; max-width: 96vw; height: auto; max-height: 94vh; }
+    .diagram-dialog .dd-close {
+      position: absolute; top: 8px; right: 8px; z-index: 2;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1px solid var(--gold); background: rgba(17,17,17,.92);
+      color: var(--gold); font-size: 1.6rem; line-height: 1; cursor: pointer;
+    }
+
+    .copy-block p {
+      font-size: 1.05rem;
+      color: #333;
+    }
+
+    /* ---------------------------
+       AUTHORITY
+    --------------------------- */
+
+    .authority {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .authority .copy-block p {
+      color: #e1e1e1;
+    }
+
+    .authority-image {
+      width: 100%;
+      aspect-ratio: 1374 / 1145;
+      align-self: center;
+      background: url("assets/terrence-portrait.jpg") center / cover no-repeat;
+    }
+
+    .brand-line {
+      margin-top: 28px;
+      color: var(--gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* ---------------------------
+       PROCESS
+    --------------------------- */
+
+    .process {
+      background: var(--white);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--light-gray);
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .step {
+      padding: 34px 26px;
+      border-right: 1px solid var(--light-gray);
+    }
+
+    .step:last-child {
+      border-right: 0;
+    }
+
+    .step-number {
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+
+    .step p {
+      color: var(--gray);
+      font-size: .92rem;
+    }
+
+    /* ---------------------------
+       OFFER BAND
+    --------------------------- */
+
+    .offer-band {
+      padding: 70px 0;
+      background: var(--gold);
+      color: var(--black);
+      text-align: center;
+    }
+
+    .offer-band h2 {
+      margin-bottom: 18px;
+    }
+
+    .offer-band .price {
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1;
+      margin: 12px 0;
+    }
+
+    /* ---------------------------
+       FAQ
+    --------------------------- */
+
+    .faq {
+      background: var(--warm-white);
+    }
+
+    .faq-list {
+      max-width: 850px;
+      margin: 0 auto;
+      border-top: 1px solid #d8d4ce;
+    }
+
+    details {
+      border-bottom: 1px solid #d8d4ce;
+      padding: 22px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    details p {
+      padding-top: 16px;
+      color: var(--gray);
+    }
+
+    /* ---------------------------
+       FORM
+    --------------------------- */
+
+    .consultation {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .consultation-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .consultation-copy {
+      position: sticky;
+      top: 120px;
+    }
+
+    .consultation-copy p {
+      color: #d0d0d0;
+      margin-top: 20px;
+    }
+
+    .whatsapp-btn {
+      margin-top: 32px;
+      width: 100%;
+      background: #25D366;
+      border-color: #25D366;
+      color: var(--black);
+    }
+
+    .whatsapp-note {
+      margin-top: 12px !important;
+      text-align: center;
+      font-size: .78rem;
+      color: #999 !important;
+    }
+
+    .scheduler-card {
+      margin-top: 32px;
+      padding: 26px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(184,149,79,.4);
+    }
+
+    .scheduler-heading {
+      margin-bottom: 18px;
+      font-size: .82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--gold);
+    }
+
+    .scheduler-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .scheduler-fields label {
+      color: #d0d0d0;
+    }
+
+    .scheduler-fields input,
+    .scheduler-fields select {
+      border-color: rgba(255,255,255,.2);
+    }
+
+    .next-steps {
+      margin: 32px 0 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: ns;
+      display: grid;
+      gap: 20px;
+    }
+
+    .next-steps li {
+      counter-increment: ns;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 16px;
+      align-items: start;
+      color: #d0d0d0;
+      font-size: .95rem;
+      line-height: 1.5;
+    }
+
+    .next-steps li::before {
+      content: counter(ns);
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .next-steps b {
+      display: block;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+
+    /* cost explainer */
+    .invest { background: var(--near-black); color: #fff; }
+    .invest .section-heading p { color: #bdbdbd; }
+    .invest-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 28px; align-items: stretch; }
+    .invest-factors { border-top: 1px solid rgba(255,255,255,.14); }
+    .factor { display: grid; grid-template-columns: 96px 1fr; gap: 18px; padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.14); align-items: start; }
+    .factor-k { color: var(--gold); font-weight: 700; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; padding-top: 4px; }
+    .factor h3 { font-size: 1.05rem; margin: 0 0 6px; color: #fff; }
+    .factor p { margin: 0; color: #bdbdbd; font-size: .94rem; }
+    .invest-card { padding: 34px 30px; border: 1px solid var(--gold); background: rgba(232,179,81,.06); display: flex; flex-direction: column; align-items: flex-start; }
+    .invest-card h3 { font-size: 1.5rem; margin: 0 0 6px; color: #fff; }
+    .invest-price { font-size: clamp(2.6rem, 5vw, 3.6rem); font-weight: 800; letter-spacing: -.02em; line-height: 1; color: var(--gold); margin: 8px 0 10px; }
+    .invest-line { margin: 0 0 14px; color: #e6e6e6; }
+    .invest-note { margin: 0 0 22px; color: #bdbdbd; font-size: .9rem; }
+    .invest-card .btn { margin-top: auto; width: 100%; }
+    .touchup { margin-top: 34px; padding: 30px; border: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.03); }
+    .touchup > h3 { margin: 0 0 18px; font-size: 1.15rem; color: #fff; text-transform: uppercase; letter-spacing: .04em; }
+    .touchup-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+    .touchup h4 { margin: 0 0 6px; color: var(--gold); font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; }
+    .touchup p { margin: 0; color: #cfcfcf; font-size: .92rem; }
+    .touchup .touchup-fine { margin-top: 20px; font-size: .78rem; color: #8f8f8f; }
+    @media (max-width: 900px) {
+      .invest-grid { grid-template-columns: 1fr; }
+      .touchup-cols { grid-template-columns: 1fr; gap: 20px; }
+      .factor { grid-template-columns: 78px 1fr; }
+    }
+
+    /* footer location card */
+    .footer-location { display: grid; grid-template-columns: 1fr 1.2fr; gap: 0; margin-bottom: 40px; border: 1px solid rgba(232,179,81,.4); background: #0b0b0b; }
+    .loc-info { padding: 34px 32px; }
+    .loc-info address { font-style: normal; font-size: 1.35rem; font-weight: 700; line-height: 1.3; color: #fff; margin: 4px 0 10px; }
+    .loc-hours { margin: 0 0 20px; color: #bdbdbd; font-size: .92rem; }
+    .loc-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn-line { background: transparent; color: var(--gold); }
+    .btn-line:hover { background: var(--gold); color: var(--black); }
+    .loc-sub { margin: 16px 0 0; font-size: .8rem; color: #8f8f8f; }
+    .loc-sub a { color: inherit; text-decoration: underline; }
+    .loc-map { position: relative; min-height: 260px; border-left: 1px solid rgba(232,179,81,.3); overflow: hidden; background: #0d0d0d; }
+    .loc-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .loc-cap { position: absolute; left: 18px; bottom: 16px; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(232,179,81,.85); }
+    .loc-load { position: absolute; right: 16px; bottom: 12px; min-height: 40px; padding: 8px 16px; border: 1px solid var(--gold); background: rgba(11,11,11,.85); color: var(--gold); font: inherit; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+    .loc-load:hover { background: var(--gold); color: var(--black); }
+    .loc-map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(.92) contrast(.9) sepia(.45) saturate(1.5); }
+    @media (max-width: 900px) {
+      .footer-location { grid-template-columns: 1fr; }
+      .loc-map { border-left: 0; border-top: 1px solid rgba(232,179,81,.3); min-height: 240px; }
+      .loc-info { padding: 28px 22px; }
+      .loc-actions .btn { flex: 1 1 100%; }
+    }
+
+    .reviews { padding: 80px 0; background: var(--near-black); color: #fff; }
+    .reviews h2 { margin: 8px 0 28px; }
+    .reviews-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .review-card { margin: 0; padding: 26px; border: 1px solid rgba(232,179,81,.4); background: rgba(255,255,255,.04); }
+    .review-card blockquote { margin: 0 0 14px; font-size: 1.02rem; line-height: 1.6; color: #e6e6e6; }
+    .review-card figcaption { font-size: .8rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--gold); }
+
+    .form-alt-heading {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--light-gray);
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--gray);
+    }
+
+    .form-card {
+      background: var(--white);
+      color: var(--black);
+      padding: 38px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: .78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 14px;
+      border: 1px solid #cfcfcf;
+      background: var(--white);
+      color: var(--black);
+      border-radius: 0;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 2px rgba(184,149,79,.10);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .consent {
+      margin: 8px 0 20px;
+      font-size: .74rem;
+      color: #666;
+    }
+
+    .form-card .btn {
+      width: 100%;
+    }
+
+    .form-status {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: var(--warm-white);
+      border: 1px solid var(--light-gray);
+      font-size: .85rem;
+      color: var(--gray);
+      display: none;
+    }
+
+    .form-status.visible {
+      display: block;
+    }
+
+    /* ---------------------------
+       FOOTER
+    --------------------------- */
+
+    footer {
+      padding: 42px 0;
+      background: #050505;
+      color: #cfcfcf;
+      border-top: 1px solid rgba(184,149,79,.35);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .footer-brand img {
+      height: 76px;
+      width: auto;
+      margin-bottom: 14px;
+    }
+
+    .footer-small {
+      font-size: .75rem;
+      color: #888;
+    }
+
+    .site-credit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      font-size: .7rem;
+      letter-spacing: .03em;
+      color: #6b6b6b;
+    }
+
+    .site-credit img {
+      height: 18px;
+      width: auto;
+    }
+
+    /* ---------------------------
+       SERVICES
+    --------------------------- */
+
+    .services {
+      background: var(--warm-white);
+    }
+
+    /* buttons that replaced the old WhatsApp links */
+    button.inline-link {
+      background: none;
+      border: 0;
+      padding: 0;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .scheduler-btn {
+      margin-top: 6px;
+      width: 100%;
+    }
+
+    .learn {
+      background: var(--white);
+      text-align: center;
+      border-top: 1px solid var(--light-gray);
+    }
+
+    .learn-inner {
+      max-width: 760px;
+    }
+
+    .learn-inner p {
+      margin: 18px auto 30px;
+      color: var(--gray);
+    }
+
+    .inline-link {
+      color: var(--gold-deep);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 440px));
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .service-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--gray);
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--light-gray);
+      padding: 26px 24px 24px;
+    }
+
+    .service-card.featured {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+
+    .service-tag {
+      align-self: flex-start;
+      margin-bottom: 14px;
+      padding: 3px 10px;
+      background: var(--light-gray);
+      color: #444;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .service-card.featured .service-tag {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      flex: 1;
+      margin: 0 0 16px;
+      font-size: .92rem;
+      color: var(--gray);
+    }
+
+    .service-card.featured .service-desc {
+      color: #cfcfcf;
+    }
+
+    .service-price {
+      margin-bottom: 4px;
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+
+    .service-price small {
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--gray);
+    }
+
+    .service-price s {
+      margin-left: 8px;
+      font-size: .9rem;
+      font-weight: 500;
+      color: #999;
+    }
+
+    .service-card.featured .service-price {
+      color: var(--gold);
+    }
+
+    .service-opts {
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+      font-size: .82rem;
+      color: var(--gray);
+    }
+
+    .service-card .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--black);
+      border-color: var(--black);
+    }
+
+    .offer-band .btn + .btn {
+      margin-left: 12px;
+    }
+
+    .reserve-link {
+      background: none;
+      border: 0;
+      padding: 2px 0;
+      color: var(--gold);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    /* ---------------------------
+       BOOKING DIALOG
+    --------------------------- */
+
+    .book-dialog {
+      width: min(calc(100% - 24px), 520px);
+      max-height: 92vh;
+      padding: 0;
+      border: 1px solid var(--gold);
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+      overflow: auto;
+    }
+
+    .book-dialog::backdrop {
+      background: rgba(0,0,0,.68);
+    }
+
+    .book-inner {
+      position: relative;
+      padding: 34px 30px 28px;
+    }
+
+    .book-inner h3 {
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+    }
+
+    .book-inner .eyebrow {
+      color: var(--gold-deep);
+    }
+
+    .book-close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      background: none;
+      font-size: 1.9rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--gray);
+    }
+
+    .book-sub {
+      margin: 0 0 18px;
+      font-size: .92rem;
+      color: var(--gray);
+    }
+
+    .book-inner .form-group {
+      margin-bottom: 14px;
+    }
+
+    .book-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .book-total {
+      margin: 4px 0 14px;
+      padding: 12px 14px;
+      background: var(--warm-white);
+      border: 1px solid var(--light-gray);
+      font-weight: 700;
+    }
+
+    .book-fine {
+      margin: 12px 0 0;
+      text-align: center;
+      font-size: .74rem;
+      color: var(--gray);
+    }
+
+    .book-inner .btn {
+      width: 100%;
+    }
+
+    .book-inner .btn + .btn {
+      margin-top: 10px;
+    }
+
+    .btn-ghost-dark {
+      background: transparent;
+      color: var(--black);
+      border-color: #bdb8ae;
+    }
+
+    .book-dialog .whatsapp-btn {
+      margin-top: 18px;
+    }
+
+    .form-status.error {
+      background: #fdecea;
+      border-color: #f1b5ad;
+      color: #8a2a1f;
+    }
+
+    .form-status.success {
+      background: #eaf6ee;
+      border-color: #a9d8b8;
+      color: #1d5a33;
+    }
+
+    /* ---------------------------
+       MOBILE
+    --------------------------- */
+
+    @media (max-width: 900px) {
+
+      .service-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 440px));
+      }
+
+
+      .nav-links a:not(.btn) {
+        display: none;
+      }
+
+      .hero-grid,
+      .two-col,
+      .consultation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding: 0 var(--edge-inset) 40px;
+      }
+
+      /* man + before/after composite, sized so the headline starts in the first screen */
+      .hero-image {
+        min-height: 0;
+        height: min(104vw, 440px);
+        order: -1;
+        background-image: url("assets/hero-customer-ba.webp");
+        background-position: 50% 100%;
+        background-size: contain;
+        -webkit-mask-image: linear-gradient(to bottom, #000 94%, transparent 100%);
+        mask-image: linear-gradient(to bottom, #000 94%, transparent 100%);
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .step:nth-child(2) {
+        border-right: 0;
+      }
+
+      .step:nth-child(-n+2) {
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .consultation-copy {
+        position: static;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .hero-copy {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand img {
+        height: 52px;
+      }
+
+      .nav .btn {
+        padding: 10px 13px;
+        min-height: 42px;
+        font-size: .68rem;
+      }
+
+      .hero-image {
+        height: min(104vw, 440px);
+      }
+
+      .result-grid,
+      .process-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .step,
+      .step:nth-child(2) {
+        border-right: 0;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .step:last-child {
+        border-bottom: 0;
+      }
+
+      .form-group {
+        grid-column: 1 / -1;
+      }
+
+      .form-card {
+        padding: 26px 20px;
+      }
+
+      .scheduler-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .book-row {
+        grid-template-columns: 1fr;
+      }
+
+      .book-inner {
+        padding: 30px 20px 24px;
+      }
+
+      .offer-band .btn + .btn {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
-<body class="smp">
-<div class="bg-tone" aria-hidden="true"></div>
-<div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="shell">
-  <header class="top">
-    <a href="/" aria-label="Adventure Fuel home"><img src="/assets/af-logo.png" alt="Adventure Fuel"></a>
-    <div class="top-right">
-      <div class="call">AF × Swurl Kurl<b>SMP Sales</b></div>
-      <span class="pill on" id="offerPill" hidden>$2,000 · AVF500</span>
+
+<body>
+
+  <!-- ==================================
+       HEADER
+  =================================== -->
+  <header class="site-header">
+    <div class="container nav">
+
+      <a href="#" class="brand" aria-label="Swurl Kurl Studios">
+        <img
+          src="assets/swurl-kurl-studios-official-logo.png"
+          alt="Swurl Kurl Studios"
+        />
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#results">Results</a>
+        <a href="#about">About</a>
+        <a href="#services">The Offer</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a href="#learn">Learn SMP</a>
+        <a href="heart-of-the-matter.html">Blog</a>
+        <button type="button" class="btn" data-open-contact="nav">Request a Consultation</button>
+        <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+      </nav>
+
     </div>
   </header>
 
-  <main>
-    <!-- LOADING -->
-    <section class="stack view" id="vLoading"><p class="muted">Loading…</p></section>
 
-    <!-- SIGN IN -->
-    <section class="stack view" id="vSignin" hidden>
-      <span class="eyebrow">Team only</span>
-      <h1>SMP sales <span class="hot">command center</span></h1>
-      <p class="lead">Leads, consultations, deposits and ad spend for Swurl Kurl Studios — one shared board for the AF team. Sign in with your Command Center login.</p>
-      <form class="meet" id="loginForm" novalidate>
-        <div class="f"><label for="lEmail">Email</label><input id="lEmail" type="email" autocomplete="username" inputmode="email" autocapitalize="off" required></div>
-        <div class="f"><label for="lPass">Password</label><input id="lPass" type="password" autocomplete="current-password" required></div>
-        <div class="err" id="lErr" role="alert"></div>
-        <div class="btn-row"><button class="btn btn-fuel" type="submit" id="lBtn">Sign in</button></div>
-      </form>
-    </section>
-
-    <!-- NO ACCESS -->
-    <section class="stack view" id="vNoAccess" hidden>
-      <span class="eyebrow">Access needed</span>
-      <h2>You're signed in, <span class="hot">but not on this board yet.</span></h2>
-      <p class="lead">An Adventure Fuel admin needs to add <b id="naEmail"></b> to the SK Studios team. Once they do, refresh this page.</p>
-      <div class="btn-row"><button class="btn btn-ghost" type="button" data-signout>Sign out</button></div>
-    </section>
-
-    <!-- APP -->
-    <div id="vApp" hidden>
-      <nav class="tabs" role="tablist" aria-label="Sections">
-        <button class="tab" role="tab" data-tab="overview" aria-selected="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Overview</button>
-        <button class="tab" role="tab" data-tab="hunt" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5"/></svg>Hunt</button>
-        <button class="tab" role="tab" data-tab="leads" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M17 11h6M20 8v6"/></svg>Leads</button>
-        <button class="tab" role="tab" data-tab="channels" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Spend</button>
-        <button class="tab" role="tab" data-tab="plan" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>90 Days</button>
-        <button class="tab" role="tab" data-tab="data" aria-selected="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>Data</button>
-      </nav>
-
-      <!-- OVERVIEW -->
-      <section class="view stack" id="t-overview">
-        <div class="toggle-row"><div><span class="eyebrow" id="monthLabel">This month</span><h2>The <span class="hot">scoreboard</span></h2></div><button class="btn btn-fuel sm" type="button" data-goto-add>+ Add lead</button></div>
-        <div class="kpis k4">
-          <div class="kpi"><span class="k">Inquiries</span><span class="v" id="kInq">0</span><span class="d" id="kInqT">of 40</span><div class="mini"><i id="kInqB"></i></div></div>
-          <div class="kpi"><span class="k">Qualified</span><span class="v" id="kQual">0</span><span class="d" id="kQualT">of 20</span><div class="mini"><i id="kQualB"></i></div></div>
-          <div class="kpi"><span class="k">Consults done</span><span class="v" id="kCon">0</span><span class="d" id="kConT">of 16</span><div class="mini"><i id="kConB"></i></div></div>
-          <div class="kpi hotk"><span class="k">Paying clients</span><span class="v" id="kPaid">0</span><span class="d" id="kPaidT">of 4</span><div class="mini"><i id="kPaidB"></i></div></div>
-        </div>
-        <div class="grid2">
-          <div class="panel">
-            <span class="say">Sales this month</span>
-            <div class="money" id="revM">$0</div>
-            <div class="bigbar"><i id="revB"></i></div>
-            <p class="muted sm-t" id="revT">of $8,000 monthly target</p>
-            <div class="stat-row">
-              <div><span class="k">Lead → client</span><b class="statv" id="closeRate">0%</b></div>
-              <div><span class="k">Year to date</span><b class="statv" id="revY">$0</b></div>
-            </div>
-          </div>
-          <div class="panel">
-            <span class="say">Follow-ups due</span>
-            <div id="dueList" class="due"></div>
-          </div>
-        </div>
-        <div class="grid2">
-          <div class="panel">
-            <span class="say">Pipeline · all open leads</span>
-            <div id="stageList" class="lines"></div>
-          </div>
-          <div class="panel">
-            <span class="say">This week vs. lead targets</span>
-            <div id="weekList" class="lines"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- THE HUNT -->
-      <section class="view" id="t-hunt" hidden><div id="huntRoot"></div></section>
-
-      <!-- LEADS -->
-      <section class="view stack" id="t-leads" hidden>
-        <div class="toggle-row"><h2>Lead <span class="hot">CRM</span></h2><button class="btn btn-fuel sm" type="button" id="addToggle" aria-expanded="false" aria-controls="leadForm">+ Add lead</button></div>
-        <form class="meet panel" id="leadForm" hidden novalidate>
-          <h3 id="formTitle">New lead</h3>
-          <div class="two">
-            <div class="f"><label for="fName">Client name</label><input id="fName" maxlength="120" autocomplete="off" required></div>
-            <div class="f"><label for="fContact">Phone or email</label><input id="fContact" maxlength="160" autocomplete="off" inputmode="email"></div>
-            <div class="f"><label for="fSource">Where they came from</label><select id="fSource"></select></div>
-            <div class="f"><label for="fStage">Stage</label><select id="fStage"></select></div>
-            <div class="f"><label for="fOwner">Owner</label><input id="fOwner" maxlength="80" autocomplete="off" placeholder="Who's on it"></div>
-            <div class="f"><label for="fNext">Follow-up date</label><input id="fNext" type="date"></div>
-            <div class="f"><label for="fValue">Package value ($)</label><input id="fValue" type="number" min="0" step="50" inputmode="numeric"></div>
-          </div>
-          <div class="f"><label for="fNotes">Notes</label><textarea id="fNotes" maxlength="1000" placeholder="Sales notes only — no health or medical details."></textarea></div>
-          <div class="err" id="fErr" role="alert"></div>
-          <div class="btn-row"><button class="btn btn-fuel" type="submit" id="fSave">Save lead</button><button class="btn btn-ghost" type="button" id="fCancel">Cancel</button></div>
-        </form>
-        <div class="filters">
-          <div class="f search"><label class="sr" for="q">Search leads</label><input id="q" type="search" placeholder="Search name, contact, owner…" autocomplete="off"></div>
-          <div class="chips" id="stageFilter" role="group" aria-label="Filter by stage"></div>
-        </div>
-        <p class="muted sm-t" id="leadCount"></p>
-        <div id="leadList" class="leadlist"></div>
-      </section>
-
-      <!-- CHANNELS -->
-      <section class="view stack" id="t-channels" hidden>
-        <h2>Spend + <span class="hot">channels</span></h2>
-        <div class="kpis k4" id="planTiles"></div>
-        <div class="grid2">
-          <form class="panel meet" id="spendForm" novalidate>
-            <div class="toggle-row"><span class="say">Actual spend</span><div class="f inline"><label class="sr" for="sMonth">Month</label><input id="sMonth" type="month"></div></div>
-            <div class="two">
-              <div class="f"><label for="sGoogle">Google ($)</label><input id="sGoogle" type="number" min="0" step="1" inputmode="decimal"></div>
-              <div class="f"><label for="sMeta">Meta ($)</label><input id="sMeta" type="number" min="0" step="1" inputmode="decimal"></div>
-              <div class="f"><label for="sMarket">Marketplaces ($)</label><input id="sMarket" type="number" min="0" step="1" inputmode="decimal"></div>
-              <div class="f"><label for="sOther">Creative / other ($)</label><input id="sOther" type="number" min="0" step="1" inputmode="decimal"></div>
-            </div>
-            <div class="toggle-row"><div><span class="k">Total</span><div class="money sm" id="sTotal">$0</div></div><button class="btn btn-fuel sm" type="submit" id="sSave">Save spend</button></div>
-            <p class="muted sm-t">Marketplace commissions are separate from ad spend.</p>
-          </form>
-          <div class="panel">
-            <span class="say">Return on spend · <span id="roiMonth"></span></span>
-            <div class="stat-row">
-              <div><span class="k">Cost per lead</span><b class="statv" id="cpl">—</b></div>
-              <div><span class="k">Cost per client</span><b class="statv" id="cpc">—</b></div>
-              <div><span class="k">Sales</span><b class="statv" id="roiSales">$0</b></div>
-              <div><span class="k">Return</span><b class="statv" id="roas">—</b></div>
-            </div>
-            <span class="say" style="margin-top:6px">Lead mix · all time</span>
-            <div id="mixList" class="lines"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PLAN -->
-      <section class="view stack" id="t-plan" hidden>
-        <h2>90-day <span class="hot">launch plan</span></h2>
-        <div class="panel"><div class="toggle-row"><span class="say">Progress</span><b class="statv" id="planPct">0%</b></div><div class="bigbar"><i id="planBar"></i></div></div>
-        <div id="taskList" class="tasks"></div>
-      </section>
-
-      <!-- DATA -->
-      <section class="view stack" id="t-data" hidden>
-        <h2>Data + <span class="hot">access</span></h2>
-        <div class="panel">
-          <span class="say">Export</span>
-          <p class="muted" style="margin:0">Download everything the team has entered.</p>
-          <div class="btn-row"><button class="btn btn-fuel sm" type="button" id="exCSV">Leads CSV</button><button class="btn btn-ghost sm" type="button" id="exJSON">Full backup (JSON)</button></div>
-        </div>
-        <form class="panel meet" id="setForm" novalidate>
-          <span class="say">Offer + monthly targets</span>
-          <div class="two">
-            <div class="f"><label for="tPrice">Package price ($)</label><input id="tPrice" type="number" min="0" step="50" inputmode="numeric"></div>
-            <div class="f"><label for="tCode">Offer code</label><input id="tCode" maxlength="40" autocomplete="off"></div>
-            <div class="f"><label for="tInq">Inquiries / month</label><input id="tInq" type="number" min="0" inputmode="numeric"></div>
-            <div class="f"><label for="tQual">Qualified / month</label><input id="tQual" type="number" min="0" inputmode="numeric"></div>
-            <div class="f"><label for="tCon">Consults / month</label><input id="tCon" type="number" min="0" inputmode="numeric"></div>
-            <div class="f"><label for="tPaid">Paying clients / month</label><input id="tPaid" type="number" min="0" inputmode="numeric"></div>
-            <div class="f"><label for="tRev">Revenue target / month ($)</label><input id="tRev" type="number" min="0" step="100" inputmode="numeric"></div>
-            <div class="f"><label for="tBud">Ad budget / month ($)</label><input id="tBud" type="number" min="0" step="50" inputmode="numeric"></div>
-          </div>
-          <div class="btn-row"><button class="btn btn-fuel sm" type="submit">Save targets</button></div>
-        </form>
-        <div class="panel">
-          <span class="say">Who can see this board</span>
-          <div id="teamList" class="lines"></div>
-          <form id="grantForm" class="meet" hidden novalidate>
-            <div class="two">
-              <div class="f"><label for="gEmail">Command Center email</label><input id="gEmail" type="email" autocomplete="off" autocapitalize="off" inputmode="email"></div>
-              <div class="f"><label for="gAccess">Access</label><select id="gAccess"><option value="agency">AF team</option><option value="studio">SK Studios (client)</option></select></div>
-            </div>
-            <div class="err" id="gErr" role="alert"></div>
-            <div class="btn-row"><button class="btn btn-fuel sm" type="submit">Give access</button></div>
-          </form>
-          <p class="muted sm-t" id="teamNote">AF admins always have access. The person needs a Command Center login first.</p>
-        </div>
-        <div class="panel">
-          <span class="say">Privacy</span>
-          <p class="muted" style="margin:0">Leads are stored in Adventure Fuel's database and only visible to people on this board. Keep notes to sales info — never health, medical or payment details.</p>
-          <div class="btn-row"><button class="btn btn-ghost sm" type="button" data-signout>Sign out</button></div>
-        </div>
-      </section>
-      <p class="foot">AF × SK Studios · <span id="footCode">AVF500</span> · Signed in as <span id="who"></span></p>
+  <!-- ==================================
+       MOBILE MENU + STICKY CALL BAR (phones/tablets only)
+    =================================== -->
+  <div class="mmenu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu">
+    <p class="mmenu-label">Menu</p>
+    <a class="ml" href="#results">Results</a>
+    <a class="ml" href="#about">About Terrence</a>
+    <a class="ml" href="#services">The Offer</a>
+    <a class="ml" href="#process">How It Works</a>
+    <a class="ml" href="#faq">FAQ</a>
+    <a class="ml" href="#learn">Learn SMP</a>
+    <a class="ml" href="heart-of-the-matter.html"><span>The Heart Of The Matter<small>Stories from Terrence</small></span></a>
+    <a class="ml" href="learn.html"><span>Student Application<small>For barbers and beauty pros</small></span></a>
+    <div class="mmenu-cta">
+      <button type="button" class="btn" data-open-contact="menu">Request a Consultation</button>
+      <p>He calls or texts you back personally.</p>
     </div>
+  </div>
+
+  <div class="mbar" id="mobileBar">
+    <button type="button" class="btn" data-open-contact="sticky_bar">Request a Consultation</button>
+  </div>
+
+  <main>
+
+    <!-- ==================================
+         HERO
+    =================================== -->
+    <section class="hero">
+      <div class="hero-grid">
+
+        <div class="hero-copy">
+
+          <span class="eyebrow">Scalp Micropigmentation • Detroit</span>
+
+          <h1>
+            Your Hairline Changed.
+            <span class="gold">Your Confidence Doesn't Have To.</span>
+          </h1>
+
+          <p class="intro">
+            Scalp Micropigmentation (SMP) can help create the appearance
+            of a fuller, more defined hairline. At Swurl Kurl Studios,
+            we combine years of barbering experience with an understanding
+            of men's grooming to build an approach around you, your look,
+            and your goals.
+          </p>
+
+          <div class="offer-card">
+
+            <div class="offer-label">
+              The Comeback — 21-Day SMP Offer
+            </div>
+
+            <div class="offer-price">
+              2 SMP Sessions — <span class="gold">$2,000</span>
+            </div>
+
+            <div class="offer-regular">
+              Limited-time offer · Regularly $2,500
+            </div>
+
+            <button type="button" class="btn" data-open-contact="hero">Request a Consultation</button>
+
+            <p class="offer-note">
+              Start with a conversation. We'll help you understand the
+              process and determine whether SMP may be right for you.
+            </p>
+
+            <p class="offer-note">
+              <button type="button" class="reserve-link" data-open-service="comeback">
+                Ready now? Reserve The Comeback online →
+              </button>
+            </p>
+
+          </div>
+
+        </div>
+
+        <div
+          class="hero-image"
+          role="img"
+          aria-label="A Swurl Kurl Studios SMP client with a sharp, defined hairline"
+        ></div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         RESULTS
+    =================================== -->
+    <section class="results" id="results">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">The Work</span>
+          <h2>See The Difference.</h2>
+          <p>
+            Real clients. Real Swurl Kurl Studios work.
+          </p>
+        </div>
+
+        <div class="result-grid">
+
+          <!-- RESULT 1 -->
+          <article class="result-card">
+            <div class="result-images">
+
+              <div class="result-image">
+                <img
+                  src="assets/result-1-before.jpg"
+                  alt="SMP client before treatment"
+                />
+                <div class="image-label">Before</div>
+              </div>
+
+              <div class="result-image">
+                <img
+                  src="assets/result-1-after.jpg"
+                  alt="SMP client after treatment"
+                />
+                <div class="image-label">After</div>
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- RESULT 2 -->
+          <article class="result-card">
+            <div class="result-images">
+
+              <div class="result-image">
+                <img
+                  src="assets/result-2-before.jpg"
+                  alt="SMP client before treatment"
+                />
+                <div class="image-label">Before</div>
+              </div>
+
+              <div class="result-image">
+                <img
+                  src="assets/result-2-after.jpg"
+                  alt="SMP client after treatment"
+                />
+                <div class="image-label">After</div>
+              </div>
+
+            </div>
+          </article>
+
+
+          <!-- RESULT 3 -->
+          <article class="result-card">
+            <div class="result-images">
+
+              <div class="result-image">
+                <img
+                  src="assets/result-3-before.jpg"
+                  alt="SMP client before treatment"
+                />
+                <div class="image-label">Before</div>
+              </div>
+
+              <div class="result-image">
+                <img
+                  src="assets/result-3-after.jpg"
+                  alt="SMP client after treatment"
+                />
+                <div class="image-label">After</div>
+              </div>
+
+            </div>
+          </article>
+
+        </div>
+
+        <div class="results-cta">
+          <button type="button" class="btn btn-dark" data-open-contact="results">Request a Consultation</button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         NATURAL LOOK / VIDEO
+    =================================== -->
+    <!-- Reviews: stays hidden until real, permitted quotes are added in assets/site.js -->
+    <section class="reviews" id="reviews" hidden aria-labelledby="reviewsH">
+      <div class="container">
+        <span class="eyebrow">In Their Words</span>
+        <h2 id="reviewsH">What Clients <span class="gold">Say.</span></h2>
+        <div class="reviews-list" id="reviewsList"></div>
+      </div>
+    </section>
+
+    <section class="objection">
+
+      <div class="container two-col">
+
+        <figure class="smp-diagram">
+          <button type="button" id="diagramOpen" aria-haspopup="dialog" aria-label="Enlarge the hairline graphic">
+            <img
+              src="assets/hairline-fits-you.webp"
+              width="1122" height="1402"
+              loading="lazy" decoding="async"
+              alt="Graphic titled "A hairline that fits you." Three men with different hairlines are labeled Shape, Height and Temples. Caption: SMP isn’t one hairline fits all. Hairline shape, height, and temple placement can be planned around your facial features and the look you want."
+            />
+          </button>
+          <span class="zoom-hint" aria-hidden="true">Tap to enlarge</span>
+        </figure>
+
+        <dialog class="diagram-dialog" id="diagramDialog" aria-label="Hairline graphic, enlarged">
+          <button type="button" class="dd-close" id="diagramClose" aria-label="Close">&times;</button>
+          <img src="assets/hairline-fits-you.webp" width="1122" height="1402" alt="Graphic titled "A hairline that fits you." Three men with different hairlines are labeled Shape, Height and Temples. Caption: SMP isn’t one hairline fits all. Hairline shape, height, and temple placement can be planned around your facial features and the look you want." />
+        </dialog>
+
+        <div class="copy-block">
+
+          <span class="eyebrow">A Question We Hear</span>
+
+          <h2>
+            "But Will It
+            <span class="gold">Look Natural?"</span>
+          </h2>
+
+          <p style="margin-top:24px;">
+            It's one of the first questions many men have when considering
+            SMP — and it's an important one.
+          </p>
+
+          <p>
+            Your hairline is one of the first things people see. The goal
+            isn't simply to add pigment. It's to create an approach that
+            considers your existing hair, features, grooming style, and
+            desired appearance.
+          </p>
+
+          <p>
+            That's where experience matters.
+          </p>
+
+          <button type="button" class="btn btn-dark" data-open-contact="objection">Request a Consultation</button>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         TERRENCE / AUTHORITY
+    =================================== -->
+    <section class="authority" id="about">
+
+      <div class="container two-col">
+
+        <div class="copy-block">
+
+          <span class="eyebrow">Experience Matters</span>
+
+          <h2>
+            30 Years Behind
+            <span class="gold">The Chair Matters.</span>
+          </h2>
+
+          <p style="margin-top:26px;">
+            A hairline isn't new territory for Terrence Hopson.
+          </p>
+
+          <p>
+            Terrence brings 30 years of barbering experience
+            and a career centered around grooming, education, and helping
+            people look and feel their best.
+          </p>
+
+          <p>
+            At Swurl Kurl Studios, SMP isn't approached as simply another
+            procedure. It's part of grooming. It's personal. And your
+            consultation starts with understanding the result you want to
+            see when you look in the mirror.
+          </p>
+
+          <div class="brand-line">
+            You Look Good. You Feel Good.
+          </div>
+
+          <div style="margin-top:30px;">
+            <button type="button" class="btn" data-open-contact="authority">Request a Consultation</button>
+          </div>
+
+        </div>
+
+        <div
+          class="authority-image"
+          role="img"
+          aria-label="Terrence Hopson of Swurl Kurl Studios"
+        ></div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         BLOG BANNER: THE HEART OF THE MATTER
+    =================================== -->
+    <section class="blog-banner" id="blog" aria-labelledby="blogBannerH">
+      <div class="blog-banner-grid">
+        <div class="blog-banner-img" role="img" aria-label="A man looks at his own reflection in a mirror, quiet and thoughtful."></div>
+        <div class="blog-banner-copy">
+          <span class="eyebrow">The Heart Of The Matter &middot; Blog No. 01</span>
+          <h2 id="blogBannerH">The Man <span>In The Mirror</span></h2>
+          <p class="teaser">
+            After years of putting everyone first, it's time to put yourself
+            first again. When was the last time you really saw yourself?
+          </p>
+          <p class="by">By Terrence Hopson, CEO &amp; Founder</p>
+          <div>
+            <a class="btn btn-dark" href="the-man-in-the-mirror.html">Read The Story</a>
+            <a href="heart-of-the-matter.html" style="display:inline-block;margin:10px 0 0 18px;white-space:nowrap;color:var(--black);font-weight:600;font-size:.88rem;letter-spacing:.04em;text-transform:uppercase">More stories &rarr;</a>
+          </div>
+          <div class="sub-line">
+            <form class="bb-form" id="bbForm" novalidate>
+              <label for="bbEmail" style="position:absolute;left:-9999px">Email address</label>
+              <input id="bbEmail" name="email" type="email" inputmode="email" autocomplete="email" maxlength="120" placeholder="Get the next story by email" required />
+              <div class="hp" aria-hidden="true"><input name="website" tabindex="-1" autocomplete="off" /></div>
+              <button class="btn" type="submit">Subscribe</button>
+            </form>
+            <p class="bb-msg" id="bbMsg" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         PROCESS
+    =================================== -->
+    <section class="process" id="process">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Simple Process</span>
+          <h2>What Happens Next?</h2>
+        </div>
+
+        <div class="process-grid">
+
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Request Your Consultation</h3>
+            <p>
+              Tell us who you are and the main thing you'd like to improve.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>We'll Reach Out</h3>
+            <p>
+              Someone from Swurl Kurl Studios personally contacts you
+              to discuss your goals.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Have Your Consultation</h3>
+            <p>
+              We'll answer your questions, discuss your desired look,
+              and explain appropriate next steps.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">04</div>
+            <h3>Schedule Your Service</h3>
+            <p>
+              If you decide to move forward, we'll get your sessions
+              scheduled and explain what you need beforehand.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="results-cta">
+          <button type="button" class="btn" data-open-contact="process">Request a Consultation</button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         SERVICES
+         Loaded live from the store database (so price edits in the
+         Swurl Kurl store app show up here). The list below is only a
+         fallback snapshot used if the database can't be reached.
+    =================================== -->
+    <!-- ==================================
+         COST EXPLAINER + TOUCH-UP POLICY
+    =================================== -->
+    <section class="invest" id="investment" aria-labelledby="investH">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Straight Talk On Cost</span>
+          <h2 id="investH">What Shapes The Cost Of <span class="gold">SMP</span></h2>
+          <p>
+            No two scalps are the same, so no two plans are either. Here's
+            what actually moves the number, and what you'll know before you
+            decide.
+          </p>
+        </div>
+
+        <div class="invest-grid">
+
+          <div class="invest-factors">
+            <div class="factor">
+              <span class="factor-k">Area</span>
+              <div>
+                <h3>How much scalp we're treating</h3>
+                <p>A hairline refresh and full coverage are different amounts of work, and the plan is sized to match.</p>
+              </div>
+            </div>
+            <div class="factor">
+              <span class="factor-k">Look</span>
+              <div>
+                <h3>The result you want</h3>
+                <p>A soft, natural hairline, added density, or a closely shaved finish each call for a different approach.</p>
+              </div>
+            </div>
+            <div class="factor">
+              <span class="factor-k">Scars</span>
+              <div>
+                <h3>Scars and special cases</h3>
+                <p>Scar tissue holds pigment less predictably, so it can take more sessions. We look at it in person before quoting.</p>
+              </div>
+            </div>
+            <div class="factor">
+              <span class="factor-k">Sessions</span>
+              <div>
+                <h3>How many it takes</h3>
+                <p>Many clients complete their results in two sessions. Your consultation sets the number for your scalp.</p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="invest-card">
+            <span class="eyebrow">Right Now</span>
+            <h3>The Comeback</h3>
+            <div class="invest-price">$2,000</div>
+            <p class="invest-line">Two SMP sessions during the 21-day campaign.<br />Limited-time offer. Regularly $2,500.</p>
+            <p class="invest-note">
+              Other plans, including women's SMP and scar work, are quoted at
+              your free consultation once we've seen what you're working with.
+            </p>
+            <button type="button" class="btn" data-open-contact="investment">Request a Consultation</button>
+          </aside>
+
+        </div>
+
+        <div class="touchup">
+          <h3>Touch-Ups, Explained</h3>
+          <div class="touchup-cols">
+            <div>
+              <h4>Fading is normal</h4>
+              <p>SMP is long-lasting, not maintenance-free. Over the years the pigment can soften or lighten. How fast depends on your skin, sun exposure and aftercare.</p>
+            </div>
+            <div>
+              <h4>A touch-up refreshes it</h4>
+              <p>Many clients book one to sharpen edges and restore density. It's usually years down the road rather than weeks, though it varies from person to person.</p>
+            </div>
+            <div>
+              <h4>You'll know how it works</h4>
+              <p>What a touch-up costs and when it's recommended depends on your plan and how your results hold. We walk you through it in your free consultation, before you decide to move forward.</p>
+            </div>
+          </div>
+          <p class="touchup-fine">Results and timelines vary by person.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="services" id="services">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">The Offer</span>
+          <h2>Reserve Your Comeback.</h2>
+          <p>
+            Reserve your spot online, or have questions first?
+            <button type="button" class="inline-link" data-open-contact="services">Request a consultation.</button>
+          </p>
+        </div>
+
+        <div class="service-grid" id="serviceGrid" aria-live="polite">
+          <p class="service-loading">Loading services…</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         OFFER BAND
+    =================================== -->
+    <section class="offer-band">
+
+      <div class="container">
+
+        <span
+          class="eyebrow"
+          style="color:var(--black);"
+        >
+          The Comeback
+        </span>
+
+        <h2>Ready To Make Your Move?</h2>
+
+        <div class="price">$2,000</div>
+
+        <p>
+          Two SMP sessions during the 21-day campaign.<br />
+          Limited-time offer. Regularly $2,500.
+        </p>
+
+        <button type="button" class="btn btn-dark" data-open-contact="offer_band">Request a Consultation</button>
+
+        <button type="button" class="btn btn-outline-dark" data-open-service="comeback">
+          Reserve The Comeback
+        </button>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         FAQ
+    =================================== -->
+    <section class="faq" id="faq">
+
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="eyebrow">Questions</span>
+          <h2>SMP FAQ</h2>
+          <p>
+            Everything you're wondering before you book your consultation.
+          </p>
+        </div>
+
+        <div class="faq-list">
+
+          <details>
+            <summary>Will My SMP Look Natural?</summary>
+            <p>
+              That's the goal, and it's the standard every session is built
+              around. SMP is applied to replicate the look of closely shaved,
+              natural hair follicles — not a tattoo, and not an obvious
+              hairline. Results vary from person to person, which is why we
+              talk through your skin, your hair and the look you want during
+              your consultation.
+            </p>
+          </details>
+
+          <details>
+            <summary>How Many Sessions Will I Need?</summary>
+            <p>
+              Most clients complete their results in two sessions, though the
+              exact number can vary depending on the size and location of the
+              area being treated. Your consultation will lay out a plan built
+              around your specific hair loss pattern.
+            </p>
+          </details>
+
+          <details>
+            <summary>Can SMP Cover Scars?</summary>
+            <p>
+              Often it can help soften how a scar looks, but scar tissue
+              behaves differently from healthy scalp skin. It can hold pigment
+              less predictably, so results vary from one scar to the next.
+              Realistically, that can mean more than one session with healing
+              time in between, and sometimes a touch-up sooner than you'd need
+              elsewhere. Some scars may not be a good fit at all. The type of
+              scar, how old it is and how well it has healed all matter, so we
+              look at it in person during your free consultation and talk
+              through what to expect, including whether SMP is the right
+              choice for you. That goes for transplant scars, injury scars and
+              surgical scars alike.
+            </p>
+          </details>
+
+          <details>
+            <summary>Do You Offer SMP For Women?</summary>
+            <p>
+              Yes, we offer SMP for women. Women's goals are often different,
+              such as the look of more density through thinning areas, a
+              widening part, or less contrast between hair and scalp, so your
+              plan is built around you. SMP creates the appearance of fuller
+              coverage; it doesn't regrow hair. Let's talk through your goals
+              in a free consultation.
+            </p>
+          </details>
+
+          <details>
+            <summary>Does SMP Hurt?</summary>
+            <p>
+              Comfort varies from person to person, and from one area of the
+              scalp to another. Many clients find it manageable, and some
+              areas, like the hairline and temples, can feel more sensitive.
+              Numbing spray and cream are available, and if you're more
+              tender-headed, tell us and we'll plan your session around your
+              comfort. Mild redness or tenderness afterward is common.
+            </p>
+          </details>
+
+          <details>
+            <summary>How Long Does SMP Last?</summary>
+            <p>
+              SMP is long-lasting, not forever. The pigment stays in the skin,
+              but it can soften or lighten gradually over the years, often
+              noticeably after several years, depending on your skin, sun
+              exposure, aftercare and how your body holds pigment. Many
+              clients book a touch-up down the road to refresh density and
+              edges. Day to day, regular hair and scalp care products are all
+              it takes. See "Touch-Ups, Explained" above for how that works.
+            </p>
+          </details>
+
+          <details>
+            <summary>How Do You Choose My Hairline?</summary>
+            <p>
+              Your hairline is never assumed — it's chosen together, through
+              consultation, around a natural line that fits your features and
+              the look you want. And "natural" means different things to
+              different men: plenty of our clients, especially those 50 and
+              up, aren't looking to look 25 again. They want a hairline that
+              looks like it's always belonged to them, and that's exactly
+              what we build toward.
+            </p>
+          </details>
+
+          <details>
+            <summary>How Do I Know If I'm A Good Candidate?</summary>
+            <p>
+              There's no need to wait until hair loss is advanced. As soon as
+              you start noticing the progression — a thinning crown, a
+              receding hairline, wherever it shows up for you — that's the
+              right time to start the conversation and understand your
+              options.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         LEARN HOW TO SMP
+    =================================== -->
+    <section class="learn" id="learn">
+      <div class="container learn-inner">
+        <span class="eyebrow">For Barbers &amp; Artists</span>
+        <h2>Want To Learn <span class="gold">How To SMP?</span></h2>
+        <p>
+          Terrence's career has been built on grooming and education. If you
+          want to add scalp micropigmentation to your skills, tell us a little
+          about yourself and he'll reach out personally about training.
+        </p>
+        <button type="button" class="btn btn-dark" data-open-training="learn">
+          I Want To Learn How To SMP
+        </button>
+        <p style="margin:14px 0 0;font-size:.92rem">
+          <a href="learn.html" style="color:inherit;font-weight:700;text-decoration:underline">Or fill out the full student application &rarr;</a>
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ==================================
+         CONSULTATION FORM
+    =================================== -->
+    <section class="consultation" id="consultation">
+
+      <div class="container consultation-grid">
+
+        <div class="consultation-copy">
+
+          <span class="eyebrow">Your Next Step</span>
+
+          <h2>
+            Let's Talk About
+            <span class="gold">Your Hairline.</span>
+          </h2>
+
+          <p>
+            No giant questionnaire. Tell us the basics and someone
+            from Swurl Kurl Studios will personally follow up.
+          </p>
+
+          <p>
+            This conversation is designed to help you understand
+            the process, ask questions, and determine your next step.
+          </p>
+
+          <ol class="next-steps">
+            <li><span><b>Send your request</b>Tell us the basics. It takes about a minute.</span></li>
+            <li><span><b>The studio reaches out</b>Terrence or someone from the studio will talk through your goals with you.</span></li>
+            <li><span><b>Pick a time</b>Choose a consultation time that works for you.</span></li>
+          </ol>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <div class="form-alt-heading">
+            Request your consultation
+          </div>
+
+          <form
+            id="consultationForm"
+            action=""
+            method="POST"
+          >
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="first_name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="last_name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Mobile Number *</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                />
+              </div>
+
+              <div class="form-group full">
+                <label for="goal">
+                  What Would You Most Like To Improve?
+                </label>
+
+                <select id="goal" name="goal" required>
+                  <option value="">Select one</option>
+                  <option value="hairline">Hairline</option>
+                  <option value="thinning">Thinning Areas</option>
+                  <option value="crown">Crown</option>
+                  <option value="density">
+                    Overall Appearance / Density
+                  </option>
+                  <option value="scarring">Scarring</option>
+                  <option value="unsure">
+                    Not Sure — I'd Like A Recommendation
+                  </option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contactPreference">
+                  Preferred Contact Method
+                </label>
+
+                <select
+                  id="contactPreference"
+                  name="contact_preference"
+                  required
+                >
+                  <option value="">Select one</option>
+                  <option value="text">Text</option>
+                  <option value="phone">Phone</option>
+                  <option value="email">Email</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contactTime">
+                  Best Time To Reach You
+                </label>
+
+                <select
+                  id="contactTime"
+                  name="best_contact_time"
+                  required
+                >
+                  <option value="">Select one</option>
+                  <option value="morning">Morning</option>
+                  <option value="afternoon">Afternoon</option>
+                  <option value="evening">Evening</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="source">
+                  How Did You Hear About Us?
+                </label>
+
+                <select
+                  id="source"
+                  name="lead_source"
+                  required
+                >
+                  <option value="">Select one</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="facebook">Facebook</option>
+                  <option value="email">Email</option>
+                  <option value="referral">Friend / Referral</option>
+                  <option value="client">Current or Previous Client</option>
+                  <option value="terrence">Terrence</option>
+                  <option value="google">Google / Website</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="referredBy">
+                  Which Barbershop Referred You?
+                </label>
+
+                <input
+                  type="text"
+                  id="referredBy"
+                  name="referred_by"
+                  maxlength="80"
+                  autocomplete="off"
+                  placeholder="Optional — leave blank if none"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="preferredDate">
+                  Preferred Appointment Date (optional)
+                </label>
+                <input type="date" id="preferredDate" name="preferred_date" />
+              </div>
+
+              <div class="form-group">
+                <label for="preferredTime">
+                  Preferred Appointment Time (optional)
+                </label>
+                <select id="preferredTime" name="preferred_time">
+                  <option value="">Select one</option>
+                  <option value="Morning">Morning</option>
+                  <option value="Afternoon">Afternoon</option>
+                  <option value="Evening">Evening</option>
+                </select>
+              </div>
+
+              <div class="form-group full">
+                <label for="notes">
+                  Anything You'd Like Us To Know?
+                </label>
+
+                <textarea
+                  id="notes"
+                  name="notes"
+                  placeholder="Optional"
+                ></textarea>
+              </div>
+
+            </div>
+
+            <!-- TODO: stand-in consent wording. Terrence (or his counsel) to approve before launch. -->
+            <p class="consent">
+              By submitting this form, you agree that Swurl Kurl Studios
+              may contact you about your consultation request by phone,
+              text message, or email, using the details you provide.
+              Message and data rates may apply. See our
+              <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy Policy</a>.
+            </p>
+
+            <button type="submit" class="btn">
+              Request My Consultation
+            </button>
+
+            <div class="form-status" id="formStatus"></div>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
   </main>
-</div>
 
-<dialog class="sheet" id="confirmDlg">
-  <form method="dialog" class="sheet-body">
-    <h3 id="cTitle">Delete this lead?</h3>
-    <p id="cText" style="margin:0;color:#D9D4CA">This can't be undone.</p>
-    <div class="btn-row"><button class="btn btn-fuel sm" value="yes">Delete</button><button class="btn btn-ghost sm" value="no">Keep it</button></div>
-  </form>
-</dialog>
-<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-<script src="/smp/hunt.js?v=2"></script>
-<script src="/smp/smp.js?v=2"></script>
+  <!-- ==================================
+       FOOTER
+  =================================== -->
+  <footer>
+
+    <div class="container footer-location" id="visit">
+
+      <div class="loc-info">
+        <span class="eyebrow">Visit The Studio</span>
+        <address>277 Jos Campau<br />Detroit, MI 48207</address>
+        <p class="loc-hours">By appointment only</p>
+        <div class="loc-actions">
+          <a class="btn" href="tel:+13133992532" data-track="call">Call 313-399-2532</a>
+          <a class="btn btn-line" data-track="directions" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/dir/?api=1&amp;destination=277+Jos+Campau%2C+Detroit%2C+MI+48207">Get Directions</a>
+        </div>
+        <p class="loc-sub">
+          <a href="https://maps.apple.com/?daddr=277+Jos+Campau%2C+Detroit%2C+MI+48207" target="_blank" rel="noopener">Open in Apple Maps</a>
+          &middot;
+          <a href="#consultation">Request a consultation</a>
+        </p>
+      </div>
+
+      <div class="loc-map" id="locMap">
+        <svg class="loc-art" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <defs>
+            <pattern id="locGrid" width="26" height="26" patternUnits="userSpaceOnUse">
+              <path d="M26 0H0V26" fill="none" stroke="rgba(232,179,81,.10)" stroke-width="1" />
+            </pattern>
+            <radialGradient id="locGlow" cx="50%" cy="46%" r="46%">
+              <stop offset="0" stop-color="rgba(232,179,81,.28)" />
+              <stop offset="1" stop-color="rgba(232,179,81,0)" />
+            </radialGradient>
+          </defs>
+          <rect width="400" height="260" fill="#0d0d0d" />
+          <rect width="400" height="260" fill="url(#locGrid)" />
+          <rect width="400" height="260" fill="url(#locGlow)" />
+          <circle cx="200" cy="118" r="42" fill="none" stroke="rgba(232,179,81,.35)" />
+          <circle cx="200" cy="118" r="70" fill="none" stroke="rgba(232,179,81,.16)" />
+          <path d="M200 148c-17-22-30-37-30-54a30 30 0 0 1 60 0c0 17-13 32-30 54z" fill="#e8b351" />
+          <circle cx="200" cy="94" r="11" fill="#0d0d0d" />
+        </svg>
+        <div class="loc-cap">277 Jos Campau &middot; Detroit</div>
+        <button type="button" class="loc-load" id="locLoad">View Live Map</button>
+      </div>
+
+    </div>
+
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+
+        <img
+          class="footer-logo"
+          src="assets/swurl-kurl-studios-official-logo.png"
+          alt="Swurl Kurl Studios"
+        />
+
+        <div>
+          Grooming • SMP • Education
+        </div>
+
+      </div>
+
+      <div class="footer-small">
+        <a href="heart-of-the-matter.html" style="color:inherit;text-decoration:underline">The Heart Of The Matter</a> &middot;
+        <a href="learn.html" style="color:inherit;text-decoration:underline">Student Application</a> &middot;
+        <a href="privacy.html" style="color:inherit;text-decoration:underline">Privacy</a><br>
+        © <span id="year"></span> Swurl Kurl Studios.
+        All rights reserved.
+      </div>
+
+    </div>
+
+    <div class="container site-credit">
+      <span>Powered by</span>
+      <img
+        src="assets/adventure-fuel-logo.png"
+        alt="Adventure Fuel"
+      />
+      <span>Adventure Fuel</span>
+    </div>
+
+  </footer>
+
+
+  <!-- ==================================
+       BOOKING / CONSULTATION / RESERVE DIALOG
+       One dialog serves every service card and the Comeback reserve button.
+  =================================== -->
+  <dialog id="bookDialog" class="book-dialog" aria-labelledby="bookTitle">
+    <div class="book-inner">
+
+      <button type="button" class="book-close" id="bookClose" aria-label="Close">×</button>
+
+      <div id="bookFormView">
+        <span class="eyebrow" id="bookEyebrow">Book</span>
+        <h3 id="bookTitle">Service</h3>
+        <p class="book-sub" id="bookSub"></p>
+
+        <form id="bookForm" novalidate>
+
+          <div class="form-group" id="bookOptionWrap" hidden>
+            <label for="bookOption">Duration</label>
+            <select id="bookOption"></select>
+          </div>
+
+          <div class="book-row">
+            <div class="form-group">
+              <label for="bookDate" id="bookDateLabel">Preferred Date</label>
+              <input type="date" id="bookDate" />
+            </div>
+            <div class="form-group" id="bookTimeWrap">
+              <label for="bookTime" id="bookTimeLabel">Preferred Time</label>
+              <select id="bookTime">
+                <option value="">Select one</option>
+                <option value="Morning">Morning</option>
+                <option value="Afternoon">Afternoon</option>
+                <option value="Evening">Evening</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="book-row">
+            <div class="form-group">
+              <label for="bookName">Your Name *</label>
+              <input type="text" id="bookName" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label for="bookPhone">Mobile Number *</label>
+              <input type="tel" id="bookPhone" autocomplete="tel" inputmode="tel" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="bookEmail">Email (optional)</label>
+            <input type="email" id="bookEmail" autocomplete="email" />
+          </div>
+
+          <div class="form-group" id="bookReferralWrap">
+            <label for="bookReferral">Which barbershop referred you? (optional)</label>
+            <input type="text" id="bookReferral" maxlength="80" autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="bookNotes">Anything we should know? (optional)</label>
+            <textarea id="bookNotes" style="min-height:70px"></textarea>
+          </div>
+
+          <p class="book-total" id="bookTotal" hidden></p>
+
+          <button type="submit" class="btn" id="bookSubmit">Request Booking</button>
+          <p class="book-fine" id="bookFine">
+            Sends your request straight to Terrence's phone. No payment is taken online.
+          </p>
+          <div class="form-status" id="bookStatus" role="alert"></div>
+        </form>
+      </div>
+
+      <div id="bookDoneView" hidden>
+        <span class="eyebrow">Request Sent</span>
+        <h3>You're on Terrence's list.</h3>
+        <p id="bookDoneText"></p>
+        <button type="button" class="btn btn-ghost-dark" id="bookDoneClose">Close</button>
+      </div>
+
+    </div>
+  </dialog>
+
+
+  <!-- ==================================
+       REQUEST DIALOG — consultation requests and "Learn how to SMP"
+       training inquiries. Both go straight to Terrence's phone.
+  =================================== -->
+  <dialog id="reqDialog" class="book-dialog" aria-labelledby="reqTitle">
+    <div class="book-inner">
+
+      <button type="button" class="book-close" id="reqClose" aria-label="Close">×</button>
+
+      <div id="reqFormView">
+        <span class="eyebrow" id="reqEyebrow">Consultation</span>
+        <h3 id="reqTitle">Let’s Talk About Your SMP Goals</h3>
+        <p class="book-sub" id="reqSub"></p>
+
+        <form id="reqForm" novalidate>
+
+          <div class="book-row">
+            <div class="form-group">
+              <label for="reqName">Your Name *</label>
+              <input type="text" id="reqName" autocomplete="name" required />
+            </div>
+            <div class="form-group">
+              <label for="reqPhone">Mobile Number *</label>
+              <input type="tel" id="reqPhone" autocomplete="tel" inputmode="tel" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reqEmail">Email (optional)</label>
+            <input type="email" id="reqEmail" autocomplete="email" />
+          </div>
+
+          <div class="form-group" id="reqTimeWrap">
+            <label for="reqTime">Best time to reach you</label>
+            <select id="reqTime">
+              <option value="">Anytime</option>
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="reqLevelWrap" hidden>
+            <label for="reqLevel">Which best describes you?</label>
+            <select id="reqLevel">
+              <option value="">Select one</option>
+              <option value="Licensed barber / cosmetologist">Licensed barber / cosmetologist</option>
+              <option value="Tattoo / PMU artist">Tattoo / PMU artist</option>
+              <option value="New to the industry">New to the industry</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="reqReferralWrap">
+            <label for="reqReferral">Which barbershop referred you? (optional)</label>
+            <input type="text" id="reqReferral" maxlength="80" autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="reqNotes" id="reqNotesLabel">Anything you'd like Terrence to know? (optional)</label>
+            <textarea id="reqNotes" style="min-height:70px"></textarea>
+          </div>
+
+          <button type="submit" class="btn" id="reqSubmit">Send My Request</button>
+          <p class="book-fine">Goes straight to the studio. No spam, ever.</p>
+          <div class="form-status" id="reqStatus" role="alert"></div>
+        </form>
+      </div>
+
+      <div id="reqDoneView" hidden>
+        <span class="eyebrow">Request Received</span>
+        <h3>Thank you.</h3>
+        <p id="reqDoneText"></p>
+        <button type="button" class="btn btn-ghost-dark" id="reqDoneClose">Close</button>
+      </div>
+
+    </div>
+  </dialog>
+
+
+  <script>
+    // Automatically updates the copyright year.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    /*
+      LIGHTWEIGHT ANALYTICS.
+
+      Logs page views and contact-button clicks to a Supabase table
+      (smp_analytics_events) so the /admin.html page can show simple
+      traffic + conversion numbers. The table only accepts inserts from
+      this public key (no read access), and every call fails silently
+      so analytics can never block or break the page for a visitor.
+    */
+    const SUPABASE_URL = "https://cjixvpcoivfipmgmvomi.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_r9lGmmPly-_NzXnM0pOUSA_X_7V1pJh";
+
+    function logEvent(eventType, source) {
+      try {
+        fetch(SUPABASE_URL + "/rest/v1/smp_analytics_events", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+            "Prefer": "return=minimal",
+          },
+          body: JSON.stringify({ event_type: eventType, source: source || null }),
+          keepalive: true,
+        }).catch(function () {
+          // Network hiccup or blocked request -- nothing to do, never
+          // surface this to the visitor.
+        });
+      } catch (e) {
+        // Some environments (privacy extensions, etc.) can throw on
+        // fetch itself. Analytics should never take down the page.
+      }
+    }
+
+    // One page_view per load.
+    logEvent("page_view", window.location.pathname);
+
+    // Every "Request a Consultation" button on the page carries a
+    // data-open-contact attribute identifying where it lives (nav, hero,
+    // results, objection, authority, process, offer_band, services).
+    // Logged under the original "whatsapp_click" event name so the
+    // analytics history and /admin.html keep working; the admin page now
+    // labels it "Contact Button Clicks".
+    document.addEventListener("click", function (event) {
+      const t = event.target.closest("[data-open-contact]");
+      if (t) logEvent("whatsapp_click", t.getAttribute("data-open-contact") || "unlabeled");
+      const l = event.target.closest("[data-open-training]");
+      if (l) logEvent("whatsapp_click", "training_" + (l.getAttribute("data-open-training") || "learn"));
+    });
+
+
+    /*
+      STORE BACKEND — appointments, bookings and purchase requests.
+
+      Lives in the dedicated "SwurlKurl" Supabase project (separate from the
+      analytics project above). The public key below can only (a) call the
+      request functions and (b) read the active services list — it cannot
+      read anyone's requests. Every saved request instantly buzzes Terrence's
+      phone through the store app (store.html).
+    */
+    const STORE_URL = "https://eyzhywxehxoqtrjzooab.supabase.co";
+    const STORE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV5emh5d3hlaHhvcXRyanpvb2FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTExMjc1MTksImV4cCI6MjEwNjcwMzUxOX0.bhlbwLEPFIkfhnGbYY5y8jffRHDZz6DQpclWLFiGNoU";
+
+    async function storeRpc(fn, args) {
+      const res = await fetch(STORE_URL + "/rest/v1/rpc/" + fn, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": STORE_KEY,
+          "Authorization": "Bearer " + STORE_KEY,
+        },
+        body: JSON.stringify(args),
+      });
+      let body = null;
+      try { body = await res.json(); } catch (e) { /* non-JSON error body */ }
+      if (!res.ok) {
+        throw new Error((body && body.message) || "Something went wrong. Please try again.");
+      }
+      return body;
+    }
+
+    async function storeGet(path) {
+      const res = await fetch(STORE_URL + "/rest/v1/" + path, {
+        headers: { "apikey": STORE_KEY, "Authorization": "Bearer " + STORE_KEY },
+      });
+      if (!res.ok) throw new Error("Could not load.");
+      return res.json();
+    }
+
+    const esc = function (s) {
+      return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    };
+    const money = function (n) {
+      return "$" + Number(n).toLocaleString("en-US", { maximumFractionDigits: 2 });
+    };
+    const phoneDigits = function (s) { return String(s || "").replace(/\D/g, ""); };
+    const prettyDate = function (iso) {
+      return new Date(iso + "T12:00:00").toLocaleDateString("en-US", {
+        weekday: "long", month: "long", day: "numeric", year: "numeric",
+      });
+    };
+    const todayIso = function () {
+      const d = new Date();
+      return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    };
+
+
+    /*
+      SERVICES.
+
+      Loaded live from the store database so price/visibility edits made in
+      the store app show up here without touching the site. FALLBACK_SERVICES
+      is only a snapshot used if the database can't be reached.
+    */
+    const FALLBACK_SERVICES = [
+      { id: "comeback", name: "The Comeback — 2 SMP Sessions", description: "Two scalp micropigmentation sessions during the 21-day campaign.", price: 2000, regular_price: 2500, kind: "package", options: [] },
+    ];
+    let SERVICES = FALLBACK_SERVICES;
+
+    function serviceCardHtml(s) {
+      const opts = Array.isArray(s.options) ? s.options : [];
+      let tag = "Consultation";
+      let price = "";
+      let list = "";
+      let btn = '<button type="button" class="btn btn-outline-dark" data-open-service="' + esc(s.id) + '">Schedule Consultation</button>';
+
+      if (s.kind === "package") {
+        tag = "21-Day Offer";
+        price = '<div class="service-price">' + money(s.price) +
+          (s.regular_price ? "<s>" + money(s.regular_price) + "</s>" : "") + "</div>";
+        btn = '<button type="button" class="btn" data-open-service="' + esc(s.id) + '">Reserve This Offer</button>';
+      } else if (s.kind === "book") {
+        tag = "Booking";
+        if (opts.length > 1) {
+          const low = Math.min.apply(null, opts.map(function (o) { return Number(o.price); }));
+          price = '<div class="service-price"><small>From </small>' + money(low) + "</div>";
+          list = '<ul class="service-opts">' + opts.map(function (o) {
+            return "<li>" + esc(o.label) + " — " + money(o.price) + "</li>";
+          }).join("") + "</ul>";
+        } else {
+          const p = opts.length === 1 ? opts[0].price : s.price;
+          price = '<div class="service-price">' + money(p) + "</div>";
+          if (opts.length === 1) list = '<ul class="service-opts"><li>' + esc(opts[0].label) + "</li></ul>";
+        }
+        btn = '<button type="button" class="btn btn-dark" data-open-service="' + esc(s.id) + '">Book Now</button>';
+      }
+
+      return '<article class="service-card' + (s.kind === "package" ? " featured" : "") + '">' +
+        '<span class="service-tag">' + tag + "</span>" +
+        "<h3>" + esc(s.name) + "</h3>" +
+        '<p class="service-desc">' + esc(s.description || "") + "</p>" +
+        price + list + btn + "</article>";
+    }
+
+    function renderServices() {
+      const grid = document.getElementById("serviceGrid");
+      if (!grid) return;
+      grid.innerHTML = SERVICES.map(serviceCardHtml).join("");
+    }
+
+    renderServices();
+    storeGet("offers?select=id,name,description,price,regular_price,kind,options,sort&active=eq.true&order=sort.asc")
+      .then(function (rows) {
+        if (Array.isArray(rows) && rows.length) {
+          SERVICES = rows;
+          renderServices();
+        }
+      })
+      .catch(function () { /* keep the fallback snapshot */ });
+
+
+    /*
+      BOOKING / CONSULTATION / RESERVE DIALOG.
+
+      One dialog for every service card and the Comeback "Reserve" buttons.
+      On submit it saves the request to the store database, which buzzes
+      Terrence's phone. No payment is taken online.
+    */
+    const dlg = document.getElementById("bookDialog");
+    const bookForm = document.getElementById("bookForm");
+    const bookStatus = document.getElementById("bookStatus");
+    const bookOption = document.getElementById("bookOption");
+    const bookDate = document.getElementById("bookDate");
+    const bookTime = document.getElementById("bookTime");
+    let currentService = null;
+
+    function setBookStatus(text, kind) {
+      bookStatus.textContent = text || "";
+      bookStatus.className = "form-status" + (text ? " visible " + (kind || "") : "");
+    }
+
+    function selectedOption() {
+      if (!currentService || !currentService.options || !currentService.options.length) return null;
+      return currentService.options.find(function (o) { return o.label === bookOption.value; }) || null;
+    }
+
+    function updateBookTotal() {
+      const el = document.getElementById("bookTotal");
+      const s = currentService;
+      if (!s) return;
+      if (s.kind === "book") {
+        const opt = selectedOption();
+        const p = opt ? opt.price : s.price;
+        el.textContent = "Your price: " + money(p) + (opt ? " · " + opt.label : "") + " — paid in person";
+        el.hidden = false;
+      } else if (s.kind === "package") {
+        el.textContent = "Total: " + money(s.price) + (s.regular_price ? " (regularly " + money(s.regular_price) + ")" : "") +
+          " — Terrence will arrange payment with you";
+        el.hidden = false;
+      } else {
+        el.hidden = true;
+      }
+    }
+
+    function openService(id) {
+      const s = SERVICES.find(function (x) { return x.id === id; }) ||
+        FALLBACK_SERVICES.find(function (x) { return x.id === id; });
+      if (!s) return;
+      currentService = s;
+
+      bookForm.reset();
+      setBookStatus("");
+      document.getElementById("bookFormView").hidden = false;
+      document.getElementById("bookDoneView").hidden = true;
+      bookDate.setAttribute("min", todayIso());
+
+      const timeWrap = document.getElementById("bookTimeWrap");
+      const optWrap = document.getElementById("bookOptionWrap");
+      const submit = document.getElementById("bookSubmit");
+
+      document.getElementById("bookTitle").textContent = s.name;
+      timeWrap.hidden = false;
+      optWrap.hidden = true;
+      // The barbershop-referral question is only collected on package reservations.
+      document.getElementById("bookReferralWrap").hidden = s.kind !== "package";
+
+      if (s.kind === "package") {
+        document.getElementById("bookEyebrow").textContent = "Reserve";
+        document.getElementById("bookSub").textContent = s.description || "";
+        document.getElementById("bookDateLabel").textContent = "Preferred Start Date (optional)";
+        timeWrap.hidden = true;
+        submit.textContent = "Reserve This Offer";
+        document.getElementById("bookFine").textContent =
+          "Sends your reservation straight to Terrence's phone. No payment is taken online.";
+      } else if (s.kind === "book") {
+        document.getElementById("bookEyebrow").textContent = "Book";
+        document.getElementById("bookSub").textContent = s.description || "";
+        document.getElementById("bookDateLabel").textContent = "Preferred Date *";
+        document.getElementById("bookTimeLabel").textContent = "Preferred Time *";
+        submit.textContent = "Request Booking";
+        document.getElementById("bookFine").textContent =
+          "Sends your request straight to Terrence's phone. No payment is taken online.";
+        if (s.options && s.options.length) {
+          optWrap.hidden = false;
+          bookOption.innerHTML = (s.options.length > 1 ? '<option value="">Select one</option>' : "") +
+            s.options.map(function (o) {
+              return '<option value="' + esc(o.label) + '">' + esc(o.label) + " — " + money(o.price) + "</option>";
+            }).join("");
+        }
+      } else {
+        document.getElementById("bookEyebrow").textContent = "Consultation";
+        document.getElementById("bookSub").textContent =
+          "Tell us when works and Terrence will reach out to talk through your goals.";
+        document.getElementById("bookDateLabel").textContent = "Preferred Date (optional)";
+        document.getElementById("bookTimeLabel").textContent = "Preferred Time (optional)";
+        submit.textContent = "Request Consultation";
+        document.getElementById("bookFine").textContent =
+          "Sends your request straight to Terrence's phone.";
+      }
+
+      submit.disabled = false;
+      updateBookTotal();
+
+      if (typeof dlg.showModal === "function") {
+        dlg.showModal();
+      } else {
+        dlg.setAttribute("open", "");
+      }
+    }
+
+    function closeDialog() {
+      if (dlg.open) dlg.close();
+    }
+
+    document.addEventListener("click", function (event) {
+      const trigger = event.target.closest("[data-open-service]");
+      if (trigger) {
+        event.preventDefault();
+        openService(trigger.getAttribute("data-open-service"));
+      }
+    });
+    document.getElementById("bookClose").addEventListener("click", closeDialog);
+    document.getElementById("bookDoneClose").addEventListener("click", closeDialog);
+    dlg.addEventListener("click", function (event) {
+      if (event.target === dlg) closeDialog(); // click on the dark backdrop
+    });
+    bookOption.addEventListener("change", updateBookTotal);
+
+    bookForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const s = currentService;
+      if (!s) return;
+
+      const name = document.getElementById("bookName").value.trim();
+      const phone = document.getElementById("bookPhone").value.trim();
+      const email = document.getElementById("bookEmail").value.trim();
+      const notes = document.getElementById("bookNotes").value.trim();
+      const referral = document.getElementById("bookReferral").value.trim();
+      const date = bookDate.value || null;
+      const time = bookTime.value || null;
+      const opt = selectedOption();
+
+      if (name.length < 2) return setBookStatus("Please add your name.", "error");
+      if (phoneDigits(phone).length < 10) return setBookStatus("Please enter a 10-digit mobile number.", "error");
+      if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setBookStatus("That email address looks off.", "error");
+      if (s.kind === "book") {
+        if (s.options && s.options.length && !opt) return setBookStatus("Please pick a duration.", "error");
+        if (!date || !time) return setBookStatus("Please pick a date and a time for your booking.", "error");
+      }
+
+      const submit = document.getElementById("bookSubmit");
+      submit.disabled = true;
+      submit.textContent = "Sending…";
+      setBookStatus("");
+
+      try {
+        const result = s.kind === "package"
+          ? await storeRpc("reserve_offer_ref", {
+              p_offer: s.id, p_qty: 1, p_name: name, p_phone: phone,
+              p_email: email || null, p_date: date, p_notes: notes || null,
+              p_referred_by: referral || null,
+            })
+          : await storeRpc("book_service", {
+              p_service: s.id, p_option: opt ? opt.label : null, p_name: name, p_phone: phone,
+              p_email: email || null, p_date: date, p_time: time, p_notes: notes || null,
+            });
+
+        document.getElementById("bookDoneText").textContent =
+          "Your request (" + result.code + ") was sent straight to Terrence's phone. " +
+          "He'll reach out personally to confirm the details.";
+        document.getElementById("bookFormView").hidden = true;
+        document.getElementById("bookDoneView").hidden = false;
+        if (window.SK) SK.track("booking");
+      } catch (err) {
+        submit.disabled = false;
+        submit.textContent = "Try Again";
+        setBookStatus(err.message, "error");
+      }
+    });
+
+
+    /*
+      REQUEST DIALOG — consultation requests and the
+      "Learn how to SMP" training inquiry. Saves to the store database,
+      which buzzes Terrence's phone.
+    */
+    const reqDlg = document.getElementById("reqDialog");
+    const reqForm = document.getElementById("reqForm");
+    const reqStatus = document.getElementById("reqStatus");
+    let reqMode = "contact";
+
+    function setReqStatus(text, kind) {
+      reqStatus.textContent = text || "";
+      reqStatus.className = "form-status" + (text ? " visible " + (kind || "") : "");
+    }
+
+    function openRequest(mode) {
+      reqMode = mode;
+      reqForm.reset();
+      setReqStatus("");
+      document.getElementById("reqFormView").hidden = false;
+      document.getElementById("reqDoneView").hidden = true;
+
+      const training = mode === "training";
+      document.getElementById("reqEyebrow").textContent = training ? "Learn SMP" : "Consultation";
+      document.getElementById("reqTitle").textContent = training ? "Learn How To SMP" : "Let’s Talk About Your SMP Goals";
+      document.getElementById("reqSub").textContent = training
+        ? "Tell us a little about you and Terrence will reach out personally about training."
+        : "Leave your details, and Terrence or someone from the studio will reach out to discuss your goals and arrange a consultation.";
+      document.getElementById("reqTimeWrap").hidden = training;
+      document.getElementById("reqReferralWrap").hidden = training;
+      document.getElementById("reqLevelWrap").hidden = !training;
+      document.getElementById("reqNotesLabel").textContent = training
+        ? "Tell us about your experience and what you'd like to learn (optional)"
+        : "Anything you'd like Terrence to know? (optional)";
+      const submit = document.getElementById("reqSubmit");
+      submit.textContent = training ? "Send My Training Inquiry" : "Send My Request";
+      submit.disabled = false;
+
+      if (typeof reqDlg.showModal === "function") {
+        reqDlg.showModal();
+      } else {
+        reqDlg.setAttribute("open", "");
+      }
+    }
+
+    function closeRequest() {
+      if (reqDlg.open) reqDlg.close();
+    }
+
+    document.addEventListener("click", function (event) {
+      const c = event.target.closest("[data-open-contact]");
+      if (c) { event.preventDefault(); openRequest("contact"); return; }
+      const t = event.target.closest("[data-open-training]");
+      if (t) { event.preventDefault(); openRequest("training"); }
+    });
+    document.getElementById("reqClose").addEventListener("click", closeRequest);
+    document.getElementById("reqDoneClose").addEventListener("click", closeRequest);
+    reqDlg.addEventListener("click", function (event) {
+      if (event.target === reqDlg) closeRequest();
+    });
+
+    reqForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const training = reqMode === "training";
+      const name = document.getElementById("reqName").value.trim();
+      const phone = document.getElementById("reqPhone").value.trim();
+      const email = document.getElementById("reqEmail").value.trim();
+      const notes = document.getElementById("reqNotes").value.trim();
+
+      if (name.length < 2) return setReqStatus("Please add your name.", "error");
+      if (phoneDigits(phone).length < 10) return setReqStatus("Please enter a 10-digit mobile number.", "error");
+      if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setReqStatus("That email address looks off.", "error");
+
+      const submit = document.getElementById("reqSubmit");
+      submit.disabled = true;
+      submit.textContent = "Sending…";
+      setReqStatus("");
+
+      try {
+        const result = await storeRpc("submit_request", {
+          p_name: name, p_phone: phone, p_email: email || null, p_source: "form",
+          p_goal: training ? (document.getElementById("reqLevel").value || "Training inquiry") : "Call request",
+          p_contact_pref: null,
+          p_best_time: training ? null : (document.getElementById("reqTime").value || null),
+          p_lead_source: null, p_date: null, p_time: null,
+          p_notes: notes || null,
+          p_referred_by: training ? null : (document.getElementById("reqReferral").value.trim() || null),
+          p_inquiry: training ? "training" : "client",
+        });
+        document.getElementById("reqDoneText").textContent = training
+          ? "Your request (" + result.code + ") was sent straight to Terrence's phone. He'll reach out personally about training."
+          : "Thanks! Your request has been received. The studio will reach out to arrange your consultation.";
+        document.getElementById("reqFormView").hidden = true;
+        document.getElementById("reqDoneView").hidden = false;
+        if (window.SK) SK.track(training ? "training" : "consultation");
+      } catch (err) {
+        submit.disabled = false;
+        submit.textContent = training ? "Send My Training Inquiry" : "Send My Request";
+        setReqStatus(err.message, "error");
+      }
+    });
+
+
+    /*
+      CONSULTATION FORM.
+
+      Saves the request to the store database (buzzing Terrence's phone).
+    */
+    const consultForm = document.getElementById("consultationForm");
+    const consultDate = document.getElementById("preferredDate");
+    if (consultDate) consultDate.setAttribute("min", todayIso());
+    const consultStatus = document.getElementById("formStatus");
+
+    function setConsultStatus(text, kind) {
+      consultStatus.textContent = text;
+      consultStatus.className = "form-status visible " + (kind || "");
+    }
+
+    consultForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+      const fd = new FormData(consultForm);
+      const goalSelect = document.getElementById("goal");
+      const button = consultForm.querySelector('button[type="submit"]');
+
+      button.disabled = true;
+      setConsultStatus("Sending your request…");
+
+      try {
+        await storeRpc("submit_request", {
+          p_name: (String(fd.get("first_name") || "") + " " + String(fd.get("last_name") || "")).trim(),
+          p_phone: String(fd.get("phone") || ""),
+          p_email: String(fd.get("email") || "") || null,
+          p_source: "form",
+          p_goal: goalSelect.options[goalSelect.selectedIndex].text,
+          p_contact_pref: String(fd.get("contact_preference") || "") || null,
+          p_best_time: String(fd.get("best_contact_time") || "") || null,
+          p_lead_source: String(fd.get("lead_source") || "") || null,
+          p_date: String(fd.get("preferred_date") || "") || null,
+          p_time: String(fd.get("preferred_time") || "") || null,
+          p_notes: String(fd.get("notes") || "") || null,
+          p_referred_by: String(fd.get("referred_by") || "").trim() || null,
+          p_inquiry: "client",
+        });
+        consultForm.reset();
+        if (window.SK) SK.track("consultation");
+        setConsultStatus("Thanks! Your request has been received. The studio will reach out to arrange your consultation.", "success");
+      } catch (err) {
+        setConsultStatus(err.message, "error");
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+
+  <script>
+    /* Mobile menu, sticky call bar, and "you are here" highlighting. */
+    (function () {
+      var toggle = document.getElementById("navToggle");
+      var menu = document.getElementById("mobileMenu");
+      var bar = document.getElementById("mobileBar");
+      if (!toggle || !menu) return;
+      var root = document.documentElement;
+      var isOpen = false;
+
+      function setMenu(open, restoreFocus) {
+        isOpen = open;
+        menu.classList.toggle("open", open);
+        root.classList.toggle("menu-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        if (open) {
+          var first = menu.querySelector("a.ml");
+          if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 60);
+        } else if (restoreFocus) {
+          toggle.focus({ preventScroll: true });
+        }
+        updateBar();
+      }
+      toggle.addEventListener("click", function () { setMenu(!isOpen, isOpen); });
+
+      menu.addEventListener("click", function (e) {
+        var a = e.target.closest("a.ml");
+        if (a) {
+          var href = a.getAttribute("href") || "";
+          if (href.charAt(0) === "#") {
+            e.preventDefault();
+            var target = document.getElementById(href.slice(1));
+            setMenu(false, false);
+            if (target) {
+              requestAnimationFrame(function () {
+                target.scrollIntoView({ behavior: "smooth", block: "start" });
+                if (history.pushState) history.pushState(null, "", href);
+              });
+            }
+          }
+          return;
+        }
+        if (e.target.closest("[data-open-contact]")) setMenu(false, false);
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (!isOpen) return;
+        if (e.key === "Escape") { setMenu(false, true); return; }
+        if (e.key === "Tab") { // keep focus inside the open menu
+          var f = [toggle].concat([].slice.call(menu.querySelectorAll("a[href], button")));
+          var i = f.indexOf(document.activeElement);
+          if (e.shiftKey && i <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+          else if (!e.shiftKey && i === f.length - 1) { e.preventDefault(); f[0].focus(); }
+        }
+      });
+      window.addEventListener("resize", function () { if (isOpen && window.innerWidth > 900) setMenu(false, false); });
+
+      /* "You are here": light up the link for the section being read. */
+      var ids = ["results", "about", "services", "process", "faq", "learn", "consultation"];
+      var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"], .mmenu a.ml[href^="#"]'));
+      function mark(id) {
+        links.forEach(function (a) {
+          if (a.getAttribute("href") === "#" + id) a.setAttribute("aria-current", "true");
+          else a.removeAttribute("aria-current");
+        });
+      }
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting) mark(en.target.id); });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        ids.forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+        var hero = document.querySelector(".hero");
+        if (hero) new IntersectionObserver(function (en) { if (en[0].isIntersecting) mark(""); }, { rootMargin: "-45% 0px -50% 0px" }).observe(hero);
+      }
+
+      /* Sticky "Request a Consultation": after the first screen, never over the form or the menu. */
+      var pastHero = false, onForm = false;
+      function updateBar() { if (bar) bar.classList.toggle("show", pastHero && !onForm && !isOpen); }
+      if ("IntersectionObserver" in window && bar) {
+        var hero2 = document.querySelector(".hero");
+        if (hero2) new IntersectionObserver(function (en) { pastHero = !en[0].isIntersecting && en[0].boundingClientRect.bottom < 0; updateBar(); }).observe(hero2);
+        var form = document.getElementById("consultation");
+        if (form) new IntersectionObserver(function (en) { onForm = en[0].isIntersecting; updateBar(); }, { threshold: 0.12 }).observe(form);
+      }
+    })();
+  </script>
+
+  <script>
+    /* Tap/click the blueprint diagram to view it large. */
+    (function () {
+      var open = document.getElementById("diagramOpen"), dlg = document.getElementById("diagramDialog"), close = document.getElementById("diagramClose");
+      if (!open || !dlg || !dlg.showModal) return;
+      open.addEventListener("click", function () {
+        dlg.showModal();
+      });
+      close.addEventListener("click", function () { dlg.close(); });
+      dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
+    })();
+  </script>
+
+  <script>
+    /* Blog banner: subscribe to The Heart of the Matter (saved in the store database; owner sees them in the store app). */
+    (function () {
+      var f = document.getElementById("bbForm"), msg = document.getElementById("bbMsg");
+      if (!f || typeof storeRpc !== "function") return;
+      f.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        msg.textContent = ""; msg.className = "bb-msg";
+        var email = f.elements.email.value.trim(), btn = f.querySelector("button");
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = "Please enter a valid email address."; msg.className = "bb-msg err"; f.elements.email.focus(); return; }
+        var label = btn.textContent; btn.disabled = true; btn.textContent = "Joining…";
+        try {
+          if (!f.elements.website.value) await storeRpc("subscribe_blog", { p_email: email, p_name: null, p_source: "home-banner" });
+          msg.textContent = "You're in. Watch your inbox for the next story."; msg.className = "bb-msg ok"; f.reset();
+        } catch (err) { msg.textContent = err.message; msg.className = "bb-msg err"; }
+        finally { btn.disabled = false; btn.textContent = label; }
+      });
+    })();
+  </script>
+
 </body>
 </html>
