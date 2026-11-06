@@ -26,35 +26,48 @@ html{overflow-x:clip}
 @media (min-width:900px){.fn-hero{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:center}.fn-hero-bots{max-width:none;justify-self:end;width:100%}}
 
 /* bots */
-.bot{overflow:visible}
-.bot .head{fill:#1C1A17;stroke:var(--cream);stroke-width:3}
-.bot .ear{fill:#2E2A26;stroke:var(--cream);stroke-width:2}
-.bot .stalk{stroke:var(--cream);stroke-width:3;fill:none;stroke-linecap:round}
-.bot .bulb{fill:var(--orange);animation:bulb 2.4s ease-in-out infinite}
-@keyframes bulb{50%{fill:var(--gold);filter:drop-shadow(0 0 6px var(--gold))}}
-.bot .eyes{fill:var(--gold);transform-box:fill-box;transform-origin:center;animation:blink 5s infinite}
-@keyframes blink{0%,94%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
-.bot .visor{fill:#0A0A0A;stroke:#3A3530;stroke-width:2}
-.bot .mouth{fill:#3A3530}
-.bot .smile,.bot .smirk,.bot .lid{fill:none;stroke:var(--gold);stroke-width:3.5;stroke-linecap:round}
-.bot .lid{stroke-width:4}
-.bot .crown{fill:var(--gold);stroke:#0A0A0A;stroke-width:1.5}
-.bot .mic{fill:none;stroke:var(--cream);stroke-width:2.5}
-.bot .micend{fill:var(--orange)}
-.bot .flame{fill:var(--orange);stroke:var(--gold);stroke-width:1.5;transform-box:fill-box;transform-origin:bottom;animation:flicker 1.2s ease-in-out infinite}
-@keyframes flicker{50%{transform:scale(1.08,.92)}}
-.bot .bolt{fill:var(--gold);stroke:#0A0A0A;stroke-width:1.5}
-.bot .glint{fill:#fff}
-.bot .gridlines{stroke:#3A3530;stroke-width:1.5;fill:none}
-.bot .beat{fill:none;stroke:var(--orange);stroke-width:3;stroke-linejoin:round;stroke-dasharray:80;animation:beat 1.6s linear infinite}
-@keyframes beat{from{stroke-dashoffset:160}to{stroke-dashoffset:0}}
-.bot .lens{fill:#0A0A0A;stroke:var(--orange);stroke-width:3}
-.bot .xhair{stroke:var(--orange);stroke-width:2.5;fill:none}
-.bot-black_mamba .head{fill:#0A0A0A;stroke:var(--gold)}
-.bot-black_mamba .ear{stroke:var(--gold)}
-.bot .fang{fill:none;stroke:var(--cream);stroke-width:2.5;stroke-linejoin:round}
-.bot .mouthline{stroke:var(--gold);stroke-width:2.5}
-.bot-lucille .head{stroke:var(--gold)}
+.bot{overflow:visible;filter:drop-shadow(0 0 3px rgba(255,107,26,.55)) drop-shadow(0 0 10px rgba(255,107,26,.25))}
+.bot .head{fill:#0C0B0A;stroke:url(#afbS);stroke-width:4.5}
+.bot .ear{fill:#0C0B0A;stroke:#F3EFE6;stroke-width:3}
+.bot .stalk{stroke:#F3EFE6;stroke-width:3;fill:none;stroke-linecap:round}
+.bot .bulb{fill:#FFF4D6}
+.bot .fo{fill:#FF5A14}.bot .fi{fill:#FFB020}.bot .fc{fill:#FFF1B8}
+.bot .fl{transform-box:fill-box;transform-origin:50% 100%;animation:afFl 1s ease-in-out infinite alternate}
+.bot .fl.d1{animation-duration:.8s;animation-delay:-.3s}.bot .fl.d2{animation-duration:1.15s;animation-delay:-.6s}
+@keyframes afFl{0%{transform:scale(1,.9) skewX(-4deg)}50%{transform:scale(.95,1.08) skewX(3deg)}100%{transform:scale(1.04,.96) skewX(5deg)}}
+.bot .eyes{fill:#FFC633;transform-box:fill-box;transform-origin:center;animation:afBlink 5s infinite}
+@keyframes afBlink{0%,93%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.bot .eyes.fe,.bot .eyes.scan{animation:none}
+.bot .scan{animation:afScan 3.4s ease-in-out infinite!important;transform-box:view-box}
+@keyframes afScan{0%,100%{transform:translateX(0)}30%{transform:translateX(-4px)}70%{transform:translateX(4px)}}
+.bot .visor{fill:#0A0A0A;stroke:#FF6B1A;stroke-width:3}
+.bot .mouth{fill:#3A3632}
+.bot .smile,.bot .smirk,.bot .lid{fill:none;stroke:#FF8A1A;stroke-width:4.5;stroke-linecap:round}
+.bot .lid{stroke:#FFC633}
+.bot .crown{fill:#FFB020;stroke:#FF6B1A;stroke-width:2;stroke-linejoin:round}
+.bot .cball{fill:#FFC633}
+.bot .mic{fill:none;stroke:#F3EFE6;stroke-width:3;stroke-linecap:round}
+.bot .micend{fill:#FF6B1A}
+.bot .bar{fill:#FF8A1A;transform-box:fill-box;transform-origin:50% 100%;animation:afBar 2.2s ease-in-out infinite}
+.bot .b2{animation-delay:-.4s}.bot .b3{animation-delay:-.8s}.bot .b4{fill:#FFC633;animation-delay:-1.2s}
+@keyframes afBar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.55)}}
+.bot .gridlines{stroke:#2A2622;stroke-width:1.5;fill:none}
+.bot .bolt{fill:#FFC633;stroke:#FF6B1A;stroke-width:1.5;stroke-linejoin:round}
+.bot .trail{fill:#FF6B1A;opacity:.9}
+.bot .boltg{animation:afZap 2.6s infinite}
+@keyframes afZap{0%,80%,100%{opacity:1}84%{opacity:.35}88%{opacity:1}92%{opacity:.5}}
+.bot .hood{fill:none;stroke:#FF6B1A;stroke-width:3;stroke-linejoin:round}
+.bot-scout .eyes{fill:#FF8A1A}
+.bot .lens{fill:none;stroke:#FF6B1A;stroke-width:3}
+.bot .xhair{stroke:#FF6B1A;stroke-width:3;fill:none;stroke-linecap:round}
+.bot .xh{transform-box:fill-box;transform-origin:center;animation:afSpin 6s linear infinite}
+@keyframes afSpin{to{transform:rotate(360deg)}}
+.bot-hunter .eyes{fill:#FF8A1A}
+.bot .mad{fill:#FFB020;animation:afMad 2.4s ease-in-out infinite}
+@keyframes afMad{50%{fill:#FFF1B8}}
+.bot .grin{fill:#FF6B1A}
+.bot .fang{fill:none;stroke:#FFE08A;stroke-width:2.5;stroke-linejoin:round}
+.bot-black_mamba .head{stroke-width:5}
 
 /* sections */
 .fn-sec{margin-bottom:40px}

@@ -7,55 +7,65 @@
   var STATUS = { proposed: 'Proposed', building: 'Building', testing: 'Testing', live: 'Live', paused: 'Paused' };
   var sb = null, S = { user: null, admin: false, bots: [], byId: {}, net: null, running: false };
 
-  /* ---------- bot faces (original robots — one personality each) ---------- */
+  /* ---------- bot faces (branded neon fire crew) ---------- */
   function face(id) {
-    var eyes = '<g class="eyes"><rect x="38" y="52" width="14" height="14" rx="7"/><rect x="68" y="52" width="14" height="14" rx="7"/></g>';
-    var head = '<rect class="head" x="22" y="34" width="76" height="64" rx="18"/>';
-    var ant = '<line class="stalk" x1="60" y1="34" x2="60" y2="18"/><circle class="bulb" cx="60" cy="14" r="6"/>';
-    var mouth = '<rect class="mouth" x="46" y="76" width="28" height="6" rx="3"/>';
-    var ears = '<rect class="ear" x="14" y="56" width="8" height="20" rx="3"/><rect class="ear" x="98" y="56" width="8" height="20" rx="3"/>';
-    var extra = '', cls = id;
+    var F = function (cx, by, s, cls) {
+      return '<g transform="translate(' + cx + ' ' + by + ') scale(' + s + ')"><g class="fl' + (cls ? ' ' + cls : '') + '">' +
+        '<path class="fo" d="M0 0C-9 0-12-7-10-13C-8-18-4-20-3-27C1-23 3-19 2-14C4-16 6-18 6-22C10-17 12-10 10-5C8-1 4 0 0 0Z"/>' +
+        '<path class="fi" d="M0 0C-5 0-6-4-5-7C-4-10-2-11-1-15C2-12 3-9 3-7C4-8 5-9 5-11C7-8 7-4 5-2C4-.5 2 0 0 0Z"/>' +
+        '<path class="fc" d="M0 0C-2 0-3-2-2-4C-1-5 0-6 0-8C2-6 3-4 2-2C2-1 1 0 0 0Z"/></g></g>';
+    };
+    var defs = '<defs><linearGradient id="afbS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4D6"/><stop offset=".45" stop-color="#FFC633"/><stop offset="1" stop-color="#FF6B1A"/></linearGradient></defs>';
+    var ears = '<rect class="ear" x="9" y="62" width="11" height="26" rx="5"/><rect class="ear" x="100" y="62" width="11" height="26" rx="5"/>';
+    var head = '<rect class="head" x="20" y="42" width="80" height="66" rx="20"/>';
+    var mouth = '<rect class="mouth" x="46" y="90" width="28" height="7" rx="3.5"/>';
+    var ant = '<line class="stalk" x1="60" y1="42" x2="60" y2="32"/><circle class="bulb" cx="60" cy="30" r="3.6"/>' + F(60, 28, .9);
+    var top = '', eyes = '', extra = '', after = '';
     switch (id) {
       case 'lucille':
-        ant = '<path class="crown" d="M42 32 L46 14 L54 26 L60 10 L66 26 L74 14 L78 32 Z"/><circle class="bulb" cx="60" cy="10" r="3.5"/>';
-        eyes = '<g class="eyes"><path d="M37 60 q8 -9 16 0" class="lid"/><path d="M67 60 q8 -9 16 0" class="lid"/></g>';
-        extra = '<path class="mic" d="M100 70 q10 14 -8 22"/><circle class="micend" cx="90" cy="92" r="3.5"/>';
-        mouth = '<path class="smile" d="M48 78 q12 8 24 0"/>';
+        ant = '';
+        top = '<g class="crownfl">' + F(46, 30, .7, 'd1') + F(60, 26, .95) + F(74, 30, .7, 'd2') + '</g>' +
+          '<path class="crown" d="M30 44 L28 24 L44 34 L60 18 L76 34 L92 24 L90 44 Z"/><circle class="cball" cx="28" cy="23" r="3.4"/><circle class="cball" cx="92" cy="23" r="3.4"/><circle class="cball" cx="60" cy="17" r="3"/>';
+        eyes = '<g class="eyes"><path class="lid" d="M35 70q8-9 16 0"/><path class="lid" d="M69 70q8-9 16 0"/></g>';
+        mouth = '<path class="smile" d="M48 86q12 9 24 0"/>';
+        extra = '<path class="mic" d="M101 80q4 18-14 22"/><rect class="micend" x="80" y="98" width="10" height="6" rx="3"/>';
         break;
       case 'fuel':
-        ant = '<line class="stalk" x1="60" y1="34" x2="60" y2="24"/><path class="flame" d="M60 2 C70 12 70 18 66 23 C64 26 56 26 54 23 C50 18 52 12 56 9 C56 14 58 15 60 13 C61 10 59 6 60 2 Z"/>';
-        eyes = '<g class="eyes"><rect class="visor" x="32" y="52" width="56" height="14" rx="7"/><rect x="40" y="55" width="12" height="8" rx="4"/><rect x="68" y="55" width="12" height="8" rx="4"/></g>';
+        eyes = '<rect class="visor" x="30" y="60" width="60" height="20" rx="10"/><g class="eyes scan"><path d="M38 66 L52 69 L48 74 L39 72Z"/><path d="M82 66 L68 69 L72 74 L81 72Z"/></g>';
         break;
       case 'spark':
-        ant = '<path class="bolt" d="M64 2 L50 20 H59 L54 34 L70 14 H61 Z"/>';
-        eyes = '<g class="eyes"><circle cx="45" cy="59" r="9"/><circle cx="75" cy="59" r="9"/><circle class="glint" cx="48" cy="56" r="2.5"/><circle class="glint" cx="78" cy="56" r="2.5"/></g>';
-        mouth = '<path class="smile" d="M46 78 q14 10 28 0"/>';
+        ant = '';
+        eyes = '<g class="eyes fe">' + F(43, 78, .72, 'd1') + F(77, 78, .72, 'd2') + '</g>';
+        mouth = '<path class="smile" d="M47 88q13 10 26 0"/>';
         break;
       case 'grid':
-        head = '<rect class="head" x="22" y="34" width="76" height="64" rx="6"/><path class="gridlines" d="M22 55 H98 M22 76 H98 M47 34 V98 M73 34 V98"/>';
-        eyes = '<g class="eyes"><rect x="34" y="46" width="13" height="13" rx="2"/><rect x="73" y="46" width="13" height="13" rx="2"/></g>';
-        mouth = '<rect class="mouth" x="48" y="82" width="24" height="5" rx="1"/>';
-        ant = '<line class="stalk" x1="40" y1="34" x2="40" y2="22"/><line class="stalk" x1="80" y1="34" x2="80" y2="22"/><rect class="bulb" x="35" y="16" width="10" height="7" rx="1"/><rect class="bulb" x="75" y="16" width="10" height="7" rx="1"/>';
+        head = '<rect class="head" x="20" y="42" width="80" height="66" rx="14"/><path class="gridlines" d="M24 64H96M24 86H96M47 46V104M73 46V104"/>';
+        ant = '<line class="stalk" x1="40" y1="42" x2="40" y2="32"/><line class="stalk" x1="80" y1="42" x2="80" y2="32"/>' + F(40, 31, .75, 'd1') + F(80, 31, .75, 'd2');
+        eyes = '<g class="bars"><rect class="bar b1" x="33" y="78" width="9" height="8" rx="1"/><rect class="bar b2" x="46" y="72" width="9" height="14" rx="1"/><rect class="bar b3" x="59" y="66" width="9" height="20" rx="1"/><rect class="bar b4" x="72" y="56" width="9" height="30" rx="1"/></g>';
+        mouth = '<rect class="mouth" x="48" y="94" width="24" height="6" rx="3"/>';
         break;
       case 'pulse':
-        eyes = '<g class="eyes"><rect class="visor" x="30" y="50" width="60" height="20" rx="10"/><path class="beat" d="M34 60 H48 L52 52 L57 68 L62 55 L66 60 H86"/></g>';
+        eyes = '<rect class="visor" x="28" y="62" width="64" height="18" rx="9"/><g class="boltg"><path class="trail" d="M66 64 C76 62 84 64 92 60 C86 66 88 70 80 74 C76 72 70 72 64 72Z"/><path class="bolt" d="M64 56 L48 74 H58 L52 88 L72 66 H62 Z"/></g>';
         break;
       case 'scout':
-        eyes = '<g class="eyes"><circle class="lens" cx="74" cy="59" r="13"/><circle cx="74" cy="59" r="6"/><rect x="38" y="54" width="12" height="10" rx="5"/></g>';
-        ant = '<line class="stalk" x1="52" y1="34" x2="46" y2="18"/><circle class="bulb" cx="45" cy="14" r="5"/>';
+        ant = '';
+        head = '<path class="head" d="M20 60 Q20 46 34 44 L60 32 L86 44 Q100 46 100 60 V90 Q100 108 80 108 H40 Q20 108 20 90 Z"/><path class="hood" d="M24 54 L60 38 L96 54"/>';
+        after = F(60, 62, .75);
+        eyes = '<g class="eyes"><circle cx="43" cy="76" r="6.5"/><circle cx="77" cy="76" r="6.5"/></g>';
         break;
       case 'hunter':
-        eyes = '<g class="eyes"><rect x="38" y="54" width="12" height="10" rx="5"/><circle class="lens" cx="74" cy="59" r="11"/><path class="xhair" d="M74 44 V52 M74 66 V74 M59 59 H67 M81 59 H89"/><circle cx="74" cy="59" r="2.5"/></g>';
-        mouth = '<path class="smirk" d="M48 80 q10 4 22 -3"/>';
+        eyes = '<g class="eyes"><circle cx="40" cy="74" r="6"/></g><g class="xh"><circle class="lens" cx="76" cy="74" r="12"/><path class="xhair" d="M76 56V64M76 84V92M58 74H66M86 74H94"/></g>' + F(76, 81, .45);
+        mouth = '<path class="smirk" d="M36 92q9 6 20-1"/>';
         break;
       case 'black_mamba':
-        head = '<path class="head" d="M24 50 Q24 34 42 34 H78 Q96 34 96 50 V82 Q96 98 78 98 H42 Q24 98 24 82 Z"/>';
-        eyes = '<g class="eyes"><path d="M34 62 L52 54 L52 64 Z"/><path d="M86 62 L68 54 L68 64 Z"/></g>';
-        mouth = '<path class="fang" d="M52 80 L56 90 L60 80 M60 80 L64 90 L68 80"/><path class="mouthline" d="M46 80 H74"/>';
-        ant = '<path class="stalk" d="M60 34 Q60 24 68 20 Q76 16 72 8"/><circle class="bulb" cx="72" cy="8" r="4"/>';
+        ant = '';
+        after = '<g class="hair">' + F(60, 52, 1.55) + '</g>';
+        head = '<path class="head" d="M20 62 Q20 44 38 44 L48 44 L54 34 L60 46 L66 34 L72 44 L82 44 Q100 44 100 62 V90 Q100 108 80 108 H40 Q20 108 20 90 Z"/>';
+        eyes = '<g class="eyes mad"><path d="M32 66 L52 74 L44 78 Z"/><path d="M88 66 L68 74 L76 78 Z"/></g>';
+        mouth = '<path class="grin" d="M38 86 Q60 92 82 86 Q78 104 60 104 Q42 104 38 86Z"/><path class="fang" d="M44 88 L48 96 L52 89 L56 97 L60 90 L64 97 L68 89 L72 96 L76 88"/>';
         break;
     }
-    return '<svg class="bot bot-' + cls + '" viewBox="0 0 120 112" aria-hidden="true">' + ant + ears + head + eyes + mouth + extra + '</svg>';
+    return '<svg class="bot bot-' + id + '" viewBox="0 0 120 120" aria-hidden="true">' + defs + top + ant + ears + head + eyes + mouth + extra + after + '</svg>';
   }
 
   /* ---------- views ---------- */
