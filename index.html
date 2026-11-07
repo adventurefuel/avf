@@ -29,6 +29,8 @@ body{margin:0;min-height:100%;background:#000;color:var(--cream);font-family:var
 a{color:var(--cream)}a:hover{color:var(--orange)}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.login{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:5;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#A9A398;border:1px solid #2C2925;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;gap:8px;background:#000}
+.login:hover{color:#FF6B1A;border-color:#FF6B1A}
 /* big bot */
 .botwrap{width:clamp(190px,30vw,300px);aspect-ratio:1;margin:6px auto 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .botwrap svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 18px 40px rgba(255,107,26,.18))}
@@ -77,6 +79,7 @@ footer a{color:#A9A398;text-decoration:none}
 </head>
 <body>
 
+<a class="login" href="/login/"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Login</a>
 <main>
   <img class="logo" src="/assets/af-logo.png" alt="Adventure Fuel" width="110" height="110">
   <div class="botwrap" id="fbHead" role="img" aria-label="The Adventure Fuel bot, a flame-topped black orb with glowing yellow eyes">

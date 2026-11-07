@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Member Login | Adventure Fuel</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@400;500;600;700&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<style>
+:root{--line:#2C2925;--cream:#F3EFE6;--muted:#A9A398;--orange:#FF6B1A;--gold:#FFC633;
+--display:'Anton','Impact','Arial Narrow',sans-serif;--body:'Outfit','Avenir Next','Segoe UI',system-ui,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+html{background:#000}
+body{margin:0;min-height:100%;background:#000;color:var(--cream);font-family:var(--body);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px}
+[hidden]{display:none!important}
+a{color:var(--muted)}a:hover{color:var(--orange)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.logo{width:96px;height:auto;margin-bottom:22px}
+.card{width:100%;max-width:400px;background:#111010;border:1px solid var(--line);border-top:4px solid var(--orange);padding:26px 24px 22px}
+h1{margin:0 0 4px;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:32px;line-height:1;letter-spacing:.02em}
+.note{margin:0 0 18px;font-size:15px;color:var(--muted)}
+form{display:grid;gap:12px}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.f input{background:#0B0B0A;border:1.5px solid var(--line);color:var(--cream);font:inherit;font-size:17px;padding:13px 14px;min-height:52px;border-radius:0;width:100%}
+.f input:focus{border-color:var(--orange);outline:none}
+button{appearance:none;border:0;cursor:pointer;background:var(--orange);color:#0A0A0A;font-family:var(--display);font-size:21px;letter-spacing:.05em;text-transform:uppercase;min-height:56px;margin-top:4px}
+button:hover{background:#E85A0C}
+button[disabled]{opacity:.6;cursor:wait}
+.msg{margin:0;min-height:1.3em;font-size:15px;font-weight:600;color:var(--gold)}
+.back{margin-top:18px;font-size:14px}
+</style>
+</head>
+<body>
+<a href="/" aria-label="Back to the waitlist"><img class="logo" src="/assets/af-logo.png" alt="Adventure Fuel" width="96" height="96"></a>
+<div class="card">
+  <h1>Member login</h1>
+  <p class="note">The full site is open to the Adventure Fuel team while we’re closed.</p>
+  <form id="lf" novalidate>
+    <div class="f"><label for="le">Email</label><input id="le" type="email" autocomplete="username" inputmode="email"></div>
+    <div class="f"><label for="lp">Password</label><input id="lp" type="password" autocomplete="current-password"></div>
+    <button type="submit" id="lb">Log In</button>
+    <p class="msg" id="lm" role="alert"></p>
+  </form>
+</div>
+<a class="back" href="/">Back to the waitlist</a>
+<script>
+(function(){
+  var sb=supabase.createClient('https://cjixvpcoivfipmgmvomi.supabase.co','sb_publishable_r9lGmmPly-_NzXnM0pOUSA_X_7V1pJh');
+  var p=new URLSearchParams(location.search).get('next')||'/site/';
+  var next=/^\/[A-Za-z0-9_\-\/#.]*$/.test(p)&&p.indexOf('//')!==0?p:'/site/';
+  var m=document.getElementById('lm'), b=document.getElementById('lb');
+  function go(){ location.replace(next); }
+  function check(){ return sb.rpc('is_admin').then(function(r){ if(r.data===true) return go(); return sb.auth.signOut().then(function(){ m.textContent='That login doesn’t have access yet.'; }); }); }
+  sb.auth.getSession().then(function(r){ if(r.data&&r.data.session) check(); });
+  document.getElementById('lf').addEventListener('submit',function(e){
+    e.preventDefault(); m.textContent='';
+    var em=document.getElementById('le').value.trim(), pw=document.getElementById('lp').value;
+    if(!em||!pw){ m.textContent='Enter your email and password.'; return; }
+    b.disabled=true; b.textContent='Checking…';
+    sb.auth.signInWithPassword({email:em,password:pw})
+      .then(function(r){ if(r.error) throw r.error; return check(); })
+      .catch(function(){ m.textContent='That email and password didn’t match.'; })
+      .then(function(){ b.disabled=false; b.textContent='Log In'; });
+  });
+})();
+</script>
+</body>
+</html>
