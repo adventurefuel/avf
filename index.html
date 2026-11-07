@@ -38,9 +38,9 @@ a{color:var(--cream)}a:hover{color:var(--orange)}
 @keyframes fbFlick{0%{transform:scale(1,.92) skewX(-3deg)}50%{transform:scale(.97,1.06) skewX(2deg)}100%{transform:scale(1.02,.97) skewX(4deg)}}
 .fb-hop{animation:fbHop .55s cubic-bezier(.3,1.6,.5,1)}
 @keyframes fbHop{0%{transform:scale(1,1)}30%{transform:scale(1.06,.9)}60%{transform:scale(.96,1.06)}100%{transform:scale(1,1)}}
-.botwrap{transition:translate .9s cubic-bezier(.2,1.4,.4,1),opacity .5s}
-.botwrap.out{translate:0 40px;opacity:0}
-@media (prefers-reduced-motion:reduce){.fb-fl{animation:none}.botwrap{transition:none}.botwrap.out{translate:none;opacity:1}}
+@media (prefers-reduced-motion:no-preference){.botwrap{animation:botIn .9s cubic-bezier(.2,1.4,.4,1) both}}
+@keyframes botIn{from{translate:0 40px;opacity:0}to{translate:0 0;opacity:1}}
+@media (prefers-reduced-motion:reduce){.fb-fl{animation:none}}
 main{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:28px 16px 24px;text-align:center}
 .logo{width:clamp(84px,12vw,110px);height:auto}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
@@ -79,7 +79,7 @@ footer a{color:#A9A398;text-decoration:none}
 
 <main>
   <img class="logo" src="/assets/af-logo.png" alt="Adventure Fuel" width="110" height="110">
-  <div class="botwrap out" id="fbHead" role="img" aria-label="The Adventure Fuel bot, a flame-topped black orb with glowing yellow eyes">
+  <div class="botwrap" id="fbHead" role="img" aria-label="The Adventure Fuel bot, a flame-topped black orb with glowing yellow eyes">
 <svg viewBox="0 -70 400 470" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <defs>
 <linearGradient id="fbF1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF4A12"/><stop offset=".6" stop-color="#FF6B1A"/><stop offset="1" stop-color="#FFC633"/></linearGradient>
@@ -140,7 +140,6 @@ footer a{color:#A9A398;text-decoration:none}
   var head=document.getElementById('fbHead'), body=document.getElementById('fbBody'), eL=document.getElementById('fbEyeL'), eR=document.getElementById('fbEyeR');
   if(!head) return;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  requestAnimationFrame(function(){ head.classList.remove('out'); });
   if(reduce) return;
   var tx=0,ty=0,cx=0,cy=0,lastMove=0,bT=0,idleT=0,wander=[0,0],happyT=0;
   function aim(px,py){var r=head.getBoundingClientRect(),x=r.left+r.width*.5,y=r.top+r.height*.6;var dx=px-x,dy=py-y,d=Math.hypot(dx,dy)||1,m=Math.min(1,d/420);tx=dx/d*m;ty=dy/d*m;lastMove=performance.now();}
