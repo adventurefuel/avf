@@ -1,3 +1,37 @@
+<linearGradient id="fbRb" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0" stop-color="#FF3B3B"><animate attributeName="stop-color" values="#FF3B3B;#FFB020;#3BE36B;#2E8BFF;#B04BFF;#FF3B3B" dur="1.6s" repeatCount="indefinite"/></stop>
+<stop offset=".55" stop-color="#FFB020"><animate attributeName="stop-color" values="#FFB020;#3BE36B;#2E8BFF;#B04BFF;#FF3B3B;#FFB020" dur="1.6s" repeatCount="indefinite"/></stop>
+<stop offset="1" stop-color="#3BE36B"><animate attributeName="stop-color" values="#3BE36B;#2E8BFF;#B04BFF;#FF3B3B;#FFB020;#3BE36B" dur="1.6s" repeatCount="indefinite"/></stop>
+</linearGradient>
+<g id="fbMood">
+<g id="fbFlip">
+<g id="fbBody">
+<g id="fbFlames" transform="translate(0 6)">
+<path class="fb-fl" fill="url(#fbF1)" d="M120 70 C112 40 128 18 140 -4 C146 22 168 32 166 62 Z"/>
+<path class="fb-fl f2" fill="url(#fbF1)" d="M168 46 C160 6 186 -28 204 -58 C210 -24 244 -2 236 46 Z"/>
+<path class="fb-fl f3" fill="url(#fbF1)" d="M236 60 C236 30 254 16 266 -6 C276 20 290 34 282 72 Z"/>
+<path class="fb-fl f2 core" fill="url(#fbF2)" d="M184 46 C182 22 196 6 204 -14 C212 8 226 22 220 46 Z"/>
+</g>
+<circle cx="200" cy="214" r="178" fill="url(#fbHd)"/>
+<circle id="fbRing" cx="200" cy="214" r="178" fill="none" stroke="#FF6B1A" stroke-width="7"/>
+<g id="fbEyes" filter="url(#fbGlow)">
+<g id="fbEyeL" transform="translate(146 200)"><rect x="-24" y="-52" width="48" height="104" rx="24" fill="#FFC633"/></g>
+<g id="fbEyeR" transform="translate(254 200)"><rect x="-24" y="-52" width="48" height="104" rx="24" fill="#FFC633"/></g>
+</g>
+</g>
+</g>
+<g id="fbZ" aria-hidden="true">
+<text class="z z1" x="318" y="70">z</text>
+<text class="z z2" x="342" y="38">z</text>
+<text class="z z3" x="368" y="2">Z</text>
+</g>
+<g id="fbSparks" aria-hidden="true">
+<path class="sp s1" d="M40 120 l8 -20 l8 20 l20 8 l-20 8 l-8 20 l-8 -20 l-20 -8 Z"/>
+<path class="sp s2" d="M340 110 l6 -15 l6 15 l15 6 l-15 6 l-6 15 l-6 -15 l-15 -6 Z"/>
+<path class="sp s3" d="M24 300 l6 -15 l6 15 l15 6 l-15 6 l-6 15 l-6 -15 l-15 -6 Z"/>
+<path class="sp s4" d="M362 290 l8 -20 l8 20 l20 8 l-20 8 l-8 20 l-8 -20 l-20 -8 Z"/>
+</g>
+</g>
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,6 +65,51 @@ a{color:var(--cream)}a:hover{color:var(--orange)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .login{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));right:14px;z-index:5;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#A9A398;border:1px solid #2C2925;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center;gap:8px;background:#000}
 .login:hover{color:#FF6B1A;border-color:#FF6B1A}
+/* bot moods (by the visitor's local time) */
+.botsay{margin:-8px 0 0;min-height:1.4em;font-size:14px;font-weight:600;letter-spacing:.04em;color:#A9A398}
+.botsay b{color:#FFC633;font-weight:700}
+#fbMood,#fbFlip,#fbFlames{transform-box:fill-box}
+#fbFlip{transform-origin:50% 60%;transition:transform .7s cubic-bezier(.3,1.5,.5,1)}
+.flipped #fbFlip{transform:rotate(180deg)}
+#fbFlames{transform-origin:50% 100%;transition:transform .8s ease,opacity .8s ease}
+#fbZ,#fbSparks{display:none}
+.z{font-family:'Anton',Impact,sans-serif;fill:#F3EFE6;font-size:34px;opacity:0;transform-box:fill-box}
+.sp{fill:#FFF1B8;opacity:0;transform-box:fill-box;transform-origin:center}
+#fbEyes rect{transition:fill .8s}
+/* night: snooze */
+.m-night #fbZ{display:block}
+.m-night #fbFlames{transform:translate(0px,6px) scale(.62);opacity:.55}
+.m-night #fbRing{stroke:#C2560F}
+.m-night #fbEyes rect{fill:#E0A82A}
+/* morning: waking up */
+.m-morning #fbFlames{transform:translate(0px,6px) scale(.85)}
+/* power hour */
+.m-power .fb-fl:not(.core){fill:url(#fbRb)}
+.m-power #fbFlames{transform:translate(0px,6px) scale(1.28)}
+.m-power #fbSparks{display:block}
+.m-power #fbEyes rect{fill:#FFE27A}
+.m-power .botsay b{color:#FF6B1A}
+/* evening: golden hour */
+.m-evening #fbEyes rect{fill:#FFB020}
+.m-late #fbFlames{transform:translate(0px,6px) scale(.78);opacity:.8}
+.m-late #fbEyes rect{fill:#F0B030}
+@media (prefers-reduced-motion:no-preference){
+  .m-night #fbMood{transform-origin:50% 100%;animation:breathe 4.2s ease-in-out infinite}
+  @keyframes breathe{0%,100%{transform:scale(1,1) rotate(-3deg)}50%{transform:scale(1.03,.98) rotate(-3deg)}}
+  .m-night .z{animation:zfloat 3.6s ease-out infinite}
+  .m-night .z2{animation-delay:1.2s}.m-night .z3{animation-delay:2.4s}
+  @keyframes zfloat{0%{opacity:0;transform:translate(0,14px) scale(.6)}20%{opacity:.9}100%{opacity:0;transform:translate(16px,-26px) scale(1.15)}}
+  .m-power #fbMood{animation:jitter .16s steps(2) infinite}
+  @keyframes jitter{0%{transform:translate(2px,-1px) rotate(.6deg)}25%{transform:translate(-2px,1px) rotate(-.5deg)}50%{transform:translate(1px,2px) rotate(.4deg)}75%{transform:translate(-1px,-2px) rotate(-.6deg)}100%{transform:translate(2px,1px)}}
+  .m-power .sp{animation:spark 1.4s ease-out infinite}
+  .m-power .s2{animation-delay:.35s}.m-power .s3{animation-delay:.7s}.m-power .s4{animation-delay:1.05s}
+  @keyframes spark{0%{opacity:0;transform:scale(.2) rotate(0)}30%{opacity:1;transform:scale(1.1) rotate(25deg)}100%{opacity:0;transform:scale(.4) rotate(70deg)}}
+  .m-power .fb-fl{animation-duration:.45s}
+  .stretching #fbMood{transform-origin:50% 100%;animation:stretch 1.6s ease-in-out}
+  @keyframes stretch{0%,100%{transform:scale(1,1)}35%{transform:scale(.93,1.12)}60%{transform:scale(1.05,.95)}}
+  .m-evening #fbMood{transform-origin:50% 100%;animation:sway 5s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+}
 /* big bot */
 .botwrap{width:clamp(190px,30vw,300px);aspect-ratio:1;margin:6px auto 0;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .botwrap svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 18px 40px rgba(255,107,26,.18))}
@@ -106,6 +185,7 @@ footer a{color:#A9A398;text-decoration:none}
 </g>
 </svg>
   </div>
+  <p class="botsay" id="botSay" aria-live="polite"></p>
   <span class="eyebrow rise">By invitation · Opening soon</span>
   <h1 class="rise">Something’s being built. <span>Get on the list.</span></h1>
   <p class="sub rise">Adventure Fuel is opening its doors to a limited group of entrepreneurs. Join the waitlist and you’re first through when we open.</p>
@@ -140,28 +220,85 @@ footer a{color:#A9A398;text-decoration:none}
 
 <script>
 (function(){
-  var head=document.getElementById('fbHead'), body=document.getElementById('fbBody'), eL=document.getElementById('fbEyeL'), eR=document.getElementById('fbEyeR');
+  var head=document.getElementById('fbHead'), body=document.getElementById('fbBody'), eL=document.getElementById('fbEyeL'), eR=document.getElementById('fbEyeR'), say=document.getElementById('botSay');
   if(!head) return;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce) return;
-  var tx=0,ty=0,cx=0,cy=0,lastMove=0,bT=0,idleT=0,wander=[0,0],happyT=0;
-  function aim(px,py){var r=head.getBoundingClientRect(),x=r.left+r.width*.5,y=r.top+r.height*.6;var dx=px-x,dy=py-y,d=Math.hypot(dx,dy)||1,m=Math.min(1,d/420);tx=dx/d*m;ty=dy/d*m;lastMove=performance.now();}
+
+  /* ---- moods by the visitor's local clock ---- */
+  var MOODS={
+    night:  {say:'Fuel Bot is <b>recharging</b>. Tap to wake him.', eye:.1,  track:false, ease:.05},
+    morning:{say:'Fuel Bot is <b>waking up</b>. Coffee first.',     eye:.55, track:true,  ease:.07},
+    day:    {say:'Fuel Bot is <b>on the clock</b>.',                 eye:1,   track:true,  ease:.12},
+    power:  {say:'11 to 1 is <b>power hour</b>. Fully charged.',      eye:1.08,track:true,  ease:.22},
+    afternoon:{say:'Fuel Bot is <b>cruising</b> through the afternoon.', eye:1, track:true, ease:.12},
+    evening:{say:'<b>Golden hour.</b> Fuel Bot is winding down.',     eye:.85, track:true,  ease:.07},
+    late:   {say:'Fuel Bot is <b>getting sleepy</b>.',                eye:.6,  track:true,  ease:.05}
+  };
+  function moodFor(h){ if(h>=22||h<5) return 'night'; if(h<8) return 'morning'; if(h<11) return 'day'; if(h<13) return 'power'; if(h<17) return 'afternoon'; if(h<20) return 'evening'; return 'late'; }
+  var forced=(new URLSearchParams(location.search).get('bot')||'').toLowerCase();
+  var mood='', M=MOODS.day;
+  function setMood(){
+    var m=MOODS[forced]?forced:moodFor(new Date().getHours());
+    if(m===mood) return;
+    Object.keys(MOODS).forEach(function(k){head.classList.toggle('m-'+k,k===m)});
+    mood=m; M=MOODS[m]; say.innerHTML=M.say;
+  }
+  setMood(); setInterval(setMood,60000);
+
+  var tx=0,ty=0,cx=0,cy=0,lastMove=0,bT=0,idleT=0,wander=[0,0],happyT=0,wakeT=0,nodT=0,nodEnd=0,yawnT=0;
+  function now(){return performance.now()}
+  function aim(px,py){var r=head.getBoundingClientRect(),x=r.left+r.width*.5,y=r.top+r.height*.6;var dx=px-x,dy=py-y,d=Math.hypot(dx,dy)||1,m=Math.min(1,d/420);tx=dx/d*m;ty=dy/d*m;lastMove=now();}
   function hop(){body.classList.remove('fb-hop');void body.getBoundingClientRect();body.classList.add('fb-hop');}
-  function happy(){happyT=performance.now()+900;}
-  window.AFBot={hop:hop,happy:happy,lookAt:function(el){var r=el.getBoundingClientRect();aim(r.left+r.width/2,r.top+r.height/2);}};
-  window.addEventListener('pointermove',function(e){aim(e.clientX,e.clientY)},{passive:true});
-  head.addEventListener('pointerdown',function(e){aim(e.clientX,e.clientY);hop();happy();});
-  document.addEventListener('focusin',function(e){if(e.target.matches('input,button')) AFBot.lookAt(e.target);});
-  document.addEventListener('input',function(e){if(e.target.matches('input')) AFBot.lookAt(e.target);});
-  function nextBlink(t){bT=t+2200+Math.random()*3200;}
-  nextBlink(performance.now());
+  function happy(){happyT=now()+900;}
+  function awake(){return M.track||now()<wakeT;}
+  function flip(){ if(head.classList.contains('flipped')) return; head.classList.add('flipped'); hop(); setTimeout(function(){head.classList.remove('flipped'); hop();},2600); }
+  function stretch(){ head.classList.remove('stretching'); void head.offsetWidth; head.classList.add('stretching'); setTimeout(function(){head.classList.remove('stretching')},1700); }
+  window.AFBot={hop:hop,happy:happy,flip:flip,lookAt:function(el){var r=el.getBoundingClientRect();aim(r.left+r.width/2,r.top+r.height/2);}};
+  if(reduce) return;
+
+  window.addEventListener('pointermove',function(e){ if(awake()) aim(e.clientX,e.clientY); },{passive:true});
+  head.addEventListener('pointerdown',function(e){
+    if(mood==='night'&&now()>wakeT){ wakeT=now()+4500; say.innerHTML='Huh? <b>I’m up!</b> …mostly.'; setTimeout(function(){ if(mood==='night') say.innerHTML=M.say; },4500); }
+    aim(e.clientX,e.clientY); hop(); happy();
+    if(mood!=='night'&&Math.random()<.18) setTimeout(flip,350);
+  });
+  document.addEventListener('focusin',function(e){if(e.target.matches('input,button')&&awake()) AFBot.lookAt(e.target);});
+  document.addEventListener('input',function(e){if(e.target.matches('input')&&awake()) AFBot.lookAt(e.target);});
+
+  /* occasional tricks */
+  (function trick(){
+    var wait=mood==='power'?9000:mood==='afternoon'?16000:30000;
+    setTimeout(function(){
+      if(document.visibilityState==='visible'){
+        var r=Math.random();
+        if(mood==='afternoon'&&r<.6) flip();
+        else if(mood==='power'){ hop(); happy(); if(r<.35) setTimeout(flip,300); }
+        else if((mood==='day'||mood==='evening')&&r<.25) flip();
+        else if(mood==='morning') stretch();
+      }
+      trick();
+    }, wait*(0.7+Math.random()*0.8));
+  })();
+
+  function nextBlink(t){ var base=mood==='power'?1400:mood==='late'||mood==='morning'?3800:2200; bT=t+base+Math.random()*3200; }
+  nextBlink(now());
   function tick(t){
-    if(t-lastMove>2200){if(t>idleT){wander=[(Math.random()*2-1)*.9,(Math.random()*2-1)*.6];idleT=t+900+Math.random()*1600;}tx=wander[0];ty=wander[1];}
-    cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;
-    var b=1;if(t>bT){var k=(t-bT)/170;if(k<1){b=Math.max(.08,Math.abs(1-2*k));}else{nextBlink(t);if(Math.random()<.25)bT=t+220;}}
+    var tracking=awake();
+    if(tracking&&t-lastMove>2200){ if(t>idleT){ var amp=mood==='power'?1:.9; wander=[(Math.random()*2-1)*amp,(Math.random()*2-1)*.6]; idleT=t+(mood==='power'?350:900)+Math.random()*(mood==='power'?600:1600); } tx=wander[0]; ty=wander[1]; }
+    if(!tracking){ tx=0; ty=.35; }
+    var ease=M.ease; cx+=(tx-cx)*ease; cy+=(ty-cy)*ease;
+
+    var open=t<wakeT?1.12:M.eye;
+    /* late: nods off now and then */
+    if(mood==='late'){ if(!nodT) nodT=t+6000+Math.random()*6000; if(t>nodT){ nodEnd=t+1500; nodT=t+7000+Math.random()*7000; } if(t<nodEnd) open=.08; }
+    /* morning: slow yawns (eyes squeeze, then open wide) */
+    if(mood==='morning'){ if(!yawnT) yawnT=t+5000; if(t>yawnT&&t<yawnT+1400){ var k=(t-yawnT)/1400; open=k<.6?.15:1; } else if(t>yawnT+1400){ yawnT=t+9000+Math.random()*6000; } }
+
+    var b=1; if(open>.2&&t>bT){var k2=(t-bT)/(mood==='morning'||mood==='late'?320:170); if(k2<1){b=Math.max(.08,Math.abs(1-2*k2));}else{nextBlink(t);if(Math.random()<.25)bT=t+220;}}
     var sq=t<happyT?.42:1, ex=cx*30, ey=cy*26, near=1-Math.abs(cx)*.12;
-    eL.setAttribute('transform','translate('+(146+ex)+' '+(200+ey)+') scale('+(cx<0?near:1)+' '+(b*sq)+')');
-    eR.setAttribute('transform','translate('+(254+ex)+' '+(200+ey)+') scale('+(cx>0?near:1)+' '+(b*sq)+')');
+    var sy=Math.max(.06,open*b*sq), sx=mood==='power'?1.06:1;
+    eL.setAttribute('transform','translate('+(146+ex)+' '+(200+ey)+') scale('+(sx*(cx<0?near:1))+' '+sy+')');
+    eR.setAttribute('transform','translate('+(254+ex)+' '+(200+ey)+') scale('+(sx*(cx>0?near:1))+' '+sy+')');
     body.setAttribute('transform','rotate('+(cx*4)+' 200 380) translate('+(cx*6)+' '+(cy*4)+')');
     requestAnimationFrame(tick);
   }
