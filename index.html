@@ -202,6 +202,20 @@ body.mm-lock{overflow:hidden}
 @keyframes fbHop{0%{transform:scale(1,1)}30%{transform:scale(1.06,.9)}60%{transform:scale(.96,1.06)}100%{transform:scale(1,1)}}
 @media (max-width:860px){.fb-sec{padding:40px 16px}.fb-copy{max-width:none;padding:36px 26px 270px;min-height:0}.fb-head{width:340px;translate:16% 24%}.fb-card:not(.in) .fb-head{translate:30% 90%}}
 @media (prefers-reduced-motion:reduce){.fb-fl{animation:none}.fb-head{transition:none}.fb-card:not(.in) .fb-head{translate:14% 30%}}
+
+/* instagram wall behind hero */
+.igw{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;--t:150px}
+.igw-tilt{position:absolute;left:50%;top:50%;width:170%;transform:translate(-50%,-50%) rotate(-8deg);display:flex;flex-direction:column;gap:12px}
+.igw-par{transition:transform .9s cubic-bezier(.2,.8,.2,1);will-change:transform}
+.igw-row{display:flex;gap:12px;width:max-content;animation:igwL var(--d,80s) linear infinite;will-change:transform}
+.igw-row.r{animation-name:igwR}
+.igw-row i{flex:none;width:var(--t);height:var(--t);border-radius:10px;background-image:url("/assets/ig-wall.webp");background-size:calc(var(--t)*12) calc(var(--t)*6);background-color:#161412;filter:grayscale(.15) contrast(1.05)}
+@keyframes igwL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes igwR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.igw::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(10,10,10,.94) 0%,rgba(10,10,10,.82) 45%,rgba(10,10,10,.62) 100%),linear-gradient(180deg,rgba(10,10,10,.55),rgba(10,10,10,0) 30%,rgba(10,10,10,0) 70%,rgba(10,10,10,.95))}
+.igw-tilt{opacity:.55}
+@media (max-width:860px){.igw{--t:96px}.igw-tilt{gap:8px}.igw-row{gap:8px}.igw::before{background:linear-gradient(180deg,rgba(10,10,10,.7),rgba(10,10,10,.86) 40%,rgba(10,10,10,.92))}}
+@media (prefers-reduced-motion:reduce){.igw-row{animation:none}.igw-par{transition:none}}
 </style>
 </head>
 <body>
@@ -225,6 +239,7 @@ body.mm-lock{overflow:hidden}
 
 <!-- HERO -->
 <section style="position: relative; background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1.6px); background-size: 9px 9px">
+<div class="igw" id="igw" aria-hidden="true"><div class="igw-par" id="igwPar"><div class="igw-tilt" id="igwTilt"></div></div></div>
 <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 96px 24px 112px; display: flex; flex-wrap: wrap; align-items: center; gap: 48px">
 <div style="flex: 999 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 30px">
 <div style="display: inline-flex; align-self: flex-start; border: 1px solid #FFC633; color: #FFC633; padding: 8px 14px; font-weight: 600; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase">Business coaching · AI automation · Meta ads</div>
@@ -658,6 +673,22 @@ function tick(t){
  requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
+})();
+</script>
+<script>
+(function(){
+var tilt=document.getElementById('igwTilt'),par=document.getElementById('igwPar'),wall=document.getElementById('igw');if(!tilt)return;
+var N=72,ROWS=7,PER=14,html='';
+for(var r=0;r<ROWS;r++){var row='';for(var k=0;k<PER;k++){var i=(r*29+k*11+(r%2?7:0))%N;var c=i%12,y=Math.floor(i/12);row+='<i style="background-position:calc(var(--t)*-'+c+') calc(var(--t)*-'+y+')"></i>';}
+html+='<div class="igw-row'+(r%2?' r':'')+'" style="--d:'+(70+((r*17)%40))+'s">'+row+row+'</div>';}
+tilt.innerHTML=html;
+var rows=tilt.querySelectorAll('.igw-row');
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+var hero=wall.parentElement,raf=0,mx=0,my=0;
+function apply(){raf=0;par.style.transform='translate('+(mx*-40)+'px,'+(my*-28)+'px)';
+ var sp=1+Math.abs(mx)*1.4;rows.forEach(function(el,ix){el.style.animationDuration=((70+((ix*17)%40))/sp)+'s';});}
+hero.addEventListener('pointermove',function(e){var b=hero.getBoundingClientRect();mx=(e.clientX-b.left)/b.width-.5;my=(e.clientY-b.top)/b.height-.5;if(!raf)raf=requestAnimationFrame(apply);},{passive:true});
+hero.addEventListener('pointerleave',function(){mx=0;my=0;if(!raf)raf=requestAnimationFrame(apply);});
 })();
 </script>
 </body>
